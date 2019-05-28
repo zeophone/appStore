@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "起小名乳名|起名网",
+  "usingComponents": {
+    "w-picker": "/components/w-picker/w-picker",
+    "w-character": "/components/w-character/w-character",
+    "w-youshi": "/components/w-youshi/w-youshi",
+    "w-footer": "/components/w-footer/w-footer"
+  }
+}

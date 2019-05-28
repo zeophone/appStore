@@ -1,0 +1,15 @@
+.p_baidu {
+  width: 100%;
+  padding: 10rpx 0;
+}
+.p_baidu .pay_button {
+  width: 700rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  margin: 0 auto;
+  color: #fff;
+  background: #00b700;
+  border-radius: 10rpx;
+}
+

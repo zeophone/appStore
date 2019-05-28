@@ -1,0 +1,360 @@
+.list .head {
+  position: relative;
+}
+.list .head .read_more {
+  position: absolute;
+  left: 0;
+  bottom: 10rpx;
+  width: 100%;
+  border-right: 1px solid #ccc;
+  height: 500rpx;
+  text-align: center;
+}
+.list .head .read_more_mask {
+  height: 400rpx;
+  background: -webkit-gradient(linear, 0 top, 0 bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+}
+.list .head .read_more_btn {
+  height: 100rpx;
+  text-align: center;
+  background: #ffffff;
+}
+.list .head .read_more_btn .name_detail {
+  border: 1px solid #ca0c16;
+  color: #ca0c16;
+  display: inline-block;
+  width: 60%;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 8rpx;
+}
+.list .submit {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20rpx 0;
+}
+.list .submit .button {
+  width: 640rpx;
+  background: url('https://static.quwangming.com/common/images/qiming_anniu.png') no-repeat;
+  background-size: 640rpx 100rpx;
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: 600;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.list .bg .content {
+  font-size: 32rpx;
+  border-bottom: 1px solid #ccc;
+}
+.list .bg .content .head_title {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 30rpx;
+}
+.list .bg .content .head_title .head_top {
+  background: #e3434f;
+  line-height: 40rpx;
+  border: 1px solid #000;
+  border-top: 0;
+  font-size: 28rpx;
+  color: #fff;
+  border-bottom-left-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -20rpx;
+  padding: 4rpx 30rpx;
+}
+.list .bg .content .item > view {
+  display: inline-block;
+  width: 50%;
+}
+.list .bg .content .item {
+  margin-bottom: 20rpx;
+}
+.list .bg .content .item text {
+  color: #888;
+  font-size: 28rpx;
+}
+.list .bg .eight_detail {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 20rpx;
+}
+.list .bg .eight_detail .text1 {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 80rpx;
+  color: #999;
+  font-size: 28rpx;
+  margin-right: 20rpx;
+}
+.list .bg .eight_detail .text2 {
+  font-size: 32rpx;
+  color: #484848;
+}
+.list .bg .eight_detail .text2 .circle {
+  font-size: 24rpx;
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background: #e2f7ea;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  border: 1px solid #9acaaf;
+}
+.list .bg .head {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 126rpx;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.list .bg .head:after {
+  content: '';
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  border-right: 0;
+  bottom: -12rpx;
+  left: 190rpx;
+  background: #fff;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.list .bg .head .head_name {
+  font-size: 58rpx;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  margin-right: 40rpx;
+}
+.list .bg .head .detail_bth {
+  float: right;
+  background: #f05654;
+  color: #fff;
+  border-radius: 8rpx;
+  position: absolute;
+  font-size: 32rpx;
+  width: 200rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  right: 0;
+  top: 20rpx;
+}
+.list .bg .head .head_score {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.list .bg .head .head_score .sounds_score {
+  color: #e25822;
+  font-size: 48rpx;
+}
+.list .bg .head .head_score .sounds_score text {
+  font-size: 24rpx;
+}
+.list .bg .head .head_score .text {
+  font-size: 24rpx;
+  position: relative;
+  color: #666;
+}
+.list .bg .score {
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.list .bg .score .col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.list .bg .score .col .item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 40rpx;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 10rpx;
+}
+.list .bg .score .col .item_bg {
+  margin-left: 25rpx;
+  width: 160rpx;
+  height: 15rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  position: relative;
+}
+.list .bg .score .col .item_bg text {
+  height: 15rpx;
+  position: absolute;
+  left: 0;
+  border-radius: 10rpx;
+}
+.list .bg .meaning {
+  position: relative;
+}
+.list .bg .meaning .meaning_list {
+  margin-bottom: 10rpx;
+}
+.list .bg .meaning .read_more {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.list .bg .meaning .read_more .read_more_mask {
+  height: 140rpx;
+  background: -webkit-gradient(linear, 0 top, 0 bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+}
+.list .bg .meaning .read_more .read_more_btn {
+  background: #fff;
+  height: 90rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.list .bg .meaning .read_more .read_more_btn .name_detail {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 440rpx;
+  height: 70rpx;
+  text-align: center;
+  background: #000040;
+  color: #fff;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+}
+.list .bg .meaning .read_more .read_more_btn .name_dz {
+  width: 170rpx;
+  text-align: center;
+  height: 70rpx;
+  border: 1px solid #ccc;
+  line-height: 70rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+  position: relative;
+  padding-left: 50rpx;
+  color: #999;
+}
+.list .bg .meaning .read_more .read_more_btn .name_dz .zan_icon {
+  width: 100rpx;
+  height: 100rpx;
+  background: url(https://static.quwangming.com/newqiming/images/m/chuantong/icon_zan.png) no-repeat;
+  background-size: 2900%;
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  margin: -50rpx 0 0 -50rpx;
+}
+.list .bg .meaning .read_more .read_more_btn .on {
+  border: 1px solid #e3434f;
+  color: #e3434f;
+}
+.list .bg .meaning .read_more .read_more_btn .on .zan_icon {
+  display: inline-block;
+  -webkit-animation-name: heartBlast;
+  animation-name: heartBlast;
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: steps(28);
+  animation-timing-function: steps(28);
+  background-position: right;
+}
+.list .child {
+  color: #333;
+  font-size: 30rpx;
+  padding-top: 20rpx;
+}
+.list .child .titel {
+  padding-left: 30rpx;
+  border-left: 8rpx solid #e3434f;
+  line-height: 34rpx;
+  margin: 30rpx 0;
+  font-weight: 600;
+  font-size: 34rpx;
+}
+.list .child .article {
+  text-indent: 2em;
+  line-height: 42rpx;
+}
+.list .child .five .list_wu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.list .child .five .list_bg {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 500rpx;
+  height: 20rpx;
+  background: #f5f5f5;
+  margin: 10rpx 10rpx 0;
+  position: relative;
+}
+.list .child .five .list_bg text {
+  display: inline-block;
+  height: 20rpx;
+  position: absolute;
+}
+.list .child .five .list:nth-of-type(1) {
+  color: #b8860b;
+}
+.list .child .five .list:nth-of-type(2) {
+  color: #008000;
+}
+.list .child .five .list:nth-of-type(3) {
+  color: #0073cf;
+}
+.list .child .five .list:nth-of-type(4) {
+  color: #e25822;
+}
+.list .child .five .list:nth-of-type(5) {
+  color: #a67b5b;
+}
+
+
+/*# sourceMappingURL=../../../.sourcemap/mp-baidu/pages/index/list.js.map*/

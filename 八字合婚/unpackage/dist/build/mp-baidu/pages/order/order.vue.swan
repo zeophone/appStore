@@ -1,0 +1,1 @@
+<template name="cdf20156"><view class="_view order_list {{ h[ 0 ].rcl }}"><view s-for="{{ h[ 1 ].li }}" s-key="i" s-for-item="item" s-for-index="i" class="_view item"><text class="_text btn"><text class="_text">{{ h[ 4 + '_' + (item_i2 !== undefined ? item_i2 : i) ].t }}</text></text></view></view></template>

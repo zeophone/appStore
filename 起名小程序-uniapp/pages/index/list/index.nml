@@ -1,0 +1,924 @@
+<import name="import-jiedu" src="../../../template/jiedu/index.nml"></import>
+<import name="import-pay" src="../../../template/pay/index.nml"></import>
+<template>
+<div class="u-w-view u-w-page">
+  <list class="u-w-scroll-view {{loading?'hide':''}}">
+    <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+      <div class="u-w-view">
+        <div class="u-w-view p_l10 p_r10 p_t15 p_b15">
+          <div class="u-w-view box m_b15">
+            <div class="u-w-view con">
+              <div class="u-w-view jbxx p_b10">
+                <div class="u-w-view tit">
+                  <text class="u-w-text">基本信息</text>
+                </div>
+                <div class="u-w-view xx">
+                  <div class="u-w-view">
+                    <text class="u-w-text">姓氏</text>
+                    <text class="u-w-text m_r15">{{params.surname}}</text>
+                    <text class="u-w-text">性别</text>
+                    <text class="u-w-text">{{params.sex==1?"男":"女"}}</text>
+                  </div>
+                  <div class="u-w-view">
+                    <text class="u-w-text">出生日</text>
+                    <text class="u-w-text">{{params.birth_time}}</text>
+                  </div>
+                  <div class="u-w-view">
+                    <text class="u-w-text">出生地</text>
+                    <text class="u-w-text">{{params.birth_address}}</text>
+                  </div>
+                  <div class="u-w-view">
+                    <text class="u-w-text">当地真太阳时为</text>
+                    <text class="u-w-text">{{zhengongliString}}</text>
+                  </div>
+                </div>
+                <input class="u-w-button u-w-button- dis_flex dis_cneter fxrk" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+                  <text class="u-w-text flex">查看解读</text>
+                </input>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view" for="{{(index,item) in list}}" tid="{{index}}">
+            <div class="u-w-view box m_b15" if="{{item.total_score
+              <90}}">
+                <div class="u-w-view con">
+                  <div class="u-w-view name">
+                    <div class="u-w-view dis_flex dis_cneter tit">
+                      <div class="u-w-view mz" if="{{item.name.length>0}}">
+                        <text class="u-w-text" for="{{(index,item) in item.name}}" tid="{{index}}">{{item}}</text>
+                      </div>
+                      <div class="u-w-view dis_flex dis_cneter fs">
+                        <div class="u-w-view">
+                          <div class="u-w-view">
+                            <text class="u-w-text">{{item.total_score}}</text>
+                          </div>
+                          <div class="u-w-view p">
+                            <text class="u-w-text">综合评分</text>
+                          </div>
+                        </div>
+                        <div class="u-w-view sj">
+                          <image class="u-w-icon"></image>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex"></div>
+                      <div class="u-w-view btn">
+                        <input data-name="{{item.name}}" class="u-w-button u-w-button-default" onclick="$handlePageEvent('seeDetail',false,false)" type="button" value="查看详情"></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view fs_xx">
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">好听内涵</text>
+                          <text class="u-w-text">{{item.sounds_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili01">
+                          <div class="u-w-view">
+                            <text style="width:{{item.sounds_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">八字五行</text>
+                          <text class="u-w-text">{{item.luck_god_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili02">
+                          <div class="u-w-view">
+                            <text style="width:{{item.luck_god_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">生肖属相</text>
+                          <text class="u-w-text">{{item.zodiac_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili03">
+                          <div class="u-w-view">
+                            <text style="width:{{item.zodiac_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">星座特征</text>
+                          <text class="u-w-text">{{item.constellation_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili04">
+                          <div class="u-w-view">
+                            <text style="width:{{item.constellation_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">五格数理</text>
+                          <text class="u-w-text">{{item.three_five_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili05">
+                          <div class="u-w-view">
+                            <text style="width:{{item.three_five_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">周易卦象</text>
+                          <text class="u-w-text">{{item.eight_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili06">
+                          <div class="u-w-view">
+                            <text style="width:{{item.eight_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view" for="{{(index,item) in list}}" tid="{{index}}">
+              <div class="u-w-view box box02 m_b15" if="{{item.total_score>=90&&index}}">
+                <div class="u-w-view con">
+                  <div class="u-w-view name gf">
+                    <div class="u-w-view dis_flex dis_cneter tit">
+                      <div class="u-w-view mz">
+                        <text class="u-w-text" for="{{(index,itemName) in item.name}}" tid="{{index}}">{{itemName}}</text>
+                      </div>
+                      <div class="u-w-view dis_flex dis_cneter fs">
+                        <div class="u-w-view">
+                          <div class="u-w-view">
+                            <text class="u-w-text">{{item.total_score}}</text>
+                          </div>
+                          <div class="u-w-view p">
+                            <text class="u-w-text">综合评分</text>
+                          </div>
+                        </div>
+                        <div class="u-w-view sj">
+                          <image class="u-w-icon"></image>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex"></div>
+                      <div class="u-w-view btn">
+                        <input data-is_see_free="{{item.is_see_free}}" data-index="{{index}}" class="u-w-button u-w-button- dis_flex dis_cneter" data-name="{{item.name}}" onclick="$handlePageEvent('gaoFenButtonFun',false,false)" type="button" value="查看详情"></input>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view fs_xx">
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">好听内涵</text>
+                          <text class="u-w-text">{{item.sounds_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili01">
+                          <div class="u-w-view">
+                            <text style="width:{{item.sounds_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">八字五行</text>
+                          <text class="u-w-text">{{item.luck_god_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili02">
+                          <div class="u-w-view">
+                            <text style="width:{{item.luck_god_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">生肖属相</text>
+                          <text class="u-w-text">{{item.zodiac_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili03">
+                          <div class="u-w-view">
+                            <text style="width:{{item.zodiac_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">星座特征</text>
+                          <text class="u-w-text">{{item.constellation_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili04">
+                          <div class="u-w-view">
+                            <text style="width:{{item.constellation_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">五格数理</text>
+                          <text class="u-w-text">{{item.three_five_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili05">
+                          <div class="u-w-view">
+                            <text style="width:{{item.three_five_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex">
+                        <div class="u-w-view dis_flex text">
+                          <text class="u-w-text flex">周易卦象</text>
+                          <text class="u-w-text">{{item.eight_score}}分</text>
+                        </div>
+                        <div class="u-w-view dis_flex bili bili06">
+                          <div class="u-w-view">
+                            <text style="width:{{item.eight_score}}%" class="u-w-text"></text>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view zi_js">
+                    <div class="u-w-view" for="{{(idx,itemName) in item.name}}" tid="{{idx}}">
+                      <div class="u-w-view dis_flex dl" if="{{idx>0}}">
+                        <div class="u-w-view dt">
+                          <text class="u-w-text">{{itemName}}</text>
+                        </div>
+                        <div class="u-w-view flex dd">
+                          <text class="u-w-text">{{diction[index][idx-1]}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view box">
+              <div class="u-w-view con">
+                <div class="u-w-view xd_sub">
+                  <div class="u-w-view p_l15 p_r15 p_b5">
+                    <text class="u-w-text b">打破行业先付款再起名潜规则</text>
+                    <text class="u-w-text">，先试用再付款，好系统用数据说话！</text>
+                  </div>
+                  <input class="u-w-button u-w-button-default href" onclick="$handlePageEvent('tcOpen',false,false)" type="button" value="查看更多好名"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view fixed">
+            <div class="u-w-view con p_l10 p_r10 p_t10 p_b10">
+              <div class="u-w-view dis_flex">
+                <!--<button> open-type="share" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+                <input style="background-color:none;color:#666;border:0;height:80px;line-height:80px" class="u-w-button u-w-button-default" type="button" value="推荐给好友">
+                  <image class="u-w-icon"></image>
+                </input>
+                <input style="background-color:#e14d4d;border-radius:50px;color:#fff;height:80px;line-height:80px" class="u-w-button u-w-button-default flex" onclick="$handlePageEvent('tcOpen',false,false)" type="button" value="查看更多好名">
+                  <image class="u-w-icon"></image>
+                </input>
+              </div>
+            </div>
+          </div>
+          <import-jiedu is="jiedu" data="{{fixedXxBox,params,zhengongli,zhennongli,eight_word,five_word,wuxing_count,wuxing,zhengongliString}}"></import-jiedu>
+          <import-pay is="pay" data="{{tcSwitch,checkedPayGrade,checkedPayGradeList,youHuiJinE,youHuiDengJi,youHuiType,modulType,is_see_free,platform}}"></import-pay>
+          <div class="u-w-view my_modal_bg{{myModalBg ? ' show' : ''}}" onclick="$handlePageEvent('close',false,false)"></div>
+          <div class="u-w-view bj"></div>
+        </div>
+      </list-item>
+    </list>
+    <div class="u-w-view loading {{!loading?'hide':''}}">
+      <image class="u-w-image loading_bg" src="{{loading_bg}}"></image>
+      <image class="u-w-image loading_logo" style="resize-mode:cover" src="{{loading_logo}}"></image>
+      <div class="u-w-view loading_bagua">
+        <image class="u-w-image zi" style="resize-mode:cover" src="{{zi}}"></image>
+        <image class="u-w-image dian" style="resize-mode:cover" src="{{dian}}"></image>
+        <image class="u-w-image bagua" style="resize-mode:cover" src="{{bagua}}"></image>
+        <div style="width:184px;height:184px" class="u-w-view"></div>
+        <div class="u-w-view {{loading_time>=1?'':'hide'}}">
+          <text class="u-w-text">正在努力加载中...</text>
+        </div>
+        <div class="u-w-view {{loading_time>=2?'':'hide'}}">
+          <text class="u-w-text">音形字义数据分析</text>
+        </div>
+        <div class="u-w-view {{loading_time>=3?'':'hide'}}">
+          <text class="u-w-text">八字喜神分析完成</text>
+        </div>
+        <div class="u-w-view {{loading_time>=4?'':'hide'}}">
+          <text class="u-w-text">三才五格分析完成</text>
+        </div>
+        <div class="u-w-view {{loading_time>=5?'':'hide'}}">
+          <text class="u-w-text">周易卦象分析完成</text>
+        </div>
+        <div class="u-w-view {{loading_time>=6?'':'hide'}}">
+          <text class="u-w-text">生肖星座分析完成</text>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+@import '../../../polyfill.nss';
+@import '../../../app.nss';
+
+.u-w-page {
+  /*overflow-y:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.u-w-scroll-view {
+  height: 100%;
+}
+
+.jbxx {
+  font-size: 32px;
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jbxx .tit {
+  width: 36px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  line-height: 1.2;
+  border: 2px solid #000;
+  padding: 20px 0;
+  top: 375px;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #ededed;
+  border-left-width: 0;
+  /*background:#ededed; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-left:0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-top-right-radius:6px; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-bottom-right-radius:6px; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*transform:translateY(-50%); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jbxx .xx {
+  line-height: 60px;
+  padding: 20px 0 20px 58px;
+}
+
+.jbxx .xx.u-w-view {
+  text-overflow: ellipsis;
+  lines: 1;
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jbxx .xx .u-w-text {
+  color: #6f6f6f;
+  padding-right: 18px;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jbxx .fxrk {
+  width: 180px;
+  height: 68px;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+  font-size: 30px;
+  background-color: #000040;
+  align-items: center;
+  justify-content: center;
+  /*background:#000040; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jbxx .fxrk .u-w-text {
+  padding: 0 10px;
+  line-height: 1.2;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.title {
+  line-height: 1.1;
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.title .u-w-icon {
+  width: 20px;
+  display: none;
+  border-top-width: 2px;
+  border-style: dotted;
+  border-top-color: #bbbbbb;
+  /*height:0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-top:2px dotted #bbbbbb; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.title .u-w-text {
+  font-size: 28px;
+  color: #333;
+  padding: 0 20px;
+}
+
+.xd_sub {
+  font-size: 32px;
+  line-height: 48px;
+  color: #333;
+  text-align: center;
+  padding: 30px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.xd_sub .u-w-navigator {
+  margin-top: 20px;
+}
+
+.analysis {
+  border-top-width: 2px;
+  border-style: solid;
+  border-top-color: #000;
+  /*border-top:2px solid #000; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.analysis .item {
+  padding: 36px 36px 30px;
+}
+
+.analysis .h3 {
+  padding-bottom: 24px;
+}
+
+.analysis .h3 .u-w-icon {
+  width: 96px;
+  height: 60px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/analysis_t01.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/analysis_t01.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(3) .h3 icon {
+  background-position-y: -70rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(5) .h3 icon {
+  background-position-y: -140rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(7) .h3 icon {
+  background-position-y: -210rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(9) .h3 icon {
+  background-position-y: -270rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(11) .h3 icon {
+  background-position-y: -340rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(13) .h3 icon {
+  background-position-y: -410rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(15) .h3 icon {
+  background-position-y: -480rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(17) .h3 icon {
+  background-position-y: -550rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:nth-child(19) .h3 icon {
+  background-position-y: -620rpx;
+}
+*/
+
+.analysis .h3 .u-w-text {
+  font-size: 40px;
+  padding-left: 24px;
+  /*font-family:'新宋体','宋体'; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.analysis .text {
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.analysis .line {
+  height: 16px;
+  margin: 0 40px;
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.analysis .line .u-w-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 375px;
+  border: 2px solid #caa456;
+  top: 0;
+  left: 0;
+  /*box-sizing:border-box; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .line icon:last-child {
+  left: auto;
+  right: 0;
+}
+*/
+
+.analysis .line .u-w-text {
+  top: 375px;
+  left: 48px;
+  right: 48px;
+  display: none;
+  border-top-width: 2px;
+  border-style: dotted;
+  border-top-color: #caa456;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*height:0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-top:2px dotted #caa456; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.show {
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.checkGaoFen {
+  position: fixed;
+  width: 500px;
+  top: 375px;
+  left: 375px;
+  margin: -260px 0 0 -250px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: scale(.5,.5);
+  background-color: #fff;
+  /*background:#fff; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:99999; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*visibility:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*transition:all .3s cubic-bezier(.17,.86,.27,1.2); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.checkGaoFen .hd {
+  font-size: 34px;
+  color: #fff;
+  text-align: center;
+  height: 88px;
+  line-height: 88px;
+  align-items: center;
+  justify-content: center;
+  background-color: #000040;
+  /*background:#000040; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.checkGaoFen .bd {
+  font-size: 32px;
+  line-height: 1.5;
+  text-align: center;
+  padding: 20px 0 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkGaoFen .bd .item {
+  text-align: left;
+  margin: 0 30px;
+  padding: 14px 10px;
+  font-size: 46px;
+  align-items: center;
+  justify-content: center;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-bottom-color: #f3f3f3;
+  /*border-bottom:2px solid #f3f3f3; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.checkGaoFen .bd .item:last-child {
+  border-bottom: 0;
+}
+*/
+
+.checkGaoFen .bd .fen {
+  border: 2px solid #aeaeae;
+  border-radius: 375px;
+  width: 64px;
+  height: 64px;
+  text-align: center;
+  line-height: 64px;
+  font-size: 48px;
+  font-weight: bold;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkGaoFen .sub .u-w-button {
+  font-size: 28px;
+  padding: 0 20px;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  border-radius: 6px;
+  background-color: #cf3744;
+  /*background:#cf3744; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.checkGaoFen.on {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1,1);
+}
+*/
+</style>
+<script>
+
+const _$wxs$_ = {
+
+}
+
+//list.js
+var app = getApp();
+import getJiaGeList from '../../../api/common/getJiaGeList.js';
+import znqmPay from '../../../api/znqm/znqmPay.js';
+import request from '../../../utils/request.js';
+Page({
+  data: {
+
+    list: [],
+    params: {},
+    diction: [],
+    zhengongliString: "",
+    zhengongli: ['', '', '', ''],
+    zhennongli: ['', '', '', ''],
+    eight_word: ['', '', '', ''],
+    five_word: ['', '', '', ''],
+    wuxing_count: ['', '', '', ''],
+    wuxing: '',
+
+    //选择的付款等级值
+    checkedPayGrade: 2,
+    checkedPayGradeList: [],
+    tcSwitch: false,
+    modulType: 2,
+    youHuiJinE: 0,
+    youHuiDengJi: 0,
+    youHuiType: "去使用红包",
+
+    isScroll: true,
+    fixedXxBox: false,
+    fxTit: '',
+    fxMain: '',
+    myModalBg: false,
+
+    //tychange:true,
+    //tyIndex:wx.getStorageSync('tyIndex'),
+    is_see_free: 0,
+    checkGaoFenShow: false,
+
+    getGaoFenTitle: ['不能让孩子输在起跑线，齐声夸赞的高分名字，免费领取！', '每天超过30万新生婴儿出生，都在获取参考最高分名字！', '我在起名网挑到最佳高分名字，告诉你！宝宝免费高分名字一键get！', '我在起名网挑到了最钟意名字，据说完成转发，谁都可以免费获取！', '起名网取名，点击免费名字分享，高分名字任意选！', '高分名字，免费领取！缘主，手慢无~', '吉祥高分好名字，就在起名网小程序！', '宝宝名字想好了吗？这些高分名字免费送给有缘的盆友！', '古人云：赐子万金，不如赐子好名！名字免费领，吉祥且高分！', '一个吉祥高分好名！让孩子好名好运一生！', '拥有一个高分名字这么难吗？动动手指头，然而并不难！', '一个吉祥高分好名！让孩子好名好运一生！'],
+
+    //loading
+    loading: true,
+    loading_bg: '../../../images/loading_bg.jpg',
+    loading_logo: '../../../images/loading_logo.png',
+    zi: "../../../images/zi.png",
+    dian: '../../../images/dian.png',
+    bagua: '../../../images/bagua.png',
+    loading_time: 1,
+    platform: app.globalData.systemInfo.platform
+  },
+  //事件处理函数
+  xxOpen: function () {
+    var that = this;
+    that.setData({
+      fixedXxBox: !this.fixedXxBox,
+      myModalBg: !this.myModalBg,
+      isScroll: false
+    });
+  },
+  tcOpen: function (e) {
+    var that = this;
+    that.setData({
+      tcSwitch: !this.tcSwitch,
+      myModalBg: !this.myModalBg
+
+    });
+  },
+  radioChange: function (e) {
+    this.setData({
+      checkedPayGrade: e.detail.value
+    });
+  },
+  close: function (e) {
+    var that = this;
+    that.setData({
+      fixedXxBox: false,
+      tcSwitch: false,
+      myModalBg: false,
+      isScroll: true,
+      checkGaoFenShow: false
+    });
+  },
+  onLoad: async function (option) {
+    var timer = setInterval(() => {
+      if (this.data.loading_time <= 6) {
+        this.setData({
+          loading_time: ++this.data.loading_time
+        });
+      } else {
+        clearInterval(timer);
+      }
+    }, 500);
+    if ((await uni.getStorageSync('tiyancishu')) >= 3) {
+      this.setData({
+        is_see_free: 1
+      });
+    }
+    var params = JSON.parse(option.data);
+    params.app = 1;
+    params.order_froms = 5;
+    params.app_mchid = app.globalData.openId;
+    if (params.sex == 1) {
+      params.name_expect = params.name_expect_boy || params.name_expect;
+    } else {
+      params.name_expect = params.name_expect_girl || params.name_expect;
+    };
+    request({
+      url: '/api/name/list',
+      params: params,
+      noShowLoading: true,
+      failFun: function () {
+        uni.router.back();
+      }
+    }).then(data => {
+      var diction = [];
+      for (var i = 0; i < data.data.list.length; i++) {
+        var dictionItem = data.data.list[i].diction.split('。');
+        diction.push(dictionItem);
+        if (data.data.list[i].is_see_free == 1 && this.data.is_see_free == 0) {
+          this.setData({
+            is_see_free: 1
+          });
+        }
+      }
+      this.setData({
+        list: data.data.list,
+        params: data.data.params,
+        zhengongliString: data.data.params.zhengongli.replace(/,/g, ""),
+        diction: diction,
+        zhengongli: data.data.params.zhengongli.split(','),
+        zhennongli: data.data.params.zhennongli.split(','),
+        eight_word: data.data.params.eight_word.split(','),
+        five_word: data.data.params.five_word.split(','),
+        wuxing_count: data.data.params.wuxing_count.split('：')[1].split('，'),
+        wuxing: data.data.params.wuxing,
+        formData: option,
+        loading: false
+      });
+    });
+    //页面进来清掉红包优惠金额存储数据
+    await uni.setStorageSync('youHuiJinE', '');
+    //获取价格列表
+    getJiaGeList().then(data => {
+      console.log(data);
+      this.setData({
+        checkedPayGradeList: data.order_config,
+        checkedPayGrade: data.order_config[0].order_level,
+        youHuiJinE: data.packet_money + ".00",
+        youHuiDengJi: data.packet_id || 0,
+        youHuiType: data.packet
+      });
+    });
+  },
+  onShow: async function () {
+    if (await uni.getStorageSync('youHuiJinE')) {
+      this.setData({
+        youHuiJinE: await uni.getStorageSync('youHuiJinE'),
+        youHuiDengJi: await uni.getStorageSync('youHuiDengJi'),
+        youHuiType: await uni.getStorageSync('youHuiType')
+      });
+    }
+  },
+  radioChange: function (e) {
+    this.setData({
+      checkedPayGrade: e.detail.value
+    });
+  },
+  paySubmit: function (e) {
+    znqmPay({
+      packet_id: this.data.youHuiDengJi,
+      order_level: this.data.checkedPayGrade
+    });
+  },
+  seeDetail: function (e) {
+    var name = e.currentTarget.dataset.name;
+    var params = JSON.parse(this.data.formData.data);
+    params.name = name[1];
+    if (name[2]) {
+      params.name += name[2];
+    }
+    uni.router.push(uni.parseArgs({
+      url: '/pages/index/detail/detail?data=' + JSON.stringify(params)
+    }, {
+      page: 'pages/index/list/list',
+      method: 'navigateTo'
+    }));
+  },
+  onShareAppMessage: function (e) {
+    var wenan = this.data.getGaoFenTitle[Math.floor(Math.random() * 11 + 0)];
+    return {
+      title: wenan,
+      path: '/pages/index/index'
+    };
+  },
+  gaoFenButtonFun: function (e) {
+    this.seeDetail(e);
+  },
+  tyName: async function (e) {
+    this.setData({
+      myModalBg: false,
+      checkGaoFenShow: false
+    });
+    var params = e.currentTarget.dataset;
+    request({
+      url: '/api/name/set_seename',
+      params
+    }).then(data => {
+      this.data.list[e.currentTarget.dataset.index].is_see_free = 1;
+      this.setData({
+        list: this.data.list,
+        is_see_free: 1
+      });
+      await uni.setStorageSync('tiyancishu', (await uni.getStorageSync('tiyancishu')) + 1);
+      this.seeDetail(e);
+    });
+  },
+  iosContact: function () {
+    var params = {
+      packet_id: this.data.youHuiDengJi,
+      order_level: this.data.checkedPayGrade,
+      pay_code: 'wechat',
+      order_forms: '5',
+      app_mchid: app.globalData.openId,
+      appflag: app.globalData.appflag,
+      app: 1
+    };
+    request({
+      url: '/api/nameorder/pay',
+      method: 'POST',
+      data: params
+    }).then(data => {
+      /*var result = data.result,
+        order_sn = data.order_sn,
+        pay_sn = data.pay_sn;
+        request({
+          params:{
+             open_id:app.globalData.openId,
+             appflag:app.globalData.appflag,
+             pay_sn:pay_sn//"xcxd2018072028649856981025"
+          },
+          url:"/api/public/contact"
+        }).then((data)=>{
+          console.log(data)
+        })*/
+    });
+  }
+}, {
+  path: 'pages/index/list/list',
+  module: module,
+  exports: exports,
+  $app_require$: $app_require$,
+  wxs: typeof _$wxs$_ === 'undefined' ? {} : _$wxs$_
+});
+</script>
+  

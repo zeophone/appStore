@@ -1,0 +1,23 @@
+.footer {
+  padding-bottom: 40rpx;
+}
+.footer image {
+  width: 200rpx;
+  height: 100rpx;
+  display: block;
+  margin: 0 auto;
+}
+.footer .copyright {
+  text-align: center;
+  font-size: 24rpx;
+  padding-top: 10rpx;
+  color: #999;
+}
+.footer .logo {
+  width: 220rpx;
+  height: 110rpx;
+  margin: 0 auto;
+  background: url('https://static.quwangming.com/newqiming/images/m/chuantong/copy.png') no-repeat;
+  background-size: 220rpx 110rpx;
+}
+

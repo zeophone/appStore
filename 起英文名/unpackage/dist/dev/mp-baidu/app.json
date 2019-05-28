@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/webview/webview",
+    "pages/list/list"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "起英文名|起名网",
+    "navigationBarBackgroundColor": "#f2f2f2",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

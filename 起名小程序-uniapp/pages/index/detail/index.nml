@@ -1,0 +1,2395 @@
+<import name="import-pay" src="../../../template/pay/index.nml"></import>
+<import name="ec-canvas" src="../../../components/ec-canvas/index.nml"></import>
+<template>
+<div class="u-w-view u-w-page">
+  <div class="u-w-view sorting" if="{{(orderType=='optional')&&(is_end==0)}}">
+    <div class="u-w-view dis_flex">
+      <div class="u-w-view flex sorting_name">
+        <div class="u-w-view flex">
+          <text class="u-w-text" for="{{(index,item) in data.app_full_name}}" tid="{{index}}">{{item}}</text>
+          <!--uniapp comment: unsupported component.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)
+<b class="shu">{{data.subject.total_score}}</b>-->
+          <text class="u-w-text fen">分</text>
+        </div>
+      </div>
+      <div class="u-w-view sorting_join" onclick="$handlePageEvent('beixuan',false,false)">
+        <text class="u-w-text">{{is_checked==0?'加入备选':'取消备选'}}</text>
+      </div>
+    </div>
+  </div>
+  <div class="u-w-view {{loading?'hide':''}}">
+    <div class="u-w-view p_l10 p_r10 p_t15 p_b15  {{(orderType=='optional')&&(is_end==0)?'p_t105':''}}">
+      <div class="u-w-view box m_b15">
+        <div class="u-w-view con">
+          <div class="u-w-view name">
+            <div class="u-w-view dis_flex dis_cneter tit">
+              <div class="u-w-view mz">
+                <text class="u-w-text" for="{{(index,item) in data.app_full_name}}" tid="{{index}}">{{item}}</text>
+              </div>
+              <div class="u-w-view flex"></div>
+              <div class="u-w-view dis_flex dis_cneter fs">
+                <div class="u-w-view">
+                  <div class="u-w-view">
+                    <text class="u-w-text">{{data.subject.total_score}}</text>
+                  </div>
+                  <div class="u-w-view p">
+                    <text class="u-w-text">综合评分</text>
+                  </div>
+                </div>
+                <div class="u-w-view sj">
+                  <image class="u-w-icon"></image>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view fs_xx">
+            <div class="u-w-view dis_flex">
+              <div class="u-w-view flex" data-tit="字义分析" data-main="yxy" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">好听内涵</text>
+                  <text class="u-w-text">{{data.subject.sounds_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili01">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.sounds_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+              <div class="u-w-view flex" data-tit="八字五行分析" data-main="bzwx" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">八字五行</text>
+                  <text class="u-w-text">{{data.subject.luck_god_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili02">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.luck_god_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+              <div class="u-w-view flex" data-tit="生肖起名分析" data-main="sxqm" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">生肖属相</text>
+                  <text class="u-w-text">{{data.subject.zodiac_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili03">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.zodiac_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view dis_flex">
+              <div class="u-w-view flex" data-tit="星座起名分析" data-main="xzqm" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">星座特征</text>
+                  <text class="u-w-text">{{data.subject.constellation_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili04">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.constellation_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+              <div class="u-w-view flex" data-tit="五格数理分析" data-main="wgsl" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">五格数理</text>
+                  <text class="u-w-text">{{data.subject.three_five_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili05">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.three_five_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+              <div class="u-w-view flex" data-tit="周易卦象分析" data-main="zygx" onclick="$handlePageEvent('xxOpen',false,false)">
+                <div class="u-w-view dis_flex text">
+                  <text class="u-w-text flex">周易卦象</text>
+                  <text class="u-w-text">{{data.subject.eight_score}}分</text>
+                </div>
+                <div class="u-w-view dis_flex bili bili06">
+                  <div class="u-w-view">
+                    <text style="width:{{data.subject.eight_score}}%" class="u-w-text"></text>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view zi_js">
+            <div class="u-w-view dis_flex dl" for="{{(index,item) in data.sound_meaning.name_info}}" tid="index">
+              <div class="u-w-view dt">
+                <text class="u-w-text">{{item.word}}</text>
+              </div>
+              <div class="u-w-view flex dd">
+                <text class="u-w-text">{{item.diction}}</text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-w-view box m_b15">
+        <div class="u-w-view con">
+          <div class="u-w-view analysis">
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">字义分析</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.name_meaning}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">音律字型</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.tonality}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">八字开运</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.eight_five_word}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">周易卦象</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.fit_gossip_str}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">三才五格</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.five_str}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">生肖吉祥</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.zodiac}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">星座起名</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.constellation_describe}}</text>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view dis_flex dis_cneter h3">
+                <image class="u-w-icon"></image>
+                <text class="u-w-text flex">大师点评</text>
+              </div>
+              <div class="u-w-view text">
+                <div class="u-w-view p">
+                  <text class="u-w-text">{{data.subject.expert_comment}}</text>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-w-view title p_b10 dis_flex" if="{{data.name_character_bili.length>0}}">
+        <image class="u-w-icon"></image>
+        <text class="u-w-text">名字印象</text>
+      </div>
+      <div class="u-w-view box m_b15" if="{{data.name_character_bili.length>0}}">
+        <div class="u-w-view con">
+          <div class="u-w-view yx_con">
+            <div class="u-w-view h2">
+              <text class="u-w-text">基于大数据“{{data.app_full_name[1]+(data.app_full_name[2]||'')+(data.app_full_name[3]||'')}}”名字印象分析：</text>
+            </div>
+            <div class="u-w-view c_box">
+              <list class="u-w-scroll-view">
+                <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                  <div class="u-w-view dis_inblock" for="{{(index,item) in name_character_bili}}" tid="index">
+                    <div class="u-w-view span">
+                      <div class="u-w-view i" style="height:{{item[1]}}%">
+                        <image class="u-w-icon"></image>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dis_cneter font">
+                      <div class="u-w-view">
+                        <text class="u-w-text">{{item[0]}}</text>
+                        <text class="u-w-text">{{item[1]}}%</text>
+                      </div>
+                    </div>
+                  </div>
+                </list-item>
+              </list>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-w-view title p_b10 dis_flex">
+        <image class="u-w-icon"></image>
+        <text class="u-w-text">名字潮流分析</text>
+      </div>
+      <div class="u-w-view box m_b15">
+        <div class="u-w-view con">
+          <div class="u-w-view mz_clfx">
+            <div class="u-w-view item">
+              <div class="u-w-view h3">
+                <text class="u-w-text">“{{data.app_full_name[1]+(data.app_full_name[2]||'')+(data.app_full_name[3]||'')}}”名字潮流分析（近50年）</text>
+              </div>
+              <div class="u-w-view mychart-multi-line1 {{isDisposed?'show':'hidden'}}">
+                <ec-canvas id="mychart-multi-line1" canvas-id="mychart-multi-line1" ec="{{ ecLine1 }}"></ec-canvas>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view h3">
+                <text class="u-w-text">基于大数据分析，近十年来，"{{data.app_full_name[1]+(data.app_full_name[2]||'')+(data.app_full_name[3]||'')}}"的{{data.name_info['man_rate'] > data.name_info['woman_rate']?"男":"女"}}性使用率居多，比例占</text>
+              </div>
+              <div class="u-w-view xb_fenxi">
+                <div class="u-w-view dis_flex">
+                  <div class="u-w-view flex">
+                    <div class="u-w-view span">
+                      <image class="u-w-icon"></image>
+                    </div>
+                    <div class="u-w-view em">
+                      <text class="u-w-text">{{data.name_info.man_rate}}</text>
+                      <text class="u-w-text">%</text>
+                    </div>
+                  </div>
+                  <div class="u-w-view flex">
+                    <div class="u-w-view em">
+                      <text class="u-w-text">{{data.name_info.woman_rate}}</text>
+                      <text class="u-w-text">%</text>
+                    </div>
+                    <div class="u-w-view span">
+                      <image class="u-w-icon"></image>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view h3">
+                <text class="u-w-text">“{{data.app_full_name[1]}}”在名字首字中使用排名趋势</text>
+              </div>
+              <div class="u-w-view mychart-multi-line2 {{isDisposed?'show':'hidden'}}">
+                <ec-canvas id="mychart-multi-line2" canvas-id="mychart-multi-line2" ec="{{ ecLine2 }}"></ec-canvas>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view h3" if="data.app_full_name[2]">
+                <text class="u-w-text">“{{data.app_full_name[2]}}”在名字末字中使用排名趋势</text>
+              </div>
+              <div class="u-w-view mychart-multi-line3 {{isDisposed?'show':'hidden'}}">
+                <ec-canvas id="mychart-multi-line3" canvas-id="mychart-multi-line3" ec="{{ ecLine3 }}"></ec-canvas>
+              </div>
+            </div>
+            <div class="u-w-view item">
+              <div class="u-w-view h3">
+                <div class="u-w-view co_red">
+                  <text class="u-w-text">说明：该统计基于近13亿人的姓名数据，对名字在每个年代的使用情况做出排名，排名越高表示使用的人越多。</text>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-w-view fx_tit">
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item" data-tit="字义分析" data-main="yxy" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">字义分析</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.sounds_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item m_t10" data-tit="八字五行分析" data-main="bzwx" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">八字五行</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.luck_god_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item m_t10" data-tit="生肖起名分析" data-main="sxqm" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">生肖属相</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.zodiac_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item m_t10" data-tit="星座起名分析" data-main="xzqm" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">星座起名</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.constellation_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item m_t10" data-tit="五格数理分析" data-main="wgsl" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">五格数理</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.three_five_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter item m_t10" data-tit="周易卦象分析" data-main="zygx" onclick="$handlePageEvent('xxOpen',false,false)" type="button">
+          <div class="u-w-view h2">
+            <text class="u-w-text">周易卦象</text>
+          </div>
+          <div class="u-w-view flex fs">
+            <text class="u-w-text">分</text>
+            <text class="u-w-text">{{data.subject.eight_score}}</text>
+          </div>
+          <div class="u-w-view text">
+            <text class="u-w-text">查看详情分析</text>
+          </div>
+        </input>
+      </div>
+    </div>
+    <div class="u-w-view fixed" if="{{(!orderType)&&(!formTouPiao)}}">
+      <div class="u-w-view con p_l10 p_r10 p_t15 p_b15">
+        <div class="u-w-view dis_flex">
+          <!--<button> open-type="share" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+          <input class="u-w-button u-w-button-default flex" style="background-color:#e14d4d;border-radius:50px 0 0 50px;color:#fff;border:0;height:88px;line-height:88px;margin-right:3px;padding:0 " type="button" value="推荐给好友">
+            <image class="u-w-icon"></image>
+          </input>
+          <input style="background-color:#000040;border-radius:0 50px 50px 0;color:#fff;border:0;height:88px;line-height:88px" class="u-w-button u-w-button-default flex" onclick="$handlePageEvent('tcOpen',false,false)" type="button" value="查看更多好名">
+            <image class="u-w-icon"></image>
+          </input>
+        </div>
+      </div>
+    </div>
+    <div class="u-w-view fixed" if="{{formTouPiao}}">
+      <div class="u-w-view con p_l10 p_r10 p_t15 p_b15">
+        <input class="u-w-button u-w-button- dis_flex dis_cneter btn" onclick="$handlePageEvent('goToCeming',false,false)" type="button" value="测测我名字">
+          <image class="u-w-icon"></image>
+        </input>
+      </div>
+    </div>
+    <div class="u-w-view fixed" if="{{orderType=='order'}}">
+      <div class="u-w-view con p_l10 p_r10 p_t15 p_b15">
+        <!--<button> open-type="share" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+        <input class="u-w-button u-w-button-default dis_flex dis_cneter btn" type="button" value="分享给亲友看看">
+          <image class="u-w-icon"></image>
+        </input>
+      </div>
+    </div>
+    <!--<view> catchtouchmove="move" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+    <div class="u-w-view fixed_xx_box{{fixedXxBox ? ' show' : ''}}">
+      <div class="u-w-view tit">
+        <div class="u-w-view" onclick="$handlePageEvent('close',false,false)">
+          <image class="u-w-icon"></image>
+        </div>
+        <text class="u-w-text">{{fxTit}}</text>
+      </div>
+      <div class="u-w-view box">
+        <div class="u-w-view con">
+          <div class="u-w-view {{fxMain == 'yxy' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view" for="{{(index,item) in data.sound_meaning.name_info}}" tid="index">
+                  <div class="u-w-view mz_js">
+                    <div class="u-w-view mz_js_h">
+                      <div class="u-w-view mingzi">
+                        <text class="u-w-text">{{item.word}}</text>
+                      </div>
+                      <div class="u-w-view p">
+                        <text class="u-w-text">（{{item.old_word}}）</text>
+                        <text class="u-w-text">{{item.phonetic_spell}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view mz_js_b">
+                      <div class="u-w-view dis_flex dl">
+                        <div class="u-w-view dt">
+                          <text class="u-w-text">字义解释</text>
+                        </div>
+                        <div class="u-w-view flex dd">
+                          <text class="u-w-text">{{item.word_meaning}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view dis_flex dl">
+                        <div class="u-w-view dt">
+                          <text class="u-w-text">用字解释</text>
+                        </div>
+                        <div class="u-w-view flex dd">
+                          <text class="u-w-text">{{item.diction}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view dis_flex dl">
+                        <div class="u-w-view dt">
+                          <text class="u-w-text">来源解释</text>
+                        </div>
+                        <div class="u-w-view flex dd">
+                          <text class="u-w-text">{{item.name_meaning}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">音形义分析</text>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">字义分析</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.sound_meaning.full_word_meaning}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">音律分析</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.sound_meaning.full_name_tonality}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">字型分析</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.sound_meaning.full_name_word_structure}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">大师点评</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.sound_meaning.expert_comment}}</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-2" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15">
+                  <input class="u-w-button u-w-button- button" data-tit="八字五行分析" data-main="bzwx" onclick="$handlePageEvent('xxOpen',false,false)" type="button" value="下一条，八字五行分析"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+          <div class="u-w-view {{fxMain == 'bzwx' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view rowplate p_t15 p_l15 p_r15 p_b15">
+                  <div class="u-w-view table border2">
+                    <div class="u-w-view tr">
+                      <div class="u-w-view th">
+                        <text class="u-w-text">真太阳时(公)</text>
+                      </div>
+                      <div class="u-w-view td" for="{{(index,item) in zhengongli}}" tid="{{index}}">
+                        <text class="u-w-text">{{item}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view tr">
+                      <div class="u-w-view th">
+                        <text class="u-w-text">真太阳时(农)</text>
+                      </div>
+                      <div class="u-w-view td" for="{{(index,item) in zhennongli}}" tid="{{index}}">
+                        <text class="u-w-text">{{item}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view tr">
+                      <div class="u-w-view th">
+                        <text class="u-w-text">八　　字：</text>
+                      </div>
+                      <div class="u-w-view td" for="{{(index,item) in eight_word}}" tid="{{index}}">
+                        <text class="u-w-text">{{item}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view tr">
+                      <div class="u-w-view th">
+                        <text class="u-w-text">五　　行：</text>
+                      </div>
+                      <div class="u-w-view td" for="{{(index,item) in five_word}}" tid="{{index}}">
+                        <text class="u-w-text">{{item}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view tr">
+                      <div class="u-w-view th">
+                        <text class="u-w-text">纳　　音：</text>
+                      </div>
+                      <div class="u-w-view td" for="{{(index,item) in layin}}" tid="{{index}}">
+                        <text class="u-w-text">{{item}}</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">五行强弱分析</text>
+                  </div>
+                  <div class="u-w-view wx_chart p_t15">
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view back_j" style="width:{{data.eight_five_info.jin_ratio}}%"></div>
+                      </div>
+                      <div class="u-w-view text co_j">
+                        <text class="u-w-text">金 {{data.eight_five_info.jin_ratio}}%</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view back_m" style="width:{{data.eight_five_info.mu_ratio}}%"></div>
+                      </div>
+                      <div class="u-w-view text co_m">
+                        <text class="u-w-text">木 {{data.eight_five_info.mu_ratio}}%</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view back_s" style="width:{{data.eight_five_info.shui_ratio}}%"></div>
+                      </div>
+                      <div class="u-w-view text co_s">
+                        <text class="u-w-text">水 {{data.eight_five_info.shui_ratio}}%</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view back_h" style="width:{{data.eight_five_info.huo_ratio}}%"></div>
+                      </div>
+                      <div class="u-w-view text co_h">
+                        <text class="u-w-text">火 {{data.eight_five_info.huo_ratio}}%</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view flex">
+                        <div class="u-w-view back_t" style="width:{{data.eight_five_info.tu_ratio}}%"></div>
+                      </div>
+                      <div class="u-w-view text co_t">
+                        <text class="u-w-text">土 {{data.eight_five_info.tu_ratio}}%</text>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view wx_text p_t5 p_b15">
+                    <div class="u-w-view">
+                      <text class="u-w-text">{{data.eight_five_info.wuxing_count}}</text>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-2" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">八字喜神分析</text>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl" for="{{(index,item) in eight_content}}" tid="index">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">{{index==0?"同类":index==1?"异类":"综合"}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{item}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-3" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">名字八字分析</text>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.eight_five_info.eight_five_word}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-4" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15">
+                  <input class="u-w-button u-w-button- button" data-tit="星座起名分析" data-main="xzqm" onclick="$handlePageEvent('xxOpen',false,false)" type="button" value="下一条，星座起名分析"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+          <div class="u-w-view {{fxMain == 'sxqm' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">生肖：属{{data.zodiac_info.zodiac_name}}</text>
+                  </div>
+                  <div class="u-w-view xz_text">
+                    <div class="u-w-view xg youdian">
+                      <div class="u-w-view xg_tit p_t15">
+                        <text class="u-w-text">属{{data.zodiac_info.zodiac_name}}性格优点：</text>
+                      </div>
+                      <div class="u-w-view xg_con">
+                        <list class="u-w-scroll-view">
+                          <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                            <div class="u-w-view dis_inblock" for="{{(index,item) in zodiac_advantage_arr}}" tid="index">
+                              <div class="u-w-view dis_flex dis_cneter">
+                                <text class="u-w-text">{{item}}</text>
+                              </div>
+                            </div>
+                          </list-item>
+                        </list>
+                      </div>
+                    </div>
+                    <div class="u-w-view xg">
+                      <div class="u-w-view xg_tit p_t5">
+                        <text class="u-w-text">属狗性格缺点：</text>
+                      </div>
+                      <div class="u-w-view xg_con">
+                        <list class="u-w-scroll-view">
+                          <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                            <div class="u-w-view dis_inblock" for="{{(index,item) in zodiac_shortcoming_arr}}" tid="index">
+                              <div class="u-w-view dis_flex dis_cneter">
+                                <text class="u-w-text">{{item}}</text>
+                              </div>
+                            </div>
+                          </list-item>
+                        </list>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view xz_zj">
+                    <div class="u-w-view h3">
+                      <text class="u-w-text">名字生肖评分：</text>
+                    </div>
+                    <div class="u-w-view xz_zb">
+                      <div class="u-w-view span">
+                        <div class="u-w-view i" style="height:{{data.subject.zodiac_score}}%">
+                          <image class="u-w-icon"></image>
+                        </div>
+                      </div>
+                      <div class="u-w-view font">
+                        <text class="u-w-text">分</text>
+                        <text class="u-w-text">{{data.subject.zodiac_score}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view text">
+                      <div class="u-w-view">
+                        <text class="u-w-text">{{data.zodiac_content.zodiac_content}}</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15">
+                  <input class="u-w-button u-w-button- button" data-tit="星座特征分析" data-main="xzqm" onclick="$handlePageEvent('xxOpen',false,false)" type="button" value="下一条，星座特征分析"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+          <div class="u-w-view {{fxMain == 'xzqm' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">（{{data.constellation_info.constellation_english}}）</text>
+                    <text class="u-w-text">星座：{{data.constellation_info.constellation}}</text>
+                  </div>
+                  <div class="u-w-view xz_text">
+                    <div class="u-w-view xg youdian">
+                      <div class="u-w-view xg_tit p_t15">
+                        <text class="u-w-text">{{data.constellation_info.constellation}}座优点：</text>
+                      </div>
+                      <div class="u-w-view xg_con">
+                        <list class="u-w-scroll-view">
+                          <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                            <div class="u-w-view dis_inblock" for="{{(index,item) in constellation_advantage_arr}}" tid="index">
+                              <div class="u-w-view dis_flex dis_cneter">
+                                <text class="u-w-text">{{item}}</text>
+                              </div>
+                            </div>
+                          </list-item>
+                        </list>
+                      </div>
+                    </div>
+                    <div class="u-w-view xg">
+                      <div class="u-w-view xg_tit p_t5">
+                        <text class="u-w-text">{{data.constellation_info.constellation}}座缺点：</text>
+                      </div>
+                      <div class="u-w-view xg_con">
+                        <list class="u-w-scroll-view">
+                          <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                            <div class="u-w-view dis_inblock" for="{{(index,item) in constellation_shortcoming_arr}}" tid="index">
+                              <div class="u-w-view dis_flex dis_cneter">
+                                <text class="u-w-text">{{item}}</text>
+                              </div>
+                            </div>
+                          </list-item>
+                        </list>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view xz_zj">
+                    <div class="u-w-view h3">
+                      <text class="u-w-text">名字星座评分：</text>
+                    </div>
+                    <div class="u-w-view xz_zb">
+                      <div class="u-w-view span">
+                        <div class="u-w-view i" style="height:{{data.subject.constellation_score}}%">
+                          <image class="u-w-icon"></image>
+                        </div>
+                      </div>
+                      <div class="u-w-view font">
+                        <text class="u-w-text">分</text>
+                        <text class="u-w-text">{{data.subject.constellation_score}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view text">
+                      <div class="u-w-view">
+                        <text class="u-w-text">{{data.constellation_info.constellation_content}}</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15">
+                  <input class="u-w-button u-w-button- button" data-tit="五格数理分析" data-main="wgsl" onclick="$handlePageEvent('xxOpen',false,false)" type="button" value="下一条，五格数理分析"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+          <div class="u-w-view {{fxMain == 'wgsl' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">结构 解析</text>
+                  </div>
+                  <div class="u-w-view wg_tu">
+                    <div class="u-w-view dis_flex">
+                      <div class="u-w-view text text01">
+                        <text class="u-w-text">外格 {{data.detail_five_url['wai']}}</text>
+                      </div>
+                      <div class="u-w-view flex xian xian01">
+                        <text class="u-w-text line"></text>
+                      </div>
+                      <div class="u-w-view text text02">
+                        <div class="u-w-view" if="{{data.detail_five_url.name_stroke.length == 3}}" for="{{(idx,item) in }}" tid="index">
+                          <text class="u-w-text">1</text>
+                        </div>
+                        <div class="u-w-view" for="{{(idx,item) in data.detail_five_url.name_stroke}}" tid="index">
+                          <text class="u-w-text">{{item[0]}} {{item[1]}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view flex xian xian02">
+                        <text class="u-w-text line"></text>
+                        <text class="u-w-text line"></text>
+                        <text class="u-w-text line"></text>
+                      </div>
+                      <div class="u-w-view text text03">
+                        <div class="u-w-view">
+                          <text class="u-w-text">天格 {{data.detail_five_url.tian}}</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">人格 {{data.detail_five_url.ren}}</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">地格 {{data.detail_five_url.di}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view text04">
+                      <text class="u-w-text">总格 {{data.detail_five_url.zong}}</text>
+                    </div>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">天格</text>
+                        <text class="u-w-text p_t5 b t_a_l co_red si_110">{{data.detail_five_url.tian}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text bq x">{{data.detail_five_url.five_analysis_tian}}</text>
+                          <text class="u-w-text">{{data.detail_five_url.five_grid_tian}}</text>
+                        </div>
+                        <div class="u-w-view p_text">
+                          <text class="u-w-text">天格数是先祖留传下来的，其数理对人影响不大。</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">地格</text>
+                        <text class="u-w-text p_t5 b t_a_l co_red si_110">{{data.detail_five_url.di}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text bq b_j">{{data.detail_five_url.five_analysis_di}}</text>
+                          <text class="u-w-text">{{data.detail_five_url.five_grid_di}}</text>
+                        </div>
+                        <div class="u-w-view p_text">
+                          <text class="u-w-text">地格数又称前运，影响人中年（36岁）以前的活动力。</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">人格</text>
+                        <text class="u-w-text p_t5 b t_a_l co_red si_110">{{data.detail_five_url.ren}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text bq d_j">{{data.detail_five_url.five_analysis_ren}}</text>
+                          <text class="u-w-text">{{data.detail_five_url.five_grid_ren}}</text>
+                        </div>
+                        <div class="u-w-view p_text">
+                          <text class="u-w-text">人格数又称主运，是整个姓名的中心点，影响人的一生命运。</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">外格</text>
+                        <text class="u-w-text p_t5 b t_a_l co_red si_110">{{data.detail_five_url.wai}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text bq d_j">{{data.detail_five_url.five_analysis_wai}}</text>
+                          <text class="u-w-text">{{data.detail_five_url.five_grid_wai}}</text>
+                        </div>
+                        <div class="u-w-view p_text">
+                          <text class="u-w-text">外格又称变格，影响人的社交、智慧等，其数理不用重点去看。</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">总格</text>
+                        <text class="u-w-text p_t5 b t_a_l co_red si_110">{{data.detail_five_url.zong}}</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text bq b_j">{{data.detail_five_url.five_analysis_zong}}</text>
+                          <text class="u-w-text">{{data.detail_five_url.five_grid_zong}}</text>
+                        </div>
+                        <div class="u-w-view p_text">
+                          <text class="u-w-text">总格又称后运，影响人中年（36岁）以后的命运。</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">三才解析</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_five_url.meaning}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text t_a_l">基础运</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_five_url.lucky_base}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text t_a_l">成功运</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_five_url.success_lucky}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">人际关系</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_five_url.communication_lucky}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">性格影响</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_five_url.character_feature}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15">
+                  <input class="u-w-button u-w-button- button" data-tit="生肖起名分析" data-main="zygx" onclick="$handlePageEvent('xxOpen',false,false)" type="button" value="下一条，周易卦象分析"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+          <div class="u-w-view {{fxMain == 'zygx' ? '' : 'none'}}">
+            <list class="u-w-scroll-view scroll_y">
+              <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">名字卦象解析</text>
+                  </div>
+                  <div class="u-w-view zygx m_t15">
+                    <div class="u-w-view dis_flex ul">
+                      <div class="u-w-view li text_box">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.txt_ben1}}卦</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.txt_ben2}}卦</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_l">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li flex gx_box">
+                        <div class="u-w-view gx">
+                          <div class="u-w-view gx_tit">
+                            <text class="u-w-text">本卦</text>
+                          </div>
+                          <div class="u-w-view gx_block">
+                            <div class="u-w-view dis_flex {{'gx_'+item}} {{data.detail_gossip_url.gossip_info.dong == index ? ' gx_on' : ''}}" for="{{(index,item) in data.detail_gossip_url.gossip_info.ben}}" tid="index">
+                              <text class="u-w-text flex"></text>
+                              <text class="u-w-text flex"></text>
+                            </div>
+                          </div>
+                          <div class="u-w-view gx_tit_yy">
+                            <div class="u-w-view co_blue">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_ben1}}</text>
+                            </div>
+                            <div class="u-w-view co_blue">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_ben}}</text>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_r">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li text_box">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_ben1}}</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_ben2}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_l">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li flex gx_box">
+                        <div class="u-w-view gx">
+                          <div class="u-w-view gx_tit">
+                            <text class="u-w-text">变卦</text>
+                          </div>
+                          <div class="u-w-view gx_block">
+                            <div class="u-w-view dis_flex {{'gx_'+item}}" for="{{(index,item) in data.detail_gossip_url.gossip_info.bian}}" tid="index">
+                              <text class="u-w-text flex"></text>
+                              <text class="u-w-text flex"></text>
+                            </div>
+                          </div>
+                          <div class="u-w-view gx_tit_yy">
+                            <div class="u-w-view co_red">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_bian1}}</text>
+                            </div>
+                            <div class="u-w-view co_red">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_bian}}</text>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_r">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li text_box">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_bian1}}</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_bian1}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_l">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li flex gx_box">
+                        <div class="u-w-view gx">
+                          <div class="u-w-view gx_tit">
+                            <text class="u-w-text">互卦</text>
+                          </div>
+                          <div class="u-w-view gx_block">
+                            <div class="u-w-view dis_flex {{'gx_'+item}}" for="{{(index,item) in data.detail_gossip_url.gossip_info.hu}}" tid="index">
+                              <text class="u-w-text flex"></text>
+                              <text class="u-w-text flex"></text>
+                            </div>
+                          </div>
+                          <div class="u-w-view gx_tit_yy">
+                            <div class="u-w-view co_blue">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_hu1}}</text>
+                            </div>
+                            <div class="u-w-view co_blue">
+                              <text class="u-w-text">{{data.detail_gossip_url.gossip_info.m_hu}}</text>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="u-w-view li kuang kuang_r">
+                        <text class="u-w-text"></text>
+                        <text class="u-w-text"></text>
+                      </div>
+                      <div class="u-w-view li text_box">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_hu1}}</text>
+                        </div>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.wx_hu1}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.full_name}}的姓名本卦为周易卦象{{data.detail_gossip_url.gossip_info.m_ben1}}卦（{{data.detail_gossip_url.gossip_info.m_ben}}），变卦为周易卦象{{data.detail_gossip_url.gossip_info.m_bian1}}卦（{{data.detail_gossip_url.gossip_info.m_bian}}）。</text>
+                        </div>
+                        <div class="u-w-view p_t5">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip_info.txt_ben1}}卦{{data.detail_gossip_url.gossip_info.wx_ben1}}，{{data.detail_gossip_url.gossip_info.txt_ben2}}卦{{data.detail_gossip_url.gossip_info.wx_ben2}}，{{data.detail_gossip_url.gossip_detail.tiyo}}。</text>
+                        </div>
+                        <div class="u-w-view p_t5"><text class="u-w-text">互卦、变卦中有{{data.detail_gossip_url.gossip_detail.tih}}{{data.detail_gossip_url.gossip_detail.tij}}{{data.detail_gossip_url.gossip_detail.tis}}{{data.detail_gossip_url.gossip_detail.tim}}{{data.detail_gossip_url.gossip_detail.tit}}   
+                                            {{data.detail_gossip_url.gossip_detail['cha']>0?'体卦一方强，成功运较佳。':data.detail_gossip_url.gossip_detail['cha']
+                          <0?'体卦一方弱，成功运较差。':'双方力量相当，成功运较佳。'}}
+                          </text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-1" class="u-w-list-item">
+                <div class="u-w-view mz_js">
+                  <div class="u-w-view h2">
+                    <text class="u-w-text">名字解析</text>
+                  </div>
+                  <div class="u-w-view mz_js_b">
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">大象</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{data.detail_gossip_url.gossip.big_el}}</text>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">总论</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.total_explain}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">建议</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.suggest}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">事业</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.success_mean}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">经商</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.business_mean}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">求名</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.for_name}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex dl">
+                      <div class="u-w-view dt">
+                        <text class="u-w-text">婚恋</text>
+                      </div>
+                      <div class="u-w-view flex dd">
+                        <text class="u-w-text">{{data.detail_gossip_url.gossip.marry_mean}}</text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </list-item>
+              <list-item type="u-w-scroll-view-list-item-2" class="u-w-list-item">
+                <div class="u-w-view p_l15 p_r15 p_b15" if="{{(!orderType)&&(!formTouPiao)}}">
+                  <input class="u-w-button u-w-button- button" onclick="$handlePageEvent('tcOpen',false,false)" type="button" value="去查看更多吉祥好名字"></input>
+                </div>
+              </list-item>
+            </list>
+          </div>
+        </div>
+      </div>
+    </div>
+    <import-pay is="pay" data="{{tcSwitch,checkedPayGrade,checkedPayGradeList,youHuiJinE,youHuiDengJi,youHuiType,modulType}}"></import-pay>
+    <div class="u-w-view my_modal_bg{{myModalBg ? ' show' : ''}}" onclick="$handlePageEvent('close',false,false)"></div>
+    <div class="u-w-view bj"></div>
+  </div>
+  <div class="u-w-view loading {{!loading?'hide':''}}">
+    <image class="u-w-image loading_bg" src="{{loading_bg}}"></image>
+    <image class="u-w-image loading_logo" style="resize-mode:cover" src="{{loading_logo}}"></image>
+    <div class="u-w-view loading_bagua">
+      <image class="u-w-image zi" style="resize-mode:cover" src="{{zi}}"></image>
+      <image class="u-w-image dian" style="resize-mode:cover" src="{{dian}}"></image>
+      <image class="u-w-image bagua" style="resize-mode:cover" src="{{bagua}}"></image>
+      <div style="width:184px;height:184px" class="u-w-view"></div>
+      <div class="u-w-view {{loading_time>=1?'':'hide'}}">
+        <text class="u-w-text">正在努力加载中...</text>
+      </div>
+      <div class="u-w-view {{loading_time>=2?'':'hide'}}">
+        <text class="u-w-text">音形字义数据分析</text>
+      </div>
+      <div class="u-w-view {{loading_time>=3?'':'hide'}}">
+        <text class="u-w-text">八字喜神分析完成</text>
+      </div>
+      <div class="u-w-view {{loading_time>=4?'':'hide'}}">
+        <text class="u-w-text">三才五格分析完成</text>
+      </div>
+      <div class="u-w-view {{loading_time>=5?'':'hide'}}">
+        <text class="u-w-text">周易卦象分析完成</text>
+      </div>
+      <div class="u-w-view {{loading_time>=6?'':'hide'}}">
+        <text class="u-w-text">生肖星座分析完成</text>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<style>
+@import '../../../polyfill.nss';
+@import '../../../app.nss';
+
+.show {
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hidden {
+  display: none;
+}
+
+.mychart-multi-line1 {
+  height: 400px;
+}
+
+.mychart-multi-line2 {
+  height: 400px;
+}
+
+.mychart-multi-line3 {
+  height: 400px;
+}
+
+.name .fs {
+  margin-right: 10px;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.name .fs>view>view:first-child {
+  font-size: 64rpx;
+  color: #333;
+}
+*/
+
+.zi_js .dd {
+  /*line-clamp:10; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.title {
+  font-size: 32px;
+  color: #666;
+  line-height: 1.1;
+  /*font-weight:400; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.title .u-w-icon {
+  width: 34px;
+  height: 34px;
+  margin-right: 8px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_bady.png) no-repeat;
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:url(https://images.yw11.com/xchengxu/yw11/icon_bady.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.analysis .item {
+  padding: 30px;
+  border-top-width: 2px;
+  border-style: solid;
+  border-top-color: #4c4c4c;
+  /*border-top:2px solid #4c4c4c; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.analysis .item:first-child {
+  border-top: 0;
+}
+*/
+
+.analysis .h3 {
+  padding-bottom: 10px;
+  font-size: 34px;
+}
+
+.analysis .h3 .u-w-icon {
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  margin-right: 10px;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_gua.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/icon_gua.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.analysis .text {
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.fx_tit .item {
+  height: 88px;
+  padding: 0 76px 0 80px;
+  border: 0;
+  background-size: cover;
+  border-radius: inherit;
+  font-weight: bold;
+  text-align: left;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/fx_tit_bj.png) no-repeat;
+  align-items: center;
+  justify-content: center;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/fx_tit_bj.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.fx_tit .item .h2,
+.fx_tit .item .text {
+  color: #fff;
+}
+
+.fx_tit .item .h2 {
+  font-size: 34px;
+  width: 166px;
+}
+
+.fx_tit .item .fs {
+  font-size: 40px;
+  color: #caa456;
+}
+
+.fx_tit .item .fs .u-w-text {
+  font-size: 24px;
+}
+
+.fx_tit .item .text {
+  font-size: 28px;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.fx_tit .item.on {
+  background-position-y: bottom;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.fx_tit .item.on .h2,
+.fx_tit .item.on .text {
+  color: #000;
+}
+*/
+
+.mz_js {
+  padding: 30px;
+  padding-bottom: 0;
+  border-top-width: 2px;
+  border-style: dotted;
+  border-top-color: #ccc;
+  /*border-top:2px dotted #ccc; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js:first-child {
+  border-top: 0;
+}
+*/
+
+.mz_js .h2 {
+  font-size: 34px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.mz_js_h .mingzi {
+  padding-right: 20px;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:bottom; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_js_h .mingzi .u-w-text {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #333;
+  font-size: 60px;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/tian.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/tian.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_js_h .p {
+  font-size: 32px;
+  color: #999;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:bottom; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_js_h .p .u-w-text {
+  padding-right: 10px;
+}
+
+.mz_js .dl {
+  font-size: 32px;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dl:first-child .dd {
+  border-top: 0;
+}
+*/
+
+.mz_js .dt {
+  color: #999;
+  padding: 30px;
+  padding-left: 0;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.mz_js .dt .u-w-text {
+  width: 64px;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_js .dd {
+  padding: 30px 0;
+  border-top-width: 2px;
+  border-style: dotted;
+  border-top-color: #ccc;
+  /*border-top:2px dotted #ccc; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_js .dd .bq {
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 7px;
+  margin-top: 2.28576px;
+  align-items: center;
+  justify-content: center;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.d_j {
+  background: #2da9df;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.b_j {
+  background: #e67829;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.j {
+  background: #6fc898;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.d_x {
+  background: #db3b3e;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.b_x {
+  background: #fbc30b;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_js .dd .bq.x {
+  background: #c9aa8d;
+}
+*/
+
+.mz_js .dd .p_text {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #999;
+}
+
+.yx_con {
+  padding: 30px;
+}
+
+.yx_con .h2 {
+  font-size: 34px;
+  padding-bottom: 16px;
+}
+
+.yx_con .c_box .u-w-scroll-view {
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.yx_con .c_box .dis_inblock {
+  width: 176px;
+  height: 176px;
+  border: 2px solid #999;
+  border-radius: 375px;
+  margin-left: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.yx_con .c_box .dis_inblock:first-child {
+  margin-left: 0;
+}
+*/
+
+.yx_con .c_box .span {
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  border-radius: 375px;
+  background-color: #e0e0e0;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:1; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:#e0e0e0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.yx_con .c_box .i {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00003e;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:#00003e; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.yx_con .c_box .i .u-w-icon {
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 20px;
+  background-size: 780px 20px;
+  background-image: url(https://images.yw11.com/newqiming/images/bl_bj.png) repeat-x;
+  animation-name: sploosh;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:url(https://images.yw11.com/newqiming/images/bl_bj.png) repeat-x; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*animation:sploosh 3s linear infinite; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.yx_con .c_box .font {
+  font-weight: bold;
+  font-size: 36px;
+  left: 0;
+  right: 0;
+  color: #fff;
+  top: 375px;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:2; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*transform:translateY(-50%); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.yx_con .c_box .font .u-w-text {
+  font-size: 26px;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.mz_clfx {
+  padding: 30px;
+}
+
+.mz_clfx .item {
+  padding: 26px 0;
+  border-top-width: 2px;
+  border-style: dotted;
+  border-top-color: #d7d7d7;
+  /*border-top:2px dotted #d7d7d7; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_clfx .item:first-child {
+  border: 0;
+  padding-top: 0;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.mz_clfx .item:last-child {
+  padding-bottom: 0;
+}
+*/
+
+.mz_clfx .item .h3 {
+  padding-bottom: 16px;
+  font-size: 30px;
+}
+
+.xb_fenxi {
+  padding-bottom: 16px;
+}
+
+.xb_fenxi .flex {
+  text-align: right;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.xb_fenxi .flex:first-child {
+  border-right: 2rpx dotted #ccc;
+  text-align: left;
+}
+*/
+
+.xb_fenxi .span {
+  width: 132px;
+  height: 132px;
+  border: 2px solid #999;
+  border-radius: 375px;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xb_fenxi .span .u-w-icon {
+  width: 64px;
+  height: 116px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_xb.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/icon_xb.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background-position:center 0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*margin:8px auto 0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xb_fenxi .em {
+  font-size: 28px;
+  font-weight: bold;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:bottom; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xb_fenxi .em .u-w-text {
+  font-size: 44px;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.xb_fenxi .flex:first-child .em {
+  color: #00ade7;
+  padding-left: 16rpx;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.xb_fenxi .flex:last-child .span icon {
+  background-position-y: bottom;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.xb_fenxi .flex:last-child .em {
+  color: #e50053;
+  padding-right: 16rpx;
+}
+*/
+
+.xg_tit {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 20px;
+  color: #ea0000;
+}
+
+.xg_con {
+  padding-bottom: 20px;
+}
+
+.xg_con.u-w-scroll-view {
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xg_con .u-w-view.u-w-view {
+  width: 140px;
+  height: 140px;
+  border-radius: 375px;
+  border: 2px solid #e4e4e4;
+  font-size: 32px;
+  margin-left: 20px;
+  background-color: #fbfbfb;
+  /*background:#fbfbfb; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.xg_con view:first-child>view {
+  margin: 0;
+}
+*/
+
+.youdian .xg_tit {
+  color: #333;
+}
+
+.youdian .xg_con .u-w-view.u-w-view {
+  border-color: #9acaaf;
+  background-color: #e2f7ea;
+  /*background:#e2f7ea; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zj {
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
+
+.xz_zj .h3 {
+  font-style: italic;
+  font-size: 36px;
+  text-align: center;
+  padding-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.xz_zb {
+  width: 200px;
+  height: 200px;
+  border: 0;
+  margin-bottom: 30px;
+  border-radius: 375px;
+  text-align: center;
+  background-color: #bed6e1;
+  align-items: center;
+  justify-content: center;
+  /*background:#bed6e1; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*margin:0 auto; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zb .span {
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  border-radius: 375px;
+  background-color: #e0e0e0;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:1; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:#e0e0e0; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zb .span .i {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  background-color: #2383a7;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:#2383a7; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zb .span .u-w-icon {
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 20px;
+  background-size: 780px 20px;
+  background-image: url(https://images.yw11.com/newqiming/images/bl_bj2.png) repeat-x;
+  animation-name: sploosh;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:url(https://images.yw11.com/newqiming/images/bl_bj2.png) repeat-x; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*animation:sploosh 3s linear infinite; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zj .font {
+  font-size: 116px;
+  top: 30px;
+  color: #fff;
+  margin-left: -16px;
+  /*font-family:'黑体'; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*font-weight:400; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:2; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zj .font .u-w-text {
+  font-size: 32px;
+  color: #fff;
+  top: 23px;
+  right: -25px;
+  font-style: italic;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.xz_zj .text {
+  font-size: 32px;
+  padding: 23px 30px;
+  background-color: #fbfbfb;
+  /*background:#fbfbfb; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+@keyframes sploosh {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 780rpx 0;
+  }
+}
+
+.scroll_y {
+  height: 860px;
+}
+
+.sorting {
+  background-color: #fff;
+  position: fixed;
+  width: 100%;
+  height: 90px;
+  line-height: 90px;
+  /*z-index:99999; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.sorting_name {
+  padding-left: 30px;
+}
+
+.sorting_name .fen {
+  color: #b08f53;
+  font-size: 24px;
+}
+
+.sorting_name .shu {
+  color: #b08f53;
+  padding-left: 8px;
+}
+
+.sorting_join {
+  background-color: #000040;
+  color: #fff;
+  padding: 0 30px;
+}
+
+.p_t105 {
+  padding-top: 105px;
+}
+</style>
+<script>
+
+const _$wxs$_ = {
+
+}
+
+//detail.js
+//引入使用es6+的await语法
+var app = getApp();
+var regeneratorRuntime = require("./../../../common/js/runtime.js");
+import getJiaGeList from '../../../api/common/getJiaGeList.js';
+import znqmPay from '../../../api/znqm/znqmPay.js';
+import * as echarts from '../../../components/ec-canvas/echarts';
+import request from '../../../utils/request.js';
+Page({
+  data: {
+    //如果是从订单详情过来的
+    orderType: false,
+    is_checked: 0,
+    name_id: "",
+    name_score: "",
+    order_id: "",
+
+    data: {},
+
+    isScroll: true,
+    fixedXxBox: false,
+    fxTit: '',
+    fxMain: '',
+    myModalBg: false,
+
+    //选择的付款等级值
+    checkedPayGrade: 2,
+    checkedPayGradeList: [],
+    tcSwitch: false,
+    modulType: 2,
+    youHuiJinE: 0,
+    youHuiDengJi: 0,
+    youHuiType: "去使用红包",
+
+    zhengongli: ['', '', '', ''],
+    zhennongli: ['', '', '', ''],
+    eight_word: ['', '', '', ''],
+    five_word: ['', '', '', ''],
+    wuxing_count: ['', '', '', ''],
+    layin: ['', '', '', ''],
+    eight_content: [],
+    constellation_advantage_arr: [],
+    constellation_shortcoming_arr: [],
+    zodiac_advantage_arr: [],
+    zodiac_shortcoming_arr: [],
+    name_character_bili: [[]],
+
+    isLoaded: false,
+    isDisposed: true,
+
+    ecLine1: {
+      lazyLoad: true
+    },
+    ecLine2: {
+      lazyLoad: true
+    },
+    ecLine3: {
+      lazyLoad: true
+    },
+
+    tychange: false,
+    formTouPiao: false,
+
+    //loading
+    loading: true,
+    loading_bg: '../../../images/loading_bg.jpg',
+    loading_logo: '../../../images/loading_logo.png',
+    zi: "../../../images/zi.png",
+    dian: '../../../images/dian.png',
+    bagua: '../../../images/bagua.png',
+    loading_time: 1
+  },
+  onReady: function () {},
+  // 点击按钮后初始化图表
+  init: function () {
+    this.ecComponent1.init((canvas, width, height) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      getLineOption1(chart);
+
+      this.setData({
+        isLoaded: true
+      });
+      return chart;
+    });
+    this.ecComponent2.init((canvas, width, height) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      getLineOption2(chart);
+      return chart;
+    });
+    this.ecComponent3.init((canvas, width, height) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+      getLineOption3(chart);
+
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return chart;
+    });
+  },
+  //事件处理函数
+  xxOpen: function (e) {
+    var that = this,
+        tit = e.currentTarget.dataset.tit,
+        main = e.currentTarget.dataset.main;
+    that.setData({
+      fxTit: tit,
+      fxMain: main,
+      fixedXxBox: !this.fixedXxBox,
+      myModalBg: !this.myModalBg,
+      isScroll: false,
+      isDisposed: false
+    });
+  },
+  tcOpen: function (e) {
+    var that = this;
+    that.setData({
+      tcSwitch: !this.tcSwitch,
+      fixedXxBox: false,
+      myModalBg: !this.myModalBg
+    });
+  },
+  close: function (e) {
+    var that = this;
+    that.setData({
+      fixedXxBox: false,
+      fxTit: '',
+      fxMain: '',
+      tcSwitch: false,
+      myModalBg: false,
+      isScroll: true,
+      isDisposed: true
+    });
+  },
+  onLoad: async function (option) {
+    var timer = setInterval(() => {
+      if (this.data.loading_time <= 6) {
+        this.setData({
+          loading_time: ++this.data.loading_time
+        });
+      } else {
+        clearInterval(timer);
+      }
+    }, 500);
+    // 获取组件
+    this.ecComponent1 = this.selectComponent('#mychart-multi-line1');
+    this.ecComponent2 = this.selectComponent('#mychart-multi-line2');
+    this.ecComponent3 = this.selectComponent('#mychart-multi-line3');
+    //页面进来清掉红包优惠金额存储数据
+    await uni.setStorageSync('youHuiJinE', '');
+    var _this = this;
+    //姓名详情
+    var params = JSON.parse(option.data);
+    //设置是否是订单详情过来有type类型并且是备选列表页面过来的就可以操作备选
+    if (params.type && params.type == 'optional') {
+      this.setData({
+        orderType: params.type,
+        is_checked: params.is_checked || "",
+        name_id: params.name_id,
+        name_score: params.name_score,
+        order_id: params.order_id
+      });
+    } else if (params.type && params.type == 'order') {
+      this.setData({
+        orderType: params.type
+      });
+    } else {
+      this.setData({
+        orderType: false
+      });
+    }
+    if (params.formTouPiao) {
+      this.setData({
+        formTouPiao: true
+      });
+    }
+    params.app = 1;
+    params.order_froms = 5;
+    params.app_mchid = app.globalData.openId;
+    request({
+      url: '/api/name/detail',
+      params: params,
+      noShowLoading: true
+    }).then(data => {
+      male_nums_list = data.detail_view_url.male_nums_list;
+      year_list = data.detail_view_url.year_list;
+      female_nums_list = data.detail_view_url.female_nums_list;
+      first_female_nums = data.detail_view_url.first_female_nums;
+      first_male_nums = data.detail_view_url.first_male_nums;
+      second_female_nums = data.detail_view_url.second_female_nums;
+      second_male_nums = data.detail_view_url.second_male_nums;
+      var name_character_bili = [];
+      if (data.name_character_bili.length > 0 && data.name_character_bili[0].indexOf('-') >= 0) {
+        for (var i = 0; i < data.name_character_bili.length; i++) {
+          var arr = data.name_character_bili[i].split('-');
+          name_character_bili.push(arr);
+        }
+      } else {
+        name_character_bili = data.name_character_bili;
+      }
+
+      this.setData({
+        is_end: data.is_end,
+        is_checked: data.is_checked,
+        data: data,
+        zhengongli: data.eight_five_info.zhengongli.split(','),
+        zhennongli: data.eight_five_info.zhennongli.split(','),
+        eight_word: data.eight_five_info.eight_word.split(','),
+        five_word: data.eight_five_info.five_word.split(','),
+        wuxing_count: data.eight_five_info.wuxing_count.split('：')[1].split('，'),
+        layin: data.eight_five_info.layin,
+        eight_content: data.eight_five_info.eight_content.split('；'),
+        constellation_advantage_arr: data.constellation_info.constellation_advantage_arr.split(','),
+        constellation_shortcoming_arr: data.constellation_info.constellation_shortcoming_arr.split(','),
+        zodiac_advantage_arr: data.zodiac_info.zodiac_advantage_arr.split(','),
+        zodiac_shortcoming_arr: data.zodiac_info.zodiac_shortcoming_arr.split(','),
+        name_character_bili: name_character_bili
+      });
+      _this.init();
+      _this.setData({
+        loading: false
+      });
+    });
+    //下单价格列表
+    getJiaGeList().then(data => {
+      this.setData({
+        checkedPayGradeList: data.order_config,
+        checkedPayGrade: data.order_config[0].order_level,
+        youHuiJinE: data.packet_money + ".00",
+        youHuiDengJi: data.packet_id || 0,
+        youHuiType: data.packet
+      });
+    });
+  },
+  onShow: async function () {
+    if (await uni.getStorageSync('youHuiJinE')) {
+      this.setData({
+        youHuiJinE: await uni.getStorageSync('youHuiJinE'),
+        youHuiDengJi: await uni.getStorageSync('youHuiDengJi'),
+        youHuiType: await uni.getStorageSync('youHuiType')
+      });
+    }
+  },
+  radioChange: async function (e) {
+    this.setData({
+      checkedPayGrade: e.detail.value
+    });
+  },
+  paySubmit: function (e) {
+    znqmPay({
+      packet_id: this.data.youHuiDengJi,
+      order_level: this.data.checkedPayGrade
+    });
+  },
+  beixuan: function () {
+    var params = {
+      is_checked: this.data['is_checked'],
+      name_id: this.data.name_id,
+      name_score: this.data.name_score,
+      order_id: this.data.order_id
+    };
+    params.app = 1;
+    params.app_mchid = app.globalData.openId;
+    request({
+      url: '/api/nameorder/order_option',
+      method: 'POST',
+      params: params
+    }).then(data => {
+      if (this.data['is_checked'] == 1) {
+        this.setData({
+          is_checked: 0
+        });
+        uni.prompt.showToast(uni.parseArgs({
+          title: '取消备选成功',
+          image: '/images/tips/success.png'
+        }, {
+          page: 'pages/index/detail/detail',
+          method: 'showToast'
+        }));
+      } else {
+        this.setData({
+          is_checked: 1
+        });
+        uni.prompt.showToast(uni.parseArgs({
+          title: '备选成功',
+          image: '/images/tips/success.png'
+        }, {
+          page: 'pages/index/detail/detail',
+          method: 'showToast'
+        }));
+      }
+    });
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '亲友中就你文化水平高，帮我看看这个名字怎么样！',
+      path: '/pages/index/index'
+    };
+  },
+  goToCeming: function () {
+    uni.router.replace(uni.parseArgs({
+      url: '/pages/index/index'
+    }, {
+      page: 'pages/index/detail/detail',
+      method: 'switchTab'
+    }));
+  }
+}, {
+  path: 'pages/index/detail/detail',
+  module: module,
+  exports: exports,
+  $app_require$: $app_require$,
+  wxs: typeof _$wxs$_ === 'undefined' ? {} : _$wxs$_
+});
+var year_list;
+var female_nums_list;
+var male_nums_list;
+var first_female_nums;
+var first_male_nums;
+var second_female_nums;
+var second_male_nums;
+
+function getLineOption1(chart) {
+  const option = {
+    title: {
+      text: ''
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['女性', '男性']
+    },
+    grid: {
+      left: '1%',
+      right: '5%',
+      top: '5%',
+      bottom: '3%',
+      containLabel: true
+    },
+    calculable: true,
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: year_list
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      name: '做为女性名字使用次数',
+      type: 'line',
+      stack: '总量',
+      smooth: true,
+      data: female_nums_list
+    }, {
+      name: '做为男性名字使用次数',
+      type: 'line',
+      stack: '总量',
+      smooth: true,
+      data: male_nums_list
+    }]
+  };
+  chart.setOption(option);
+};
+function getLineOption2(chart) {
+  const option = {
+    title: {
+      text: ''
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['女性', '男性']
+    },
+    grid: {
+      left: '1%',
+      right: '5%',
+      top: '5%',
+      bottom: '3%',
+      containLabel: true
+    },
+    calculable: true,
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: year_list,
+      axisLine: { onZero: false }
+    },
+    yAxis: {
+      type: 'value',
+      inverse: true
+    },
+    series: [{
+      name: '女性排名',
+      type: 'line',
+      stack: '总量',
+      data: first_female_nums
+    }, {
+      name: '男性排名',
+      type: 'line',
+      stack: '总量',
+      data: first_male_nums
+    }]
+  };
+  chart.setOption(option);
+}
+function getLineOption3(chart) {
+  const option = {
+    title: {
+      text: ''
+    },
+    tooltip: {
+      trigger: 'axis'
+    },
+    grid: {
+      left: '1%',
+      right: '5%',
+      top: '5%',
+      bottom: '3%',
+      containLabel: true
+    },
+    calculable: true,
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: year_list,
+      axisLine: { onZero: false }
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      name: '女性',
+      type: 'line',
+      stack: '总量',
+      data: second_female_nums
+    }, {
+      name: '男性',
+      type: 'line',
+      stack: '总量',
+      data: second_male_nums
+    }]
+  };
+  chart.setOption(option);
+}
+</script>
+  

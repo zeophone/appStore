@@ -1,0 +1,218 @@
+.luck_god1 {
+  border-left: 1px dotted #bfdacb;
+  border-bottom: 1px dotted #bfdacb;
+}
+.luck_god_det {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.luck_god_det text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 28rpx;
+  text-align: center;
+  border: 1px dotted #bfdacb;
+  line-height: 50rpx;
+  border-bottom: 0;
+  border-left: 0;
+}
+.five .list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.five .list_bg {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 500rpx;
+  height: 20rpx;
+  background: #f5f5f5;
+  margin: 10rpx 10rpx 0;
+  position: relative;
+}
+.five .list_bg text {
+  display: inline-block;
+  height: 20rpx;
+  position: absolute;
+}
+.five .list:nth-of-type(1) {
+  color: #b8860b;
+}
+.five .list:nth-of-type(2) {
+  color: #008000;
+}
+.five .list:nth-of-type(3) {
+  color: #0073cf;
+}
+.five .list:nth-of-type(4) {
+  color: #e25822;
+}
+.five .list:nth-of-type(5) {
+  color: #a67b5b;
+}
+.child_name1 {
+  padding: 40rpx 20rpx 0;
+  font-size: 30rpx;
+}
+.child_name1 .item1 {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 320rpx;
+}
+.child_name1 .item1 .name_pinyin {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.child_name1 .item1 .name_pinyin .pinyin {
+  font-size: 28rpx;
+}
+.child_name1 .item1 .name_pinyin .hanzi {
+  font-size: 98rpx;
+  font-weight: 700;
+}
+.child_name1 .item2 {
+  text-align: center;
+}
+.child_name1 .item2 .score_num {
+  color: #f05654;
+  font-size: 42rpx;
+  font-weight: 700rpx;
+}
+.child_name1 .item2 .score_tig {
+  font-size: 26rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+.child_name1 .item2 .score_tig:after {
+  content: '';
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  border: 1px solid #ccc;
+  bottom: -12rpx;
+  border-right: 0;
+  border-bottom: 0;
+  left: 48%;
+  background: #fff;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.child_name1 .score {
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+.child_name1 .score .col {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.child_name1 .score .col .item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  font-size: 24rpx;
+  color: #666;
+  line-height: 40rpx;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 10rpx;
+}
+.child_name1 .score .col .item_bg {
+  margin-left: 25rpx;
+  width: 160rpx;
+  height: 15rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  position: relative;
+}
+.child_name1 .score .col .item_bg text {
+  height: 15rpx;
+  position: absolute;
+  left: 0;
+  border-radius: 10rpx;
+}
+.child_name1 .eight_yun {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10rpx;
+}
+.child_name1 .eight_yun .tian {
+  background: #2da9df;
+  color: #ffffff !important;
+  display: inline-block;
+  width: 80rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.child_name1 .eight_yun .bei {
+  display: block;
+  font-size: 22rpx;
+  color: #999999;
+}
+.child_name1 .eight_yun .biaoqian {
+  display: inline-block;
+  width: 100rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background: #fffaf1;
+  color: #c39e5f;
+  text-align: center;
+  line-height: 110rpx;
+  overflow: hidden;
+}
+.child_name1 .eight_yun > text:nth-of-type(1) {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 80rpx;
+  color: #999;
+  margin-right: 20rpx;
+}
+.child_name1 .eight_yun > text:nth-of-type(2),
+.child_name1 .eight_yun rich-text {
+  line-height: 40rpx;
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 20rpx;
+  margin-bottom: 10rpx;
+}
+

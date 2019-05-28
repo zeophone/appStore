@@ -1,0 +1,1 @@
+<template name="15e50d56"><view class="_view p_baidu {{ h[ 0 ].rcl }}"><view class="_view pay_button" data-cid="{{ _c || c }}" data-hid="{{ 1 }}" bindtap="_pe">立即支付</view></view></template>

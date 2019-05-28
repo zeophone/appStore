@@ -1,0 +1,45 @@
+
+<template>
+<div class="u-w-view u-w-page">
+  <web class="u-w-web-view" src="{{src}}"></web>
+</div>
+</template>
+<style>
+@import '../../polyfill.nss';
+@import '../../app.nss';
+
+
+</style>
+<script>
+
+const _$wxs$_ = {
+
+}
+
+//my.js
+const app = getApp();
+import request from '../../utils/request.js';
+Page({
+  data: {
+    src: ""
+  },
+  onLoad: function (options) {
+    if (options && options.type == 'znqm') {
+      this.setData({
+        src: 'https://qiming.yw11.com/newqiming/order/wechat_wft/?pay_sn=' + options.pay_sn + '&openid=' + app.globalData.openId
+      });
+    } else if (options && options.type == 'expert') {
+      this.setData({
+        src: 'https://qiming.yw11.com/expert/index/wechat/?pay_sn=' + options.pay_sn + '&openid=' + app.globalData.openId
+      });
+    }
+  }
+}, {
+  path: 'pages/webview/index',
+  module: module,
+  exports: exports,
+  $app_require$: $app_require$,
+  wxs: typeof _$wxs$_ === 'undefined' ? {} : _$wxs$_
+});
+</script>
+  

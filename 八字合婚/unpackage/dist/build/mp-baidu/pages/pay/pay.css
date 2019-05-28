@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */.pay{min-height:1400rpx;padding-top:500rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background:url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_01.jpg) no-repeat 0 0/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_02.jpg) no-repeat 0 200rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_03.jpg) no-repeat 0 400rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_04.jpg) no-repeat 0 600rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_05.jpg) no-repeat 0 800rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_06.jpg) no-repeat 0 1000rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_07.jpg) no-repeat 0 1200rpx/100% 200rpx,url(https://qiming.yw11.com/cesuan/hehun/images/pay_bg_08.jpg) no-repeat 0 1400rpx/100% 272rpx,url(https://qiming.yw11.com/cesuan/hehun/images/body_bj.jpg) repeat-y 0 1672rpx/100% 844rpx}.pay .order_info{color:#fff}.pay .order_sn{text-align:center;font-size:28rpx;height:60rpx;line-height:60rpx}.pay .order_data{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;padding:100rpx 30rpx 0;-webkit-box-sizing:border-box;box-sizing:border-box}.pay .order_data .item{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;font-size:48rpx}.pay .order_data .brith{font-size:24rpx;color:#ccc}.pay .order_result{text-align:center;padding-top:400rpx;-webkit-box-sizing:border-box;box-sizing:border-box;background:url(https://qiming.yw11.com/cesuan/hehun/images/yuan.png) no-repeat 225rpx 320rpx/300rpx}.pay .order_result .btn{display:block;width:700rpx;height:100rpx;line-height:100rpx;color:#feffca;font-size:42rpx;margin:0 auto;background:url(https://qiming.yw11.com/cesuan/hehun/images/sub_bj.png) no-repeat 0 0/100% 100rpx}.pay .order_result .result_title{color:#feffca;font-size:60rpx;font-weight:700;text-align:center;margin-bottom:40rpx}.pay .order_result .item_title{text-align:left;padding-left:50rpx;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:36rpx;font-weight:700;margin-bottom:20rpx}.pay .order_result .item_content{width:700rpx;text-align:left;color:#e1e1ff;padding:30rpx;-webkit-box-sizing:border-box;box-sizing:border-box;line-height:50rpx;font-size:30rpx;margin:0 auto 20rpx;background:url(https://qiming.yw11.com/cesuan/hehun/images/text_t.png) no-repeat 0 0/100% 86rpx,url(https://qiming.yw11.com/cesuan/hehun/images/text_c.png) repeat-y 0 86rpx/100% 20rpx,url(https://qiming.yw11.com/cesuan/hehun/images/text_b.png) no-repeat 0 100%/100% 86rpx}

@@ -1,0 +1,71 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*loading部分*/
+.loading.data-v-43e49b3c{position: fixed;top:0;bottom: 0;left: 0;right: 0;z-index:100000;background-color: #ede9e6;}
+.loading_logo.data-v-43e49b3c{position: absolute;bottom: 30rpx;left: 50%;-webkit-transform: translate(-50%, 0);-ms-transform: translate(-50%, 0);transform: translate(-50%, 0);z-index:10001;width: 195rpx;height:76rpx;}
+.loading_bagua.data-v-43e49b3c{position: absolute;top: 20%;left: 50%;-webkit-transform: translate(-50%, 0);-ms-transform: translate(-50%, 0);transform: translate(-50%, 0);z-index:10001;text-align: center;}
+.loading_bagua ._img.data-v-43e49b3c{position: absolute;top: 0;left: 0; width: 300rpx;height:300rpx;z-index:10002;}
+.loading_bagua .loading_dian.data-v-43e49b3c{-webkit-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);-webkit-animation: rotation-data-v-43e49b3c 2.5s linear infinite;animation: rotation-data-v-43e49b3c 2.5s linear infinite;}
+.loading_bagua .loading_zi.data-v-43e49b3c{-webkit-transform: rotate(360deg);-ms-transform: rotate(360deg);transform: rotate(360deg);-webkit-animation: rotationFan-data-v-43e49b3c 2.5s linear infinite;animation: rotationFan-data-v-43e49b3c 2.5s linear infinite;}
+.loading_bagua ._div.data-v-43e49b3c{font-size: 30rpx;}
+.space.data-v-43e49b3c{width: 300rpx;height: 300rpx;}
+.hide.data-v-43e49b3c{ opacity: 0; visibility: hidden; height:0; overflow: hidden;
+}
+@-webkit-keyframes rotation-data-v-43e49b3c{from {-webkit-transform: rotate(0deg);transform: rotate(0deg);}to {-webkit-transform: rotate(360deg);transform: rotate(360deg);}}
+@keyframes rotation-data-v-43e49b3c{from {-webkit-transform: rotate(0deg);transform: rotate(0deg);}to {-webkit-transform: rotate(360deg);transform: rotate(360deg);}}
+@-webkit-keyframes rotationFan-data-v-43e49b3c{from {-webkit-transform: rotate(360deg);transform: rotate(360deg);}to {-webkit-transform: rotate(0deg);transform: rotate(0deg);}}
+@keyframes rotationFan-data-v-43e49b3c{from {-webkit-transform: rotate(360deg);transform: rotate(360deg);}to {-webkit-transform: rotate(0deg);transform: rotate(0deg);}}
+@-webkit-keyframes pulse-data-v-43e49b3c{0%{ -webkit-transform: scale(1); transform: scale(1);}50%{ -webkit-transform: scale(.95); transform: scale(.95);}100%{ -webkit-transform: scale(1); transform: scale(1);}}
+@keyframes pulse-data-v-43e49b3c{0%{ -webkit-transform: scale(1); transform: scale(1);}50%{ -webkit-transform: scale(.95); transform: scale(.95);}100%{ -webkit-transform: scale(1); transform: scale(1);}}
+

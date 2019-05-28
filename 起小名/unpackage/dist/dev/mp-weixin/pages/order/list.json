@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "w-loading": "/components/w-loading/w-loading",
+    "w-pagination": "/components/w-pagination/w-pagination"
+  }
+}

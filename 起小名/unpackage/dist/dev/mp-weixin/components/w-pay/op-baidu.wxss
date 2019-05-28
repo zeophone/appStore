@@ -1,0 +1,19 @@
+.op_baidu {
+  height: 90rpx;
+  padding-right: 30rpx;
+  border-top: 1px solid #ccc;
+}
+.op_baidu text {
+  background: #000040;
+  width: 160rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 60rpx;
+  height: 60rpx;
+  margin-top: 15rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+  float: right;
+}
+

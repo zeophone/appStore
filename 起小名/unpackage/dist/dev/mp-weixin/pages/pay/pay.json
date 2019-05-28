@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "智能起名套餐选择",
+  "usingComponents": {
+    "w-youshi": "/components/w-youshi/w-youshi",
+    "p-h5": "/components/w-pay/p-h5",
+    "p-baidu": "/components/w-pay/p-baidu"
+  }
+}

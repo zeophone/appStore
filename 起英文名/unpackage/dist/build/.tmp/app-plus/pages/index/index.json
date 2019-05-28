@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "起英文名",
+  "usingComponents": {
+    "pop": "/components/pop"
+  }
+}

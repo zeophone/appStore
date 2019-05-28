@@ -1,0 +1,119 @@
+.pay {
+  background: #fff;
+  z-index: 100;
+}
+.pay .pay_head {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #333333;
+  color: #FFFFFF;
+  padding-left: 20rpx;
+  font-size: 32rpx;
+  position: relative;
+}
+.pay .pay_head text {
+  height: 80rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 60rpx;
+  color: #ccc;
+  width: 80rpx;
+  text-align: center;
+}
+.pay .type_item_name {
+  font-size: 60rpx;
+}
+.pay .type_item_name text {
+  font-size: 26rpx;
+}
+.pay .type {
+  margin: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.pay .type .type_head {
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  background: url(https://static.quwangming.com/p_child_name/images/28_ad.png) no-repeat;
+  height: 384rpx;
+  background-size: 750rpx 384rpx;
+}
+.pay .type .type_item {
+  display: inline-block;
+  width: 340rpx;
+  border: 4rpx solid #333;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  padding: 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.pay .type .type_num {
+  display: inline-block;
+  width: 220rpx;
+  border: 4rpx solid #333;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  padding: 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 28rpx;
+}
+.pay .type .type_num:nth-of-type(4) {
+  margin-right: 0;
+}
+.pay .type .type_item:nth-of-type(3),
+.pay .type .type_item:nth-of-type(5) {
+  margin-right: 0;
+}
+.pay .type .type_item_con {
+  font-size: 28rpx;
+  color: #333;
+}
+.pay .type .select {
+  color: #e3434f;
+  border: 4rpx solid #e3434f;
+  font-weight: 700;
+}
+.pay .type .select .bg {
+  border: 1rpx solid #e3434f;
+}
+.pay .type .select .bg_angle {
+  border: 1px solid #e3434f;
+}
+.pay .type .select .bg:after {
+  content: '';
+  position: absolute;
+  height: 40rpx;
+  width: 40rpx;
+  background: url('https://static.quwangming.com/v3/newqiming/images/m/chuantong/tc_gou.png') no-repeat;
+  background-size: 40rpx 80rpx;
+  background-position: 0 -40rpx;
+  right: 0;
+  bottom: 0;
+}
+.pay .price {
+  margin: 20rpx;
+}
+.pay .price .price_val {
+  font-size: 30rpx;
+}
+.pay .price .price_val text {
+  color: #d62a36;
+  font-size: 40rpx;
+  padding-left: 20rpx;
+}
+.pay .price .price_con {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+.pay .price .price_con ._b {
+  display: inline-block;
+  color: #0073cf;
+}
+.pay .bg {
+  border: 1rpx solid #ccc;
+  position: relative;
+  padding: 20rpx;
+}
+

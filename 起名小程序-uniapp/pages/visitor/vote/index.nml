@@ -1,0 +1,544 @@
+
+<template>
+<div class="u-w-view u-w-page">
+  <div class="u-w-view {{ifVote ? 'ytp' : ''}}">
+    <!--<form> bindsubmit="vote" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+    <div class="u-w-form">
+      <div class="u-w-view p_l10 p_r10 p_t15 p_b15">
+        <div class="u-w-view box m_b15">
+          <div class="u-w-view con">
+            <div class="u-w-view dis_flex text">
+              <image class="u-w-image" src="{{order_info.user_avatar||'https://images.yw11.com/xchengxu/yw11/icon_gua.png'}}"></image>
+              <div class="u-w-view flex p_t5">
+                <text class="u-w-text">给我宝宝精心挑选的备选名字，请大家帮我投票出主意吧！</text>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-w-view box">
+          <div class="u-w-view con" if="{{!ifVote}}">
+            <!--<checkbox-group> catchchange="checkboxChange1" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+            <div class="u-w-checkbox-group">
+              <div class="u-w-view dis_flex dis_cneter label" for="{{(index,item) in order_vote_list}}" tid="{{index}}">
+                <div class="u-w-label flex radio{{item.checked ? ' on' : ''}}">
+                  <input class="u-w-checkbox" value="{{index}}" checked="{{item.checked ? ' on' : ''}}" show="hidden" name="checkbox1533263454148" type="checkbox">
+                    <image class="u-w-icon"></image>
+                    <text class="u-w-text mz">{{item.name}}
+                      <span class="u-w-text">{{item.name_score}}分</span>
+                    </text>
+                  </input>
+                </div>
+                <div style="padding-left:20px;padding-right:20px" data-name="{{item.name}}" class="u-w-view" onclick="$handlePageEvent('seeDetail',false,false)">
+                  <div class="u-w-view triangle-facing-right relative"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view con" else>
+            <div class="u-w-view dis_flex dis_cneter label" data-name="{{item.name}}" for="{{(index,item) in order_vote_list}}" tid="{{index}}" onclick="$handlePageEvent('seeDetail',false,false)">
+              <div class="u-w-label radio{{(item.checked&&!ifVote) ? ' on' : ''}}">
+                <image class="u-w-icon"></image>
+              </div>
+              <div class="u-w-view mz">
+                <text class="u-w-text">{{item.name_score}}分</text>
+                <text class="u-w-text">{{item.name}}</text>
+              </div>
+              <div class="u-w-view flex"></div>
+              <div class="u-w-view num">
+                <text class="u-w-text">{{item.vote_nums}}</text>
+                <text class="u-w-text">票</text>
+              </div>
+              <div class="u-w-view bl" style="width:{{bl[index]}}%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="u-w-view ren">
+          <image class="u-w-image" for="{{(index,item) in touxiang}}" tid="{{index}}" if="{{index
+            <6}}" src="{{item}}">
+            </image>
+            <text class="u-w-text">等{{touxiang.length}}人已投票</text>
+          </div>
+          <div class="u-w-view box" style="margin-top:30px" if="{{!ifVote}}">
+            <div class="u-w-view con">
+              <div class="u-w-view xd_sub">
+                <div class="u-w-view">
+                  <text class="u-w-text">起名网十年精心研发，只为一个好名字</text>
+                </div>
+                <div class="u-w-view p_b5">
+                  <text class="u-w-text co_j">300</text>
+                  <text class="u-w-text">个符合八字的吉祥好听名字</text>
+                </div>
+                <input class="u-w-button u-w-button-default href" if="{{is_login}}" onclick="$handlePageEvent('vote',false,false)" type="button" value="投票"></input>
+                <!--<button> open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+                <input class="u-w-button u-w-button-default href" if="{{!is_login}}" type="button" value="投票"></input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<button> open-type="share" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+    <input class="u-w-button u-w-button-default dis_flex dis_cneter bx_tit" type="button">
+      <div class="u-w-view">
+        <div class="u-w-view">
+          <text class="u-w-text">发给朋友</text>
+        </div>
+      </div>
+    </input>
+    <div class="u-w-view bj"></div>
+    <div class="u-w-view fixed">
+      <div class="u-w-view con p_l10 p_r10 p_t15 p_b15">
+        <div class="u-w-view dis_flex">
+          <input style="background-color:#e14d4d;border-radius:50px 0 0 50px;color:#fff;border:0;height:88px;line-height:88px;margin-right:3px" class="u-w-button u-w-button-default flex" onclick="$handlePageEvent('goToHome',false,false)" type="button" value="我也去起名">
+            <image class="u-w-icon"></image>
+          </input>
+          <input style="background-color:#000040;border-radius:0 50px 50px 0;color:#fff;border:0;height:88px;line-height:88px" class="u-w-button u-w-button-default flex" onclick="$handlePageEvent('goToCeMing',false,false)" type="button" value="测测我的名字">
+            <image class="u-w-icon"></image>
+          </input>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+@import '../../../polyfill.nss';
+@import '../../../app.nss';
+
+@import "../../index/list/list.nss";
+
+.u-w-page {
+  /*overflow:visible; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.sorting {
+  height: 90px;
+}
+
+.sorting .dis_flex {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-bottom-color: #e1e1e1;
+  /*background:#fff; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*border-bottom:2px solid #e1e1e1; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:1; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.sorting .dis_flex .flex:first-child {
+  border-right: 2rpx solid #e1e1e1;
+}
+*/
+
+.sorting .picker {
+  text-align: center;
+  height: 88px;
+  line-height: 88px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sorting .picker .u-w-text,
+.sorting .picker .u-w-icon {
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.sorting .picker .u-w-text {
+  font-size: 32px;
+}
+
+.sorting .picker .u-w-icon {
+  width: 16px;
+  height: 16px;
+  border-left-color: #000;
+  border-bottom-color: #000;
+  transform: rotate(-45deg);
+  margin: 28px 0 0 10px;
+}
+
+.text {
+  padding: 30px;
+  font-size: 32px;
+}
+
+.text .u-w-image {
+  width: 100px;
+  height: 100px;
+  margin: 0 30px 0 0;
+  border-radius: 375px;
+}
+
+.label {
+  color: #333;
+  font-size: 34px;
+  padding-right: 30px;
+  margin-top: 2px;
+  background-color: rgba(0, 0, 0, .02);
+  /*background:rgba(0, 0, 0, .02); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.label:first-child {
+  margin-top: 0;
+}
+*/
+
+.label .radio {
+  padding: 20px 50px 20px 30px;
+}
+
+.label .u-w-icon {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_tp.png) no-repeat;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:url(https://images.yw11.com/xchengxu/yw11/icon_tp.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.label .mz {
+  padding: 6px 0;
+  left: 120px;
+  top: 12px;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.label .mz .u-w-text {
+  padding-left: 40px;
+}
+
+.label .bl {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(222,47,68,.1);
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:rgba(222,47,68,.1); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.label .num {
+  font-size: 24px;
+  color: #7a7a7a;
+}
+
+.label .num .u-w-text {
+  font-size: 44px;
+  padding-right: 8px;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.label .radio.on icon {
+  background-position-y: bottom;
+}
+*/
+
+.ren {
+  padding-top: 30px;
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.ren .u-w-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  border-radius: 60px;
+  /*float:left; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.ren .u-w-text {
+  line-height: 60px;
+  color: #a6a6a6;
+  font-size: 24px;
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.label .bl,
+.label .num,
+.ren,
+.ytp .fixed {
+  display: none;
+}
+
+.ytp .label .u-w-icon {
+  background-image: none;
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.ytp .label .radio.on icon {
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_tp.png);
+}
+*/
+
+.ytp .label .bl,
+.ytp .num,
+.ytp .ren {
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.bx_tit {
+  position: fixed;
+  right: 20px;
+  bottom: 150px;
+  width: 60px;
+  height: 180px;
+  text-align: center;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/bx_tit_bj.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/bx_tit_bj.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.bx_tit.u-w-view {
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.bx_tit.u-w-view.u-w-view {
+  font-size: 24px;
+  color: #fff;
+  line-height: 1.1;
+  padding: 0 20px;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.bx_tit .u-w-text {
+  font-size: 20px;
+  color: #fff;
+  line-height: 1.1;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+</style>
+<script>
+
+const _$wxs$_ = {
+
+}
+
+const app = getApp();
+import request from '../../../utils/request.js';
+Page({
+  data: {
+    ifVote: false,
+    order_vote_list: [],
+    order_id: "203236",
+    names: [],
+
+    is_login: false
+  },
+  //事件处理函数
+  vote: function (e) {
+    var name_id = [];
+    for (var i = 0; i < this.data.order_vote_list.length; i++) {
+      if (this.data.order_vote_list[i].checked) {
+        name_id.push(this.data.order_vote_list[i].name_id);
+      }
+    }
+    if (name_id.length == 0) {
+      uni.prompt.showToast(uni.parseArgs({
+        title: '请先选择名字',
+        image: '/images/tips/remind.png'
+      }, {
+        page: 'pages/visitor/vote/index',
+        method: 'showToast'
+      }));
+      return;
+    }
+    request({
+      url: "/api/nameorder/set_order_vote",
+      params: {
+        app_mchid: app.globalData.openId,
+        app: 1,
+        order_id: this.data.order_info.order_id,
+        vote_id: this.data.order_vote_info.vote_id,
+        name_id: name_id[0] //JSON.stringify(name_id)
+      }
+    }).then(data => {
+      var bl = [];
+      var touxiang = [];
+      for (var i = 0; i < data.order_vote_list.length; i++) {
+        bl.push(data.order_vote_list[i].vote_nums / data.vote_total_nums * 100);
+        for (var j = 0; j < data.order_vote_list[i].vote_list.length; j++) {
+          touxiang.push(data.order_vote_list[i].vote_list[j].user_avatar);
+        }
+      }
+      this.setData({
+        bl: bl,
+        ifVote: !this.data.ifVote,
+        order_vote_list: data.order_vote_list,
+        touxiang: touxiang
+      });
+      //uniapp comment: unsupported api.[兼容写法参考](http://ask.dcloud.net.cn/article/13168)
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0
+      });
+    });
+  },
+  checkboxChange: function (e) {
+    var items = this.data.order_vote_list;
+    var checkArr = e.detail.value;
+    if (checkArr.length < 7) {
+      for (var i = 0; i < items.length; i++) {
+        if (checkArr.indexOf(i + "") != -1) {
+          items[i].checked = true;
+        } else {
+          items[i].checked = false;
+        }
+      }
+      this.setData({
+        order_vote_list: items
+      });
+    }
+  },
+  checkboxChange1: function (e) {
+    var index = e.detail.value[e.detail.value.length - 1];
+    for (var i = 0; i < this.data.order_vote_list.length; i++) {
+      if (i == index) {
+        this.data.order_vote_list[i].checked = true;
+      } else {
+        this.data.order_vote_list[i].checked = false;
+      }
+    }
+    this.setData({
+      index: index,
+      order_vote_list: this.data.order_vote_list
+    });
+  },
+  onShareAppMessage: function (res) {
+    //if (res.from === 'button') {
+    return {
+      title: '大家快来帮我投票选名字',
+      path: '/pages/index/index?order_id=' + this.data.order_info.order_id + '&order_sn=' + this.data.order_info.order_sn + '&vote_id=' + this.data.vote_id + '&from=pick'
+      //}
+    };
+  },
+  onLoad: function (option) {
+    this.setData({
+      vote_id: option.vote_id
+    });
+    request({
+      url: "/api/nameorder/order_vote_detail",
+      params: {
+        order_id: option.order_id || this.data.order_id,
+        vote_id: option.vote_id,
+        app: 1
+      }
+    }).then(data => {
+      console.log(data);
+      this.setData({
+        order_vote_list: data.order_vote_list,
+        order_info: data.order_info,
+        order_vote_info: data.order_vote_info
+      });
+    });
+    this.getUserInfo();
+  },
+  seeDetail: function (e) {
+    var name = e.currentTarget.dataset.name.replace(this.data.order_info.surname, '');
+    var params = {
+      name: name,
+      surname: this.data.order_info.surname,
+      order_sn: this.data.order_info.order_sn,
+      formTouPiao: true
+    };
+    uni.router.push(uni.parseArgs({
+      url: '/pages/index/detail/detail?data=' + JSON.stringify(params)
+    }, {
+      page: 'pages/visitor/vote/index',
+      method: 'navigateTo'
+    }));
+  },
+  bindGetUserInfo: function (e) {
+    if (e.detail.errMsg.indexOf('ok') >= 0) {
+      this.getUserInfo().then(data => {
+        if (data == 'success') {
+          this.vote();
+        }
+      });
+    } else {
+      uni.prompt.showToast(uni.parseArgs({
+        title: '获取头像失败',
+        image: '/images/tips/error.png'
+      }, {
+        page: 'pages/visitor/vote/index',
+        method: 'showToast'
+      }));
+    }
+  },
+  getUserInfo: function () {
+    //获取用户信息
+    return new Promise((resolve, reject) => {
+      //uniapp comment: unsupported api.[兼容写法参考](http://ask.dcloud.net.cn/article/13168)
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            //uniapp comment: unsupported api.[兼容写法参考](http://ask.dcloud.net.cn/article/13168)
+            wx.getUserInfo({
+              success: res => {
+                this.setData({
+                  is_login: true
+                });
+                var params = {
+                  open_id: app.globalData.openId,
+                  user_avatar: res.userInfo.avatarUrl,
+                  nick_name: res.userInfo.nickName,
+                  app: 1
+                };
+                uni.fetch.fetch(uni.parseArgs({
+                  url: app.globalData.baseUrl + '/api/member/create_member',
+                  method: 'POST',
+                  header: { "Content-Type": "application/x-www-form-urlencoded" },
+                  data: params,
+                  success: res => {
+                    if (res.data.code == 1) {
+                      resolve('success');
+                    } else {
+                      resolve('fail');
+                    }
+                  }
+                }, {
+                  page: 'pages/visitor/vote/index',
+                  method: 'request'
+                }));
+              }
+            });
+          }
+        }, fail: function (e) {}
+      });
+    });
+  },
+  goToHome: function () {
+    uni.router.back(uni.parseArgs({}, {
+      page: 'pages/visitor/vote/index',
+      method: 'navigateBack'
+    }));
+  },
+  goToCeMing: function () {
+    uni.router.push(uni.parseArgs({
+      url: '/pages/index/zhidaceming'
+    }, {
+      page: 'pages/visitor/vote/index',
+      method: 'navigateTo'
+    }));
+  }
+}, {
+  path: 'pages/visitor/vote/index',
+  module: module,
+  exports: exports,
+  $app_require$: $app_require$,
+  wxs: typeof _$wxs$_ === 'undefined' ? {} : _$wxs$_
+});
+</script>
+  

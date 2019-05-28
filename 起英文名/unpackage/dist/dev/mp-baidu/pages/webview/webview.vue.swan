@@ -1,0 +1,1 @@
+<template name="5a8fc5eb"><view class="_view {{ h[ 0 ].rcl }}"><web-view class="_web-view" src="{{ h[ 1 ][ 'src' ] }}"></web-view></view></template>

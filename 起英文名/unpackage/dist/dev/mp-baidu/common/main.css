@@ -1,0 +1,193 @@
+.co_feffca {
+  color: #feffca;
+}
+._em,
+._i {
+  font-style: normal;
+}
+.plac {
+  color: #ccc;
+  font-size: 28rpx;
+}
+.center {
+  text-align: center;
+}
+.bold {
+  font-weight: bold;
+}
+.fs32 {
+  font-size: 32rpx;
+}
+.fs30 {
+  font-size: 32rpx;
+}
+.fs28 {
+  font-size: 32rpx;
+}
+.fs24 {
+  font-size: 24rpx;
+}
+.fs60 {
+  font-size: 60rpx;
+}
+.fw700 {
+  font-weight: 700;
+}
+.lh50 {
+  line-height: 50rpx;
+}
+.co333 {
+  color: #333;
+}
+.co666 {
+  color: #666;
+}
+.co_red {
+  color: red;
+}
+.dis_flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.dis_center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.dis_block {
+  display: block;
+}
+.flex_col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.co999 {
+  color: #999;
+}
+.co_de2f44 {
+  color: #de2f44;
+}
+.co_9392db {
+  color: #9392db;
+}
+.bg_fffcee {
+  background: #fffcee;
+}
+.flex {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.block {
+  display: block;
+}
+.lih60 {
+  line-height: 60rpx;
+}
+.lih80 {
+  line-height: 80rpx;
+}
+.pd20 {
+  padding: 20rpx;
+}
+.pd_b40 {
+  padding-bottom: 40rpx;
+}
+.pl10 {
+  padding: 10rpx;
+}
+.pd_l20 {
+  padding-left: 20rpx;
+}
+.mt20 {
+  margin-top: 20rpx;
+}
+.mb20 {
+  margin-top: 20rpx;
+}
+.mt40 {
+  margin-top: 40rpx;
+}
+.mb40 {
+  margin-top: 40rpx;
+}
+.page {
+  width: 710rpx;
+  margin: 20rpx auto;
+  border: 4rpx solid #333;
+  padding: 10rpx 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #fff;
+}
+.page .line {
+  width: 100%;
+  border-bottom: 1px dotted #ccc;
+  height: 10rpx;
+  margin-bottom: 10rpx;
+}
+.page .title {
+  padding-left: 30rpx;
+  border-left: 8rpx solid #e3434f;
+  line-height: 34rpx;
+  margin: 30rpx 0;
+  font-weight: 600;
+  font-size: 34rpx;
+}
+.bg {
+  height: 100%;
+  border: 1px solid #ccc;
+  position: relative;
+  padding: 20rpx 20rpx;
+}
+.bg_angle {
+  position: absolute;
+  display: inline-block;
+  width: 10rpx;
+  height: 10rpx;
+  border: 1px solid #ccc;
+}
+.bg_l {
+  left: 0;
+  top: 0;
+  border-left: 0 !important;
+  border-top: 0 !important;
+}
+.bg_r {
+  right: 0;
+  top: 0;
+  border-right: 0 !important;
+  border-top: 0 !important;
+}
+.bg_bl {
+  left: 0;
+  bottom: 0;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+}
+.bg_br {
+  right: 0;
+  bottom: 0;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+}
+.fr {
+  float: right;
+}
+.co_r1 {
+  color: #de2f44;
+}
+
+
+/*# sourceMappingURL=../../.sourcemap/mp-baidu/common/main.js.map*/

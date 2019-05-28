@@ -1,0 +1,1555 @@
+
+<template>
+<div class="u-w-view u-w-page">
+  <div class="u-w-view img_box">
+    <image class="u-w-image" src="https://images.yw11.com/xchengxu/yw11/in_banner.jpg"></image>
+  </div>
+  <div class="u-w-view t_a_c p_text">
+    <div class="u-w-view h2">
+      <text class="u-w-text">名不正则言不顺，言不顺则事不成</text>
+    </div>
+    <div class="u-w-view">
+      <text class="u-w-text">1000</text>
+      <text class="u-w-text">万宝宝提供起名服务</text>
+    </div>
+  </div>
+  <div class="u-w-view form">
+    <div class="u-w-view dis_flex hd">
+      <div class="u-w-view flex">
+        <input data-type="znqm" class="u-w-button u-w-button-default {{tabActive=='znqm'?'on':''}}" onclick="$handlePageEvent('tabChange',false,false)" type="button" value="智能取名"></input>
+      </div>
+      <div class="u-w-view flex t_a_r">
+        <input data-type="zncm" class="u-w-button u-w-button-default {{tabActive=='zncm'?'on':''}}" onclick="$handlePageEvent('tabChange',false,false)" type="button" value="智能测名"></input>
+      </div>
+    </div>
+    <div class="u-w-view bd">
+      <!--<form> bindsubmit="znqmSubmit" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+      <div class="u-w-form {{tabActive=='znqm'?'':'none'}}">
+        <div class="u-w-view">
+          <div class="u-w-view dis_flex dis_cneter item {{znqmYZ=='surname'?'dd':''}}">
+            <div class="u-w-view flex input">
+              <input class="u-w-input" placeholder="姓氏：如 刘"></input>
+            </div>
+            <!--<radio-group> bindchange="radioChange" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+            <div class="u-w-radio-group checked radio-group" data-array="sexArray" data-leap="false">
+              <div class="u-w-label radio {{item.value==sex ? 'on' : ''}}" for="{{(index,item) in sexArray}}" tid="index">
+                <input class="u-w-radio" value="{{item.value}}" show="hidden" name="radio1533263454039" onchange="$handlePageEvent('radioChange',false,false)" type="radio">
+                  <text class="u-w-text">{{item.name}}</text>
+                </input>
+              </div>
+            </div>
+            <input class="u-w-input" type="text" show="" value="{{sex}}"></input>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item">
+            <div class="u-w-view flex input">
+              <input data-index="bady" class="u-w-input" placeholder="出生日期*" onclick="$handlePageEvent('birthDate',false,false)" value="{{birth_time}} ({{date_type == 1 ? '公历':'农历'}}{{is_leap == 1 ? ' 润月':''}})" disabled="disabled">
+                <input class="u-w-input" type="text" show="" onchange="$handlePageEvent('watchBirth',false,false)" value="{{birth_time}}"></input>
+                <input class="u-w-input" type="text" show="" value="{{date_type}}"></input>
+                <input class="u-w-input" type="text" show="" value="{{is_leap}}"></input>
+              </input>
+            </div>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item {{znqmYZ=='birth_address'?'dd':''}}">
+            <div class="u-w-view flex input">
+              <picker class="u-w-picker" type="text" onchange="$handlePageEvent('area',false,false)" value="{{region}}"></picker>
+            </div>
+            <div class="u-w-view checkbox{{zty_val == 1 ? ' on' : ''}}">
+              <!--<checkbox-group> bindchange="checkboxChange" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+              <div data-index="{{zty_val}}" class="u-w-checkbox-group">
+                <div class="u-w-label">
+                  <input class="u-w-checkbox" value="{{zty_val}}" checked="true" show="" name="checkbox1533263454040" type="checkbox">
+                    <image class="u-w-icon"></image>
+                    <text class="u-w-text">较对真太阳</text>
+                  </input>
+                </div>
+                <input class="u-w-input" type="text" show="" value="{{zty_val}}"></input>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view title">
+            <text class="u-w-text">起名意愿</text>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item">
+            <div class="u-w-view flex input section">
+              <input data-open="expectOpen" class="u-w-input" value="{{yyCharacterText}}" disabled="true" onclick="$handlePageEvent('yyOpen',false,false)"></input>
+              <image class="u-w-icon jt_s_b"></image>
+            </div>
+            <div class="u-w-view select_box{{expectOpen ? ' show' : ''}}">
+              <div class="u-w-view s_tit">
+                <text class="u-w-text">(多选 可选1-6个)</text>
+                <image class="u-w-icon close" onclick="$handlePageEvent('close',false,false)">
+                  <text class="u-w-text">确定</text>
+                </image>
+                <text class="u-w-text">期望性格</text>
+              </div>
+              <div class="u-w-view s_box clearfix">
+                <!--<checkbox-group> bindchange="character" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+                <div data-array="checkCharacterItems" data-name="yyCharacterName" data-text="yyCharacterText" class="u-w-checkbox-group">
+                  <div class="u-w-label checkbox" for="{{(index,item) in checkCharacterItems}}" tid="index">
+                    <input class="u-w-checkbox" value="{{item.value}}" checked="{{item.checked}}" show="true" name="checkbox1533263454040" type="checkbox"></input>
+                    <text class="u-w-text">{{item.text}}</text>
+                  </div>
+                </div>
+                <input class="u-w-input" type="text" show="" value="{{yyCharacterName}}"></input>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item">
+            <div class="u-w-view flex input section">
+              <input data-open="characterOpen" class="u-w-input" value="{{checkExpectText}}" disabled="true" onclick="$handlePageEvent('yyOpen',false,false)"></input>
+              <image class="u-w-icon jt_s_b"></image>
+            </div>
+            <div class="u-w-view select_box{{characterOpen ? ' show' : ''}}">
+              <div class="u-w-view s_tit">
+                <text class="u-w-text">(多选 可选1-6个)</text>
+                <image class="u-w-icon close" data-type="character" onclick="$handlePageEvent('close',false,false)">
+                  <text class="u-w-text">确定</text>
+                </image>
+                <text class="u-w-text">父母期望</text>
+              </div>
+              <div class="u-w-view s_box clearfix">
+                <div class="u-w-view boy{{sexIndex == 1 ? '' : ' none'}}">
+                  <!--<checkbox-group> bindchange="character" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+                  <div data-array="checkExpectBoyItems" data-name="checkExpectBoyName" data-text="checkExpectText" class="u-w-checkbox-group">
+                    <div class="u-w-label checkbox" for="{{(index,item) in checkExpectBoyItems}}" tid="index">
+                      <input class="u-w-checkbox" value="{{item.value}}" checked="{{item.checked}}" show="true" name="checkbox1533263454040" type="checkbox"></input>
+                      <text class="u-w-text">{{item.text}}</text>
+                    </div>
+                  </div>
+                  <input class="u-w-input" type="text" show="" value="{{checkExpectBoyName}}"></input>
+                </div>
+                <div class="u-w-view girl{{sexIndex == 2 ? '' : ' none'}}">
+                  <!--<checkbox-group> bindchange="character" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+                  <div data-array="checkExpectGirlItems" data-name="checkExpectGirlName" data-text="checkExpectText" class="u-w-checkbox-group">
+                    <div class="u-w-label checkbox" for="{{(index,item) in checkExpectGirlItems}}" tid="index">
+                      <input class="u-w-checkbox" value="{{item.value}}" checked="{{item.checked}}" show="true" name="checkbox1533263454040" type="checkbox"></input>
+                      <text class="u-w-text">{{item.text}}</text>
+                    </div>
+                  </div>
+                  <input class="u-w-input" type="text" show="" value="{{checkExpectGirlName}}"></input>
+                </div>
+                <div class="u-w-view clearfix ts">
+                  <text class="u-w-text">基于24种积极、幸福性格特质心理学起名。</text>
+                </div>
+                <div class="u-w-view">
+                  <text class="u-w-text tishi"></text>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-w-view sub">
+          <!--<button> form-type="submit" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+          <input class="u-w-button u-w-button-default" type="button" value="立即起名"></input>
+        </div>
+      </div>
+      <!--<form> bindsubmit="cemingSubmit" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+      <div class="u-w-form">
+        <div class="u-w-view {{tabActive=='zncm'?'':'none'}}">
+          <div class="u-w-view dis_flex dis_cneter item {{cemingYZ=='surname'?'dd':''}}">
+            <div class="u-w-view flex input">
+              <input class="u-w-input" placeholder="姓名：如 张三"></input>
+            </div>
+            <!--<radio-group> bindchange="radioChangeCe" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+            <div class="u-w-radio-group checked radio-group" data-array="sexArray" data-leap="false">
+              <div class="u-w-label radio {{item.value==sex_ce ? 'on' : ''}}" for="{{(index,item) in sexArray}}" tid="index">
+                <input class="u-w-radio" value="{{item.value}}" show="hidden" name="radio1533263454040" onchange="$handlePageEvent('radioChangeCe',false,false)" type="radio">
+                  <text class="u-w-text">{{item.name}}</text>
+                </input>
+              </div>
+            </div>
+            <input class="u-w-input" type="text" show="" value="{{sex_ce}}"></input>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item">
+            <div class="u-w-view flex input">
+              <input data-index="badyCe" class="u-w-input" placeholder="出生日期*" onclick="$handlePageEvent('birthDate',false,false)" value="{{birth_time_ce}} ({{date_type_ce == 1 ? '公历':'农历'}}{{is_leap_ce == 1 ? ' 润月':''}})" disabled="disabled">
+                <input class="u-w-input" type="text" show="" onchange="$handlePageEvent('watchBirth',false,false)" value="{{birth_time_ce}}"></input>
+                <input class="u-w-input" type="text" show="" value="{{date_type_ce}}"></input>
+                <input class="u-w-input" type="text" show="" value="{{is_leap_ce}}"></input>
+              </input>
+            </div>
+          </div>
+          <div class="u-w-view dis_flex dis_cneter item {{cemingYZ=='birth_address'?'dd':''}}">
+            <div class="u-w-view flex input">
+              <picker class="u-w-picker" type="text" onchange="$handlePageEvent('areaCe',false,false)" value="{{region_ce}}"></picker>
+            </div>
+            <div class="u-w-view checkbox{{zty_val_ce == 1 ? ' on' : ''}}">
+              <!--<checkbox-group> bindchange="checkboxChangeCe" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+              <div data-index="{{zty_val_ce}}" class="u-w-checkbox-group">
+                <div class="u-w-label">
+                  <input class="u-w-checkbox" value="{{zty_val_ce}}" checked="true" show="" name="checkbox1533263454040" type="checkbox">
+                    <image class="u-w-icon"></image>
+                    <text class="u-w-text">较对真太阳</text>
+                  </input>
+                </div>
+                <input class="u-w-input" type="text" show="" value="{{zty_val_ce}}"></input>
+              </div>
+            </div>
+          </div>
+          <div class="u-w-view sub">
+            <!--<button> form-type="submit" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+            <input class="u-w-button u-w-button-default" type="button" value="立即测名"></input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="u-w-view hbao{{hbaoOff == 1 ? ' show':''}}">
+    <image class="u-w-image img" src="https://images.yw11.com/xchengxu/yw11/hbao_bj.png"></image>
+    <div class="u-w-view item_box">
+      <!--<form> bindsubmit="hbaoSub{{index}}" uniapp comment: unsupported property.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)-->
+      <div class="u-w-form" for="{{(index,item) in hbaoArray}}" tid="index">
+        <div class="u-w-view item dis_flex">
+          <div class="u-w-view price">
+            <text class="u-w-text">元</text>
+            <text class="u-w-text">{{item.price}}</text>
+          </div>
+          <div class="u-w-view flex">
+            <div class="u-w-view tit">
+              <text class="u-w-text">{{item.name}}</text>
+            </div>
+            <div class="u-w-view time">
+              <text class="u-w-text">{{item.validity}}</text>
+            </div>
+          </div>
+          <div class="u-w-view hbsub">
+            <input data-type="{{item.price}}" class="u-w-button u-w-button-" onclick="$handlePageEvent('useHongBao',false,false)" type="button" value="立即使用"></input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <image class="u-w-icon close" onclick="$handlePageEvent('close',false,false)">
+      <text class="u-w-text">×</text>
+    </image>
+  </div>
+  <div class="u-w-view cm_ts {{cm_ts?'show':''}}">
+    <div class="u-w-view colse" onclick="$handlePageEvent('close',false,false)">
+      <text class="u-w-text">×</text>
+    </div>
+    <div class="u-w-view hd">
+      <image class="u-w-image" src="https://images.yw11.com/xchengxu/yw11/ceming_rw.png"></image>
+      <div class="u-w-view p">
+        <text class="u-w-text">免费次数用完!!!支持起名网</text>
+      </div>
+    </div>
+    <div class="u-w-view bd">
+      <div class="u-w-view price">
+        <text class="u-w-text">￥8元</text>
+        <div class="u-w-view p">
+          <text class="u-w-text">增加1次测名服务</text>
+        </div>
+      </div>
+    </div>
+    <div class="u-w-view bc">
+      <input class="u-w-button u-w-button-default" onclick="$handlePageEvent('cemingPay',false,false)" type="button"></input>
+    </div>
+  </div>
+  <div class="u-w-view time_box {{time_show ? 'show' : ''}}">
+    <!--uniapp comment: unsupported component.[兼容写法参考](http://ask.dcloud.net.cn/article/13169)
+<date wx:if="{{time_show}}" id="datee" defaultdatetime="{{defaultDateTime}}" binddatetype="onDateType" bindtimeclose="onTimeClose" bindcheckryue="onCheckRyue" isleap="{{defaultIsLeap}}" datetype="{{defaultDateType}}"></date>-->
+  </div>
+  <input class="u-w-button u-w-button-default dis_flex dis_cneter bqhz" onclick="$handlePageEvent('seeJiLu',false,false)" type="button">
+    <div class="u-w-view">
+      <div class="u-w-view">
+        <text class="u-w-text"></text>
+        <text class="u-w-text">{{tabActive=="znqm"?'起名':'测名'}}记录</text>
+      </div>
+    </div>
+  </input>
+  <div class="u-w-view fixed_xx_box {{jiluShow?'show':''}}">
+    <div class="u-w-view tit">
+      <text class="u-w-text">({{test_name_array.length}})</text>
+      <div class="u-w-view" onclick="$handlePageEvent('close',false,false)">
+        <image class="u-w-icon"></image>
+      </div>
+      <text class="u-w-text">以往{{tabActive=="znqm"?'起名':'测名'}}</text>
+    </div>
+    <list style="height:760px" class="u-w-scroll-view">
+      <list-item type="u-w-scroll-view-list-item-0" class="u-w-list-item">
+        <div class="u-w-view p_l15 p_r15 p_t15 p_b15">
+          <div class="u-w-view box m_b15" for="{{(index,item) in test_name_array}}" tid="{{index}}">
+            <div class="u-w-view con order_box">
+              <div class="u-w-view">
+                <div class="u-w-view dis_flex">
+                  <div class="u-w-view flex xx">
+                    <div class="u-w-view dis_flex">
+                      <text class="u-w-text">姓　　{{tabActive=='znqm'?'氏':'名'}}：</text>
+                      <div class="u-w-view">
+                        <text class="u-w-text">{{item.surname||item.name}}　　　性别：{{item.sex==1?'男':'女'}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <text class="u-w-text">出生日期：</text>
+                      <div class="u-w-view">
+                        <text class="u-w-text">{{item.date_type==1?'公历':'农历'}}{{item.birth_time}}{{item.is_leap==1?'闰月':''}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view dis_flex">
+                      <text class="u-w-text">出生地点：</text>
+                      <div class="u-w-view">
+                        <div class="u-w-view operate" data-index="{{index}}" if="{{tabActive=='znqm'}}" onclick="$handlePageEvent('more',false,false)">
+                          <text class="u-w-text">{{more!=index?'展开':'收起'}}</text>
+                          <image class="u-w-icon {{more==index?'triangle-facing-top':'triangle-facing-bottom'}}"></image>
+                        </div>
+                        <text class="u-w-text">{{item.birth_address}}</text>
+                      </div>
+                    </div>
+                    <div class="u-w-view {{more==index?'':'none'}}">
+                      <div class="u-w-view dis_flex">
+                        <text class="u-w-text">期望性格：</text>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{item.name_character_zn}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view dis_flex">
+                        <text class="u-w-text">父母期望：</text>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{item.name_expect_zn}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view dis_flex">
+                        <text class="u-w-text">爸爸信息：</text>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{item.daddy_name}}　{{item.daddy_type==1?'公历':'农历'}}{{item.daddy_date}}</text>
+                        </div>
+                      </div>
+                      <div class="u-w-view dis_flex">
+                        <text class="u-w-text">妈妈信息：</text>
+                        <div class="u-w-view">
+                          <text class="u-w-text">{{item.mother_name}}　{{item.mother_type==1?'公历':'农历'}}{{item.mother_date}}</text>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-w-view dis_flex dis_cneter sub">
+                <div class="u-w-view flex time">
+                  <text class="u-w-text">{{item.create_time}}</text>
+                </div>
+                <div class="u-w-view btn red" data-index="{{index}}" onclick="$handlePageEvent('moreToDetail',false,false)">
+                  <input class="u-w-button u-w-button- dis_flex dis_cneter" type="button" value="继续{{tabActive=="znqm"?'起名':'测名'}}"></input>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </list-item>
+    </list>
+  </div>
+  <div class="u-w-view my_modal_bg{{myModalBg ? ' show' : ''}}" onclick="$handlePageEvent('close',false,false)"></div>
+  <div class="u-w-view bj"></div>
+  <div class="u-w-view fixed">
+    <div class="u-w-view con p_l10 p_r10 p_t15 p_b15">
+      <div class="u-w-view dis_flex">
+        <input style="background-color:#e14d4d;border-radius:50px 50px;color:#fff;border:0;height:88px;line-height:88px;margin-right:3px" class="u-w-button u-w-button-default flex" onclick="$handlePageEvent('goToHome',false,false)" type="button" value="返回首页">
+          <image class="u-w-icon"></image>
+        </input>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+<style>
+@import '../../polyfill.nss';
+@import '../../app.nss';
+
+.u-w-page {
+  background-color: #000040;
+  /*background:#000040; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.show {
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.jt_s_b {
+  top: 375px;
+  right: 0;
+  border: 8px solid rgba(0, 0, 0, 0);
+  border-right-color: #443f41;
+  border-bottom-color: #443f41;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*transform:translateY(-80%) rotate(45deg); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+
+
+.img_box .u-w-image {
+  width: 100%;
+  height: 400px;
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.h2,
+.title {
+  font-size: 34px;
+  color: #b08f53;
+  line-height: 1;
+  padding: 48px 0 14px;
+}
+
+.p_text {
+  font-size: 28px;
+  color: #f3f2d7;
+}
+
+.p_text .u-w-text {
+  color: #b08f53;
+}
+
+.form {
+  padding-top: 40px;
+}
+
+
+
+.form .hd .u-w-button {
+  width: 306px;
+  height: 80px;
+  line-height: 80px;
+  color: #b3a3a2;
+  border-radius: 0;
+  font-size: 34px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/in_icon01.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/in_icon01.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.form .hd button.on {
+  color: #feffca;
+  font-weight: 700;
+  background-position-y: bottom;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.form .hd button.on.button-hover {
+  opacity: 1;
+}
+*/
+
+.form .bd {
+  width: 690px;
+  padding-top: 30px;
+  /*margin:0 auto; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.form .bd .item {
+  height: 100px;
+  margin-bottom: 20px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/in_icon02.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/in_icon02.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.form .bd .item.mb5 {
+  margin-bottom: 10rpx;
+}
+*/
+
+.form .input {
+  padding: 12px;
+}
+
+.form .input .u-w-input {
+  padding: 0 30px;
+  height: 100%;
+  font-size: 36px;
+  color: #333;
+}
+
+.form .checked {
+  padding-right: 42px;
+}
+
+.form .checked .u-w-label {
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  color: #fff;
+  font-size: 28px;
+  border-radius: 375px;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #c8c8c8;
+  /*background:#c8c8c8; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.form .checked label.on {
+  background: #caa456;
+}
+*/
+
+.form .checkbox {
+  font-size: 32px;
+  color: #a9a9a9;
+  padding-right: 42px;
+}
+
+.form .checkbox .u-w-label,
+.form .checkbox .u-w-text {
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.form .checkbox .u-w-label .u-w-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  margin-top: 6px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/in_icon03.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/in_icon03.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.form .checkbox.on label icon {
+  background-position-y: bottom;
+}
+*/
+
+.title {
+  padding: 0 0 10px 0;
+  font-size: 30px;
+}
+
+.addparent {
+  border: 2px solid #ccc;
+  color: #666;
+  line-height: 56px;
+  height: 56px;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  /*display:block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:#fafafa; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.addparent .u-w-text {
+  color: #3287ff;
+}
+
+.form .section {
+  /*position:relative; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.form .section .jt_s_b {
+  right: 42px;
+}
+
+.form .section .u-w-input {
+  padding-right: 52px;
+  text-overflow: ellipsis;
+  lines: 1;
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+
+
+.sub {
+  padding-bottom: 30px;
+}
+
+.sub .u-w-button {
+  width: 100%;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 38px;
+  color: #feffca;
+  font-weight: bold;
+  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/in_icon02.png) 0 bottom no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/in_icon02.png) 0 bottom no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 375px;
+  display: none;
+  /*transform:translateY(-70%); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:10000; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .img {
+  width: 100%;
+  height: 880px;
+}
+
+.hbao .item_box {
+  left: 127.5px;
+  right: 127.5px;
+  bottom: 127.5px;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .item {
+  padding: 29px 0;
+  margin-top: 16px;
+}
+
+.hbao .price {
+  width: 112px;
+  text-align: center;
+  font-size: 56px;
+  color: #f9f025;
+  padding-right: 20px;
+  align-items: center;
+  justify-content: center;
+  /*font-weight:bold; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .price .u-w-text {
+  font-size: 16px;
+  padding-top: 6px;
+  /*font-weight:400; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .tit {
+  font-size: 28px;
+  color: #f9f025;
+  margin: 0;
+  /*font-weight:bold; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .time {
+  font-size: 20px;
+  line-height: 1;
+  color: #fff;
+}
+
+.hbao .hbsub {
+  margin-right: 20px;
+  padding-top: 8px;
+}
+
+.hbao .hbsub .u-w-button {
+  font-size: 24px;
+  padding: 0 18px;
+  color: #935906;
+  line-height: 44px;
+  border-radius: 44px;
+  background-color: #ffda2d;
+  /*background:#ffda2d; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:middle; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.hbao .close {
+  left: 375px;
+  bottom: -75px;
+  width: 50px;
+  height: 50px;
+  margin-left: -26px;
+  border-radius: 375px;
+  font-size: 54px;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  line-height: 50px;
+  border: 2px solid #fff;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*font-weight:100; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.hbao.show {
+  display: block;
+}
+*/
+
+.cm_ts {
+  position: fixed;
+  top: 345px;
+  left: 375px;
+  width: 600px;
+  text-align: center;
+  margin-left: -300px;
+  border: 4px solid #470807;
+  border-radius: 16px;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffda2d;
+  /*background:#ffda2d; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*z-index:10000; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*transform:translateY(100%); uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*visibility:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.cm_ts .colse {
+  left: 375px;
+  margin-left: -28px;
+  bottom: -112px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 48px;
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+  border-radius: 375px;
+  /*position:absolute; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*font-weight:100; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.cm_ts .hd {
+  font-size: 26px;
+  color: #911b0e;
+  padding-top: 30px;
+}
+
+.cm_ts .hd .u-w-image {
+  height: 176px;
+  width: 312px;
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.cm_ts .hd .p {
+  padding-top: 6px;
+}
+
+.cm_ts .bd {
+  margin: 16px 20px 0;
+  border-radius: 20px;
+  background-color: #d21933;
+  /*background:#d21933; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*font-weight:400; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.cm_ts .price {
+  color: #ffda2d;
+  padding: 30px 0 24px;
+  margin: 0 16px;
+}
+
+.cm_ts .price .u-w-text {
+  font-size: 70px;
+  font-weight: bold;
+  line-height: 1.2;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.cm_ts .price .p {
+  font-size: 28px;
+}
+
+.cm_ts .bc {
+  padding: 32px 0;
+  font-size: 0;
+}
+
+.cm_ts .bc .u-w-button {
+  width: 560px;
+  height: 102px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/ce_ts_sub.png)no-repeat;
+  /*margin:0 auto; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+  /*background:url(https://images.yw11.com/xchengxu/yw11/ce_ts_sub.png)no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.cm_ts.show {
+  height: auto;
+  transform: translateY(-50%);
+  opacity: 1;
+  visibility: visible;
+  transition: all .3s ease-out;
+}
+*/
+
+
+
+.order_box .tit {
+  padding: 0 30px;
+  height: 88px;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-bottom-color: #dbdbdb;
+  /*border-bottom:2px solid #dbdbdb; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.order_box .tit .u-w-icon {
+  width: 34px;
+  height: 34px;
+  margin-right: 14px;
+  background-size: cover;
+  background-image: url(https://images.yw11.com/xchengxu/yw11/icon_gua.png) no-repeat;
+  /*background:url(https://images.yw11.com/xchengxu/yw11/icon_gua.png) no-repeat; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box .tit text:nth-child(2) {
+  font-size: 34rpx;
+}
+*/
+
+.order_box .tit .price {
+  font-size: 40px;
+  font-weight: bold;
+  color: #fa4144;
+}
+
+.order_box .xx,
+.order_box .zt {
+  line-height: 54px;
+  font-size: 32px;
+  padding: 20px 0 20px 30px;
+}
+
+.order_box .xx {
+  padding-right: 20px;
+  text-overflow: ellipsis;
+  lines: 1;
+  /*overflow:hidden; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.order_box .xx .u-w-text {
+  /*white-space:nowrap; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.order_box .zt {
+  padding: 20px 30px 20px 0;
+}
+
+.order_box .sub {
+  padding: 20px;
+  border-top-width: 2px;
+  border-style: solid;
+  border-top-color: #dbdbdb;
+  /*border-top:2px solid #dbdbdb; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.order_box .btn {
+  padding-right: 10px;
+}
+
+.order_box .btn .u-w-button {
+  padding: 0 18px;
+  height: 60px;
+  border: 2px solid #cdcdcd;
+  color: #333;
+  font-size: 28px;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  /*background:#f5f5f5; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box .btn:last-child {
+  padding-right: 0;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box .btn.red button {
+  background: #fa4144;
+  border-color: #a21012;
+  color: #fff;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box.dsqm .tit text:nth-child(2) {
+  font-weight: 700;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box.dsqm .tit .price {
+  color: #caa456;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box.wzf .zt {
+  color: #fa4144;
+}
+*/
+
+/*
+uniapp comment: unsupported selector.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)
+.order_box.yzf .zt {
+  color: #2c9209;
+}
+*/
+
+.time {
+  font-size: 28px;
+  color: #999;
+}
+
+.operate {
+  font-size: 24px;
+  color: #999;
+  padding-left: 20px;
+  /*display:inline-block; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.operate .u-w-icon {
+  width: 16px;
+  height: 16px;
+  margin: 12px 0 0 10px;
+  /*vertical-align:top; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.bj {
+  background-color: #000040;
+  /*background:#000040; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+.dd {
+  animation-name: shake;
+  animation-duration: 0.8s;
+  /*animation:shake 0.8s; uniapp comment: unsupported style.[兼容写法参考](http://ask.dcloud.net.cn/article/13170)*/
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5rpx);
+  }
+
+  20%, 40%, 60%, 80% {
+    transform: translateX(5rpx);
+  }
+}
+</style>
+<script>
+
+const _$wxs$_ = {
+
+}
+
+var app = getApp();
+var openId = await uni.getStorageSync('openId');
+var regeneratorRuntime = require("../../common/js/runtime.js");
+import cemingPay from '../../api/ceming/cemingPay.js';
+import request from '../../utils/request.js';
+var date = new Date(),
+    year = date.getFullYear(),
+    month = date.getMonth() + 1,
+    day = date.getDate(),
+    shi = date.getHours(),
+    fen = date.getMinutes();
+
+Page({
+    data: {
+        tabActive: 'zncm',
+
+        time_cw: 'bady',
+
+        time_show: false,
+        myModalBg: false,
+        addparent: false,
+
+        defaultDateTime: `${year}-${month}-${day} ${shi}:${fen}`,
+        defaultDateType: 1,
+        defaultIsLeap: 0,
+
+        sex: 1,
+        is_leap: 0,
+        date_type: 1,
+        birth_time: `${year}-${month}-${day} ${shi}:${fen}`,
+
+        sexIndex: 1,
+        region: '',
+        areaVal: 0,
+        zty_val: 1,
+
+        daddy_name: "",
+        daddy_date: `${year}-${month}-${day} ${shi}:${fen}`,
+        daddy_type: 1,
+        daddy_is_leap: 0,
+
+        mother_name: '',
+        mother_date: `${year}-${month}-${day} ${shi}:${fen}`,
+        mother_type: 1,
+        mother_is_leap: 0,
+
+        sex_ce: 1,
+        is_leap_ce: 0,
+        date_type_ce: 1,
+        birth_time_ce: `${year}-${month}-${day} ${shi}:${fen}`,
+        region_ce: '',
+        areaVal_ce: 0,
+        zty_val_ce: 1,
+
+        sexArray: [{ name: '男', value: '1' }, { name: '女', value: '2' }],
+
+        checkCharacterItems: [{ value: '0', name: 'a', text: '爱学习', checked: false }, { value: '1', name: 'b', text: '好奇心', checked: false }, { value: '2', name: 'c', text: '判断力', checked: false }, { value: '3', name: 'd', text: '创造力', checked: false }, { value: '4', name: 'e', text: '洞察力', checked: false }, { value: '5', name: 'f', text: '勇敢', checked: false }, { value: '6', name: 'g', text: '毅力', checked: false }, { value: '7', name: 'h', text: '诚实', checked: false }, { value: '8', name: 'i', text: '爱', checked: false }, { value: '9', name: 'j', text: '善良', checked: false }, { value: '10', name: 'k', text: '情商高', checked: false }, { value: '11', name: 'l', text: '忠诚', checked: false }, { value: '12', name: 'm', text: '正直', checked: false }, { value: '13', name: 'n', text: '领导力', checked: false }, { value: '14', name: 'o', text: '宽容', checked: false }, { value: '15', name: 'p', text: '谦虚', checked: false }, { value: '16', name: 'q', text: '谨慎', checked: false }, { value: '17', name: 'r', text: '自律', checked: false }, { value: '18', name: 's', text: '欣赏力', checked: false }, { value: '19', name: 't', text: '感恩', checked: false }, { value: '20', name: 'u', text: '乐观', checked: false }, { value: '21', name: 'v', text: '幽默', checked: false }, { value: '22', name: 'w', text: '信仰', checked: false }, { value: '23', name: 'x', text: '激情', checked: false }],
+        checkExpectGirlItems: [{ value: '0', name: 'a', text: '活泼', checked: false }, { value: '1', name: 'b', text: '可爱', checked: false }, { value: '2', name: 'c', text: '文静', checked: false }, { value: '3', name: 'd', text: '聪颖', checked: false }, { value: '4', name: 'e', text: '自信', checked: false }, { value: '5', name: 'f', text: '安康', checked: false }, { value: '6', name: 'g', text: '财富', checked: false }, { value: '7', name: 'h', text: '成功', checked: false }, { value: '8', name: 'i', text: '高贵', checked: false }, { value: '9', name: 'j', text: '优雅', checked: false }, { value: '10', name: 'k', text: '温柔', checked: false }, { value: '11', name: 'l', text: '清纯', checked: false }, { value: '12', name: 'm', text: '时尚', checked: false }, { value: '13', name: 'n', text: '贤淑', checked: false }, { value: '14', name: 'o', text: '魅力', checked: false }, { value: '15', name: 'p', text: '独立', checked: false }, { value: '16', name: 'q', text: '多才', checked: false }],
+        checkExpectBoyItems: [{ value: '0', name: 'r', text: '稳重', checked: false }, { value: '1', name: 's', text: '睿智', checked: false }, { value: '2', name: 't', text: '自信', checked: false }, { value: '3', name: 'u', text: '阳光', checked: false }, { value: '4', name: 'v', text: '阳刚', checked: false }, { value: '5', name: 'w', text: '安康', checked: false }, { value: '6', name: 'x', text: '财富', checked: false }, { value: '7', name: 'y', text: '成功', checked: false }, { value: '8', name: 'z', text: '儒雅', checked: false }, { value: '9', name: '1', text: '内敛', checked: false }, { value: '10', name: '2', text: '大气', checked: false }, { value: '11', name: '3', text: '博学多才', checked: false }, { value: '12', name: '4', text: '魅力', checked: false }, { value: '13', name: '5', text: '个性', checked: false }, { value: '14', name: '6', text: '独立', checked: false }, { value: '15', name: '7', text: '敏锐', checked: false }],
+        yyCharacterText: '期望性格',
+        checkExpectText: '父母期望',
+
+        jiluShow: false,
+        more: 99999
+    },
+    tabChange: function (e) {
+        this.setData({
+            tabActive: e.currentTarget.dataset.type
+        });
+    },
+    birthDate: function (e) {
+        var index = e.currentTarget.dataset.index;
+        switch (index) {
+            case 'bady':
+                this.setData({
+                    defaultDateTime: this.data.birth_time,
+                    defaultDateType: this.data.date_type,
+                    defaultIsLeap: this.data.is_leap
+
+                });
+                break;
+            case 'badyCe':
+                this.setData({
+                    defaultDateTime: this.data.birth_time_ce,
+                    defaultDateType: this.data.date_type_ce,
+                    defaultIsLeap: this.data.is_leap_ce
+
+                });
+                break;
+
+            case 'daddy':
+                this.setData({
+                    defaultDateTime: this.data.daddy_date,
+                    defaultDateType: this.data.daddy_type,
+                    defaultIsLeap: this.data.daddy_is_leap
+
+                });
+                break;
+            default:
+                this.setData({
+                    defaultDateTime: this.data.mother_date,
+                    defaultDateType: this.data.mother_type,
+                    defaultIsLeap: this.data.mother_is_leap
+
+                });
+        }
+        setTimeout(() => {
+            this.setData({
+                myModalBg: true,
+                time_cw: index,
+                time_show: true
+            });
+        }, 0);
+    },
+    onDateType: function (val) {
+        switch (this.data.time_cw) {
+            case 'bady':
+                this.setData({
+                    date_type: val.detail
+                });
+                break;
+            case 'badyCe':
+                this.setData({
+                    date_type_ce: val.detail
+                });
+                break;
+            case 'daddy':
+                this.setData({
+                    daddy_type: val.detail
+                });
+                break;
+            default:
+                this.setData({
+                    mother_type: val.detail
+                });
+        }
+    },
+    onTimeClose: function (val) {
+        switch (this.data.time_cw) {
+            case 'bady':
+                this.setData({
+                    birth_time: val.detail
+                });
+                break;
+            case 'badyCe':
+                this.setData({
+                    birth_time_ce: val.detail
+                });
+                break;
+            case 'daddy':
+                this.setData({
+                    daddy_date: val.detail
+                });
+                break;
+            default:
+                this.setData({
+                    mother_date: val.detail
+                });
+        }
+        this.close();
+    },
+    onCheckRyue: function (val) {
+        switch (this.data.time_cw) {
+            case 'bady':
+                this.setData({
+                    is_leap: val.detail
+                });
+                break;
+            case 'badyCe':
+                this.setData({
+                    is_leap_ce: val.detail
+                });
+                break;
+            case 'daddy':
+                this.setData({
+                    daddy_is_leap: val.detail
+                });
+                break;
+            default:
+                this.setData({
+                    mother_is_leap: val.detail
+                });
+        }
+    },
+    getNowTime: function () {
+        date = new Date();
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        day = date.getDate();
+        shi = date.getHours();
+        fen = date.getMinutes();
+    },
+    //事件处理函数
+    //单选
+    radioChange: function (e) {
+        this.setData({
+            sex: e.detail.value,
+            sexIndex: e.detail.value
+        });
+    },
+    radioChangeCe: function (e) {
+        this.setData({
+            sex_ce: e.detail.value
+        });
+    },
+    //出生地选择
+    area: function (e) {
+        if (e.detail.value[0] == '全部' || e.detail.value[1] == '全部' || e.detail.value[2] == '全部') {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '重新选择',
+                image: '/images/tips/remind.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+        } else {
+            this.setData({
+                region: e.detail.value,
+                areaVal: 1
+            });
+        }
+    },
+    areaCe: function (e) {
+        if (e.detail.value[0] == '全部' || e.detail.value[1] == '全部' || e.detail.value[2] == '全部') {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '重新选择',
+                image: '/images/tips/remind.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+        } else {
+            this.setData({
+                region_ce: e.detail.value,
+                areaVal_ce: 1
+            });
+        }
+    },
+    // 较对真太阳
+    checkboxChange: function (e) {
+        var index = parseInt(e.currentTarget.dataset.index);
+        if (index == 1) {
+            this.setData({
+                zty_val: 0
+            });
+        } else {
+            this.setData({
+                zty_val: 1
+            });
+        }
+    },
+    checkboxChangeCe: function (e) {
+        var index = parseInt(e.currentTarget.dataset.index);
+        if (index == 1) {
+            this.setData({
+                zty_val_ce: 0
+            });
+        } else {
+            this.setData({
+                zty_val_ce: 1
+            });
+        }
+    },
+    // 意愿选择打开
+    yyOpen: function (e) {
+        var thas = this,
+            open = e.currentTarget.dataset.open;
+        thas.setData({
+            sexIndex: this.data.sex,
+            [open]: true,
+            textareaOpen: true,
+            myModalBg: true
+        });
+    },
+    // 意愿标签选择
+    character: function (e) {
+        var Array = e.currentTarget.dataset.array,
+            Text = e.currentTarget.dataset.text,
+            Name = e.currentTarget.dataset.name;
+        this.setData({
+            value: e.detail.value
+        });
+        var items = this.data[Array];
+        var checkArr = e.detail.value;
+        var text = [];
+        var name = [];
+        if (checkArr.length < 7) {
+            for (var i = 0; i < items.length; i++) {
+                if (checkArr.indexOf(i + "") != -1) {
+                    items[i].checked = true;
+                    text += items[i].text + ',';
+                    name += items[i].name;
+                } else {
+                    items[i].checked = false;
+                }
+            }
+            if (text == '') {
+                this.setData({
+                    yy_character_index: 0
+                });
+                text = '期望性格';
+            } else {
+                this.setData({
+                    yy_character_index: 1
+                });
+            }
+            this.setData({
+                [Array]: items,
+                [Text]: text,
+                [Name]: name
+            });
+        } else {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '最多只能选6个',
+                image: '/images/tips/remind.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+            this.setData({
+                [Array]: items
+            });
+        }
+    },
+    // 关闭
+    close: function (e) {
+        var that = this;
+        that.setData({
+            expectOpen: false,
+            characterOpen: false,
+            hbaoOff: false,
+            myModalBg: false,
+            time_show: false,
+            cm_ts: false,
+            jiluShow: false,
+            more: false
+        });
+    },
+    addParentTap: function () {
+        this.setData({
+            addparent: !this.data.addparent
+        });
+    },
+    znqmSubmit: function (e) {
+        if (e.detail.value.surname == "") {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '请输入姓氏',
+                image: '/images/tips/error.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+            this.setData({
+                znqmYZ: 'surname'
+            });
+            setTimeout(() => {
+                this.setData({
+                    znqmYZ: ""
+                });
+            }, 500);
+            return;
+        }
+        if (e.detail.value.birth_address == "") {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '请输入出生地点',
+                image: '/images/tips/error.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+            this.setData({
+                znqmYZ: 'birth_address'
+            });
+            setTimeout(() => {
+                this.setData({
+                    znqmYZ: ""
+                });
+            }, 500);
+            return;
+        }
+        request({
+            url: '/api/public/set_formid',
+            params: {
+                app_mchid: app.globalData.openId,
+                appflag: app.globalData.appflag,
+                formid: e.detail.formId,
+                app: 1
+            },
+            noShowToast: true
+        });
+        uni.router.push(uni.parseArgs({
+            url: '/pages/index/list/list?data=' + JSON.stringify(e.detail.value)
+        }, {
+            page: 'pages/index/zhidaceming',
+            method: 'navigateTo'
+        }));
+    },
+    cemingSubmit: async function (e) {
+        if (e.detail.value.surname == "") {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '请输入姓名',
+                image: '/images/tips/error.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+            this.setData({
+                cemingYZ: 'surname'
+            });
+            setTimeout(() => {
+                this.setData({
+                    cemingYZ: ""
+                });
+            }, 500);
+            return;
+        }
+        if (e.detail.value.birth_address == "") {
+            uni.prompt.showToast(uni.parseArgs({
+                title: '请输入出生地点',
+                image: '/images/tips/error.png'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'showToast'
+            }));
+            this.setData({
+                cemingYZ: 'birth_address'
+            });
+            setTimeout(() => {
+                this.setData({
+                    cemingYZ: ""
+                });
+            }, 500);
+            return;
+        }
+        if ((await uni.getStorageSync('qiming_cm_formData')) && (await uni.getStorageSync('qiming_cm_formData')) !== JSON.stringify(e.detail.value)) {
+            this.setData({
+                cm_ts: true,
+                myModalBg: true
+            });
+        } else {
+            uni.router.push(uni.parseArgs({
+                url: '/pages/index/ceming/ceming?data=' + JSON.stringify(e.detail.value)
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'navigateTo'
+            }));
+        }
+    },
+    cemingPay: function (e) {
+        var params = { /*test_mobile:18508442669,*/
+            app_mchid: app.globalData.openId,
+            pay_code: 'wechat',
+            order_forms: 5,
+            app: 1,
+            appflag: 'scbz'
+        };
+        cemingPay(params, this);
+    },
+    onLoad: function (options) {
+        if (options && options.from == 'pick') {
+            uni.router.push(uni.parseArgs({
+                url: '/pages/visitor/vote/index?order_id=' + options.order_id + '&order_sn=' + options.order_sn + '&vote_id=' + options.vote_id
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'navigateTo'
+            }));
+        } else if (options && options.from == 'order_detail') {
+            uni.router.push(uni.parseArgs({
+                url: '/pages/visitor/pick/index?order_id=' + options.order_id + '&order_sn=' + options.order_sn
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'navigateTo'
+            }));
+        }
+    },
+    onReady: async function () {
+        //调用API从本地缓存中获取数据
+        if (app.globalData.openId == "") {
+            openId = await app.userLogin();
+            app.givePacket((await app.userLogin())).then(data => {
+                if (data.data.code == 1) {
+                    this.setData({
+                        hbaoArray: data.data.data.list,
+                        hbaoOff: true,
+                        myModalBg: true
+                    });
+                }
+            });
+        } else {
+            app.givePacket().then(data => {
+                if (data.data.code == 1) {
+                    this.setData({
+                        hbaoArray: data.data.data.list,
+                        hbaoOff: true,
+                        myModalBg: true
+                    });
+                }
+            });
+        }
+    },
+    seeJiLu: function () {
+        var url = "";
+        if (this.data.tabActive == 'znqm') {
+            url = '/api/member/get_qiming_list';
+        } else {
+            url = "/api/member/get_test_list";
+        }
+        request({
+            url: url,
+            params: {
+                app_mchid: app.globalData.openId,
+                app: 1
+            }
+        }).then(data => {
+            if (this.data.tabActive == 'znqm') {
+                this.setData({
+                    more: 999999,
+                    jiluShow: true,
+                    test_name_array: data.qiming_name_array
+                });
+            } else {
+                this.setData({
+                    more: 999999,
+                    jiluShow: true,
+                    test_name_array: data.test_name_array
+                });
+            }
+        });
+    },
+    more: function (e) {
+        if (this.data.more == e.currentTarget.dataset.index) {
+            this.setData({
+                more: 999999
+            });
+        } else {
+            this.setData({
+                more: e.currentTarget.dataset.index
+            });
+        }
+    },
+    moreToDetail: function (e) {
+        var index = e.currentTarget.dataset.index;
+        var params = this.data.test_name_array[index];
+        params.birth_address = params.birth_address.replace(/-/g, ",");
+        if (this.data.tabActive == "znqm") {
+            uni.router.push(uni.parseArgs({
+                url: '/pages/index/list/list?data=' + JSON.stringify(params)
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'navigateTo'
+            }));
+        } else {
+            params.surname = params.name;
+            delete params.name;
+            uni.router.push(uni.parseArgs({
+                url: '/pages/index/ceming/ceming?data=' + JSON.stringify(params)
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'navigateTo'
+            }));
+        }
+        this.setData({
+            jiluShow: false
+        });
+    },
+    useHongBao: function (e) {
+        if (e.currentTarget.dataset.type == 30) {
+            uni.router.replace(uni.parseArgs({
+                url: '/pages/expert/index'
+            }, {
+                page: 'pages/index/zhidaceming',
+                method: 'switchTab'
+            }));
+        } else {
+            this.close();
+        }
+    },
+    goToHome: function () {
+        uni.router.replace(uni.parseArgs({
+            url: '/pages/index/index'
+        }, {
+            page: 'pages/index/zhidaceming',
+            method: 'switchTab'
+        }));
+    }
+}, {
+    path: 'pages/index/zhidaceming',
+    module: module,
+    exports: exports,
+    $app_require$: $app_require$,
+    wxs: typeof _$wxs$_ === 'undefined' ? {} : _$wxs$_
+});
+</script>
+  
