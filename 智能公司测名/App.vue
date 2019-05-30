@@ -13,5 +13,8 @@
 </script>
 
 <style>
+body,html{
+	height: 100%;
+}
 .plac{color: #bbb;font-size: 32upx;}
 </style>

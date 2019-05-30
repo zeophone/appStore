@@ -3,14 +3,14 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "智能起游戏名"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "游戏名字|起名网",
+		"navigationBarBackgroundColor": "#000040",
 		"backgroundColor": "#F8F8F8"
 	}
 }

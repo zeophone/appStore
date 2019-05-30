@@ -13,5 +13,5 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	.plac{font-size: 28upx;color:#ccc;}
 </style>
