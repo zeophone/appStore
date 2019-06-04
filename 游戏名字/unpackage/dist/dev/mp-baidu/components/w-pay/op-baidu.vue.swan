@@ -1,0 +1,1 @@
+<template name="7ac89990"><view class="_view op_baidu {{ h[ 0 ].rcl }}"><text class="_text" data-cid="{{ _c || c }}" data-hid="{{ 1 }}" bindtap="_pe">立即支付</text></view></template>

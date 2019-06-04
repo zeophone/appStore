@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "智能测名",
+  "titleNView": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "right-pop": "/components/right-pop",
+    "wpicker": "/components/w-picker/w-picker"
+  }
+}
