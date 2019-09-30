@@ -1,0 +1,280 @@
+@import "ceming-details";
+body{font-size: 32upx;}
+@font-face{ font-family: yjianti; src: url('https://static.quwangming.com/newqiming/css/fonts/yjianti.ttf')}
+// 颜色配置
+.co_09f{color: #09f;}
+.co_ea0{
+	color: #ea0000;
+}
+.co_003{ color:#003; }
+.co_09f{ color:#09f; }
+.co_blue{ color:#09f; }
+.co_red{ color: red; }
+.co_green{ color: #1c9916; }
+.co_1c75d1{ color: #1c75d1; }
+.co_4c6492{ color:#4c6492; }
+.co_db3437{ color:#db3437; }
+.co_caa456{ color: #caa456; }
+.co_9c9c9c{ color: #9c9c9c; }
+.bg_f1{
+	background: #f1f1f1;
+}
+.p_20{
+	padding: 20upx;
+}
+.p_40{
+	padding: 40upx;
+}
+.p_t20{
+	padding-top: 20upx;
+}
+.p_t80{
+	padding-top: 80upx;
+}
+.p_l20{
+	padding-left: 20upx;
+}
+.p_l40{
+	padding-left: 40upx;
+}
+.p_r20{
+	padding-right: 20upx;
+}
+.p_b20{
+	padding-bottom: 20upx;
+}
+.m_b20{
+	margin-bottom: 20upx;
+}
+.m_b40{
+	margin-bottom: 40upx;
+}
+.b_b1{
+	border-bottom: 1px solid #f8f8f8;
+}
+.text_c{
+	text-align: center;
+}
+.size_38{
+	font-size: 38upx;
+}
+.size_30{
+	font-size: 30upx;
+}
+.size_24{
+	font-size: 24upx;
+}
+.size_28{
+	font-size: 28upx;
+}
+.line_60{
+	line-height: 60upx;
+}
+.line_80{
+	line-height: 80upx;
+}
+.bold{
+	font-weight: bold;
+}
+.dis-flex{
+	display: flex;
+}
+.dis_flex{
+	display: flex;
+}
+.dir_c{
+	flex-direction:column;
+}
+.just_b{
+	justify-content: space-between;
+}
+ul,li,small {
+    list-style: none;
+}
+// 支付提示图层
+.pay_show{
+	position: relative;
+	
+	.jiesuo{
+		image{width: 40upx;height: 50upx;margin-right: 20upx;}
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%,-50%);
+		width: 360upx;
+		height: 100upx;
+		color: #fff;
+		background: #de2f44;
+		font-size:38upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 10;
+		border-radius: 8upx;
+	}
+}
+/* 卦象图表 */
+.zygx{ color: #999; text-align: center; padding-bottom:.15*200upx;}
+.zygx ul{padding: 0;}
+.zygx li{ font-size: .12*200upx; }
+.text_box{ padding: .19*200upx 0 .38*200upx;}
+.text_box span{ height: .31*200upx; line-height: .31*200upx; margin-top: .08*200upx; display: block;}
+.kuang{ padding: .19*200upx .03*200upx 0;}
+.kuang span{ height: .29*200upx; width: .05*200upx; border: .01*200upx solid #e1e1e1; display: block; margin-top: .08*200upx;}
+.kuang span:last-child{margin-top: .13*200upx; }
+.kuang_l span{ border-right:0;}
+.kuang_r span{ border-left:0;}
+/*.gx_box{ padding: 0 1px;}*/
+.gx_tit{ margin-bottom: .05*200upx;}
+.gx_block{}
+.gx_block .gx_0,.gx_block .gx_1{ overflow: hidden; margin:0 0 .04*200upx;}
+.gx_block span{ height: .07*200upx; background: #666; margin-top: .03*200upx;}
+.gx_block .gx_0	span:first-child{ margin-right: .02*200upx;}
+.gx_block .gx_on span{ background: #f00;}
+
+.flex_1{
+	flex: 1;
+}
+.flex_2{
+	flex: 2;
+}
+.flex_3{
+	flex: 3;
+}
+.flex_col{
+	flex-direction: column;
+}
+.align_c{
+	align-items: center;
+}
+.dis-center{
+	align-content: center;
+	justify-content: center;
+}
+.sub-red{
+	display: block;
+	background: #de2f44;
+    font-size: 36upx;
+    color: #fff;
+    min-width: 400upx;
+	text-align: center;
+    height: 90upx;
+    line-height: 90upx;
+    border-radius: 10upx;
+}
+.flex{
+	flex:1;
+}
+.list-title{
+	height: 100upx;
+	line-height: 100upx;
+	font-size: 36upx;
+	color: #666;
+	position: relative;
+	padding-left: 60upx;
+}
+.list-title:before{
+	content: '';
+	position: absolute;
+	width: 50upx;
+	height: 50upx;
+	left: 0;
+	top:26upx;
+	background: url('./static/image/zi.jpg') no-repeat;
+	background-size: 50upx 50upx;
+}
+.box_c{
+	    position: relative;
+		border: 4upx solid #000;
+		padding: 10upx;
+		background: #fff;
+}
+
+.box_c:before{
+	content: '';
+    position: absolute;
+    border: 2upx solid #000;
+    width: 8upx;
+    height: 8upx;
+	border-bottom-right-radius: 50%;
+    top: 10upx;
+    left: 10upx;
+}
+.box_c:after{
+	content: '';
+    position: absolute;
+    border: 2upx solid #000;
+    width: 8upx;
+    height: 8upx;
+	border-bottom-left-radius: 50%;
+    top: 10upx;
+    right: 10upx;
+}
+.box_m{
+	border: 2upx solid #000;
+	padding: 10upx;
+}
+.box_m:before{
+	content: '';
+    position: absolute;
+    border: 2upx solid #000;
+    width: 8upx;
+    height: 8upx;
+	border-top-right-radius: 50%;
+    bottom: 10upx;
+    left: 10upx;
+}
+.box_m:after{
+	content: '';
+    position: absolute;
+    border: 2upx solid #000;
+    width: 8upx;
+    height: 8upx;
+	border-top-left-radius: 50%;
+    bottom: 10upx;
+    right: 10upx;
+}
+.name-list{
+	padding: 40upx 0;
+	display: flex;
+	justify-content: center;
+	.name-item{
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		padding: 0 20upx;
+		.pinyin{color: #777;font-size: 28upx;line-height: 46upx;white-space:nowrap;}
+		.wuxing{color: #666;font-size: 28upx;line-height: 46upx;width:120upx;}
+		.zi{
+			flex-shrink: 0;
+			background: url(https://static.quwangming.com/newqiming/images/m/tradition/tian.png) center center no-repeat;
+			background-size: cover;
+			width: 120upx;
+			height: 120upx;
+			line-height: 120upx;
+			text-align: center;
+			font-size: 72upx;
+			color: #1f1f1f;
+		}
+	}
+}
+.table{
+	padding: 20upx;
+	td,th{
+		border: 1upx solid #e1e1e1;
+		text-align: center;
+		padding: 14upx 0;
+		border-bottom: 0;
+		border-right: 0;
+	}
+	td:nth-child(5){
+		border-right: 1upx solid #e1e1e1;
+	}
+}
+.table tr:nth-child(5){
+	td,th{
+		border-bottom: 1upx solid #e1e1e1;
+		}
+
+	}
