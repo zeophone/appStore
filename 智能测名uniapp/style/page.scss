@@ -1,0 +1,60 @@
+	.page {
+		width: 710upx;
+		margin: 20upx auto;
+		border: 4upx solid #333;
+		padding: 10upx 10upx;
+		box-sizing: border-box;
+
+
+		.title {
+			padding-left: 30upx;
+			border-left: 8upx solid #e3434f;
+			line-height: 34upx;
+			margin: 30upx 0;
+			font-weight: 600;
+			font-size: 34upx;
+		}
+	}
+
+	.bg {
+		height: 100%;
+		border: 1upx solid #ccc;
+		position: relative;
+		padding: 20upx 20upx;
+	}
+
+	.bg_angle {
+		position: absolute;
+		display: inline-block;
+		width: 10upx;
+		height: 10upx;
+		border: 1px solid #ccc;
+	}
+
+	.bg_l {
+		left: 0;
+		top: 0;
+		border-left: 0 !important;
+		border-top: 0 !important;
+	}
+
+	.bg_r {
+		right: 0;
+		top: 0;
+		border-right: 0 !important;
+		border-top: 0 !important;
+	}
+
+	.bg_bl {
+		left: 0;
+		bottom: 0;
+		border-left: 0 !important;
+		border-bottom: 0 !important;
+	}
+
+	.bg_br {
+		right: 0;
+		bottom: 0;
+		border-right: 0 !important;
+		border-bottom: 0 !important;
+	}

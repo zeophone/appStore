@@ -1,0 +1,110 @@
+.character3 .mask {
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.character3 .mask.show {
+  visibility: visible;
+  opacity: 1;
+}
+.character3 .select_box,
+.character3 .exper_info_ok {
+  position: fixed;
+  z-index: 999;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: left;
+  font-size: 1.0714rem;
+  background: #fff;
+  border-top: 0;
+  -webkit-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+          transform: translateY(100%);
+}
+.character3 .select_box .s_tit,
+.character3 .exper_info_ok .s_tit {
+  padding: 0 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  border-bottom: 1px solid #484848;
+  margin-bottom: 16rpx;
+  position: relative;
+}
+.character3 .select_box .s_tit text,
+.character3 .exper_info_ok .s_tit text {
+  font-size: 28rpx;
+  color: #484848;
+  padding-left: 20rpx;
+}
+.character3 .select_box .close,
+.character3 .exper_info_ok .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  color: #333;
+  display: box;
+}
+.character3 .select_box .s_box,
+.character3 .exper_info_ok .s_box {
+  padding: 0 14rpx 32rpx 30rpx;
+}
+.character3 .select_box .s_box .boy.none,
+.character3 .select_box .s_box .girl.none {
+  display: none;
+}
+.character3 .select_box checkbox-group {
+  overflow: hidden;
+}
+.character3 .select_box label {
+  float: left;
+  padding: 0 30rpx;
+  background: #eee;
+  line-height: 64rpx;
+  color: #333;
+  margin: 16rpx 14rpx 0 0;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+}
+.character3 .select_box label.on {
+  background: #eb4b01;
+  color: #fff !important;
+}
+.character3 .select_box .s_box .ts {
+  font-size: 24rpx;
+  color: #f00;
+  line-height: 40rpx;
+  padding-top: 22rpx;
+}
+.character3 .select_box .s_box input {
+  display: none;
+}
+.character3 .select_box.show,
+.character3 .exper_info_ok.show {
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.character3 .checkbox {
+  width: 160rpx;
+  text-align: center;
+}
+
+
+/*# sourceMappingURL=../../.sourcemap/mp-baidu/components/Character.js.map*/

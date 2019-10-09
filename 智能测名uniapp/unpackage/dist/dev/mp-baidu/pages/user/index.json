@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+    "kefu": "/components/Kefu"
+  },
+  "component": true
+}

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/ceming",
+    "pages/middle/ceming",
+    "pages/middle/qiming",
+    "pages/query/index",
+    "pages/result/ceming",
+    "pages/status/index",
+    "pages/user/index",
+    "pages/user/help",
+    "pages/user/quest",
+    "pages/user/protocol",
+    "pages/index/qiming",
+    "pages/detail/qiming",
+    "pages/pay/qiming"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "智能测名",
+    "navigationBarBackgroundColor": "#333945",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#E53E49",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/qiming",
+        "iconPath": "static/image/icon_tab01.png",
+        "selectedIconPath": "static/image/icon_tab01_on.png",
+        "text": "起名"
+      },
+      {
+        "pagePath": "pages/index/ceming",
+        "iconPath": "static/image/icon_tab02.png",
+        "selectedIconPath": "static/image/icon_tab02_on.png",
+        "text": "测名"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "static/image/icon_tab04.png",
+        "selectedIconPath": "static/image/icon_tab04_on.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

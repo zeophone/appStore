@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "免费名字体验",
+  "usingComponents": {
+    "youshi": "/components/Youshi/main"
+  },
+  "component": true
+}

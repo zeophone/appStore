@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "测名详情",
+  "usingComponents": {
+    "canvas-line": "/components/CanvasLine"
+  }
+}

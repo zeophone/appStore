@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "智能起名",
+  "usingComponents": {
+    "picker": "/components/w-picker/main",
+    "character": "/components/Character",
+    "order-scroll": "/components/OrderScroll/main",
+    "youshi": "/components/Youshi/main",
+    "footer": "/components/Footer/main"
+  },
+  "component": true
+}

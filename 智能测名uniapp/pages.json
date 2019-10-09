@@ -1,0 +1,175 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/ceming",
+			"style": {
+				"navigationBarTitleText": "智能测名",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				} 
+			}
+		}
+	    ,{
+            "path" : "pages/middle/ceming",
+            "style" : {
+				"navigationBarTitleText": "测名详情预览",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				}
+			}
+        },{
+            "path" : "pages/middle/qiming",
+            "style" : {
+				"navigationBarTitleText": "免费名字体验",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/query/index",
+            "style" : {
+				"navigationBarTitleText": "我的订单",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				} 
+			}
+        },{
+            "path" : "pages/result/ceming",
+            "style" : {
+				"navigationBarTitleText": "测名详情",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040",
+						"buttons":[{
+							"type": "home",
+							"float": "right"
+						}]
+					}
+				} 
+			}
+        }
+        ,{
+            "path" : "pages/status/index",
+            "style" : {
+				"navigationBarTitleText": "订单状态",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				} 
+			}
+        }
+        ,{
+            "path" : "pages/user/index",
+            "style" : {
+            	"navigationBarTitleText": "个人中心",
+            	"h5":{
+            		"titleNView":{
+            			"backgroundColor":"#000040"
+            		}
+            	} 
+            }
+        }
+        ,{
+            "path" : "pages/user/help",
+            "style" : {
+				"navigationBarTitleText": "服务信息",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				}
+			}
+        },
+		{
+		    "path" : "pages/user/quest",
+		    "style" : {
+				"navigationBarTitleText": "常见问题",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				}
+			}
+		},
+		{
+		    "path" : "pages/user/protocol",
+		    "style" : {
+				"navigationBarTitleText": "用户协议",
+				"h5":{
+					"titleNView":{
+						"backgroundColor":"#000040"
+					}
+				}
+			}
+		}
+        ,{
+            "path" : "pages/index/qiming",
+            "style" : {
+            	"navigationBarTitleText": "智能起名",
+            	"h5":{
+            		"titleNView":{
+            			"backgroundColor":"#000040"
+            		}
+            	}
+            }
+        }
+        ,{
+            "path" : "pages/detail/qiming",
+            "style" : {
+				"navigationBarTitleText": "名字详情",
+				"titleNView":{
+					"backgroundColor":"#000040"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/pay/qiming",
+            "style" : {
+            	"navigationBarTitleText": "智能起名套餐选择",
+            	"titleNView":{
+            		"backgroundColor":"#000040"
+            	}
+            }
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "智能测名",
+		"navigationBarBackgroundColor": "#333945",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#E53E49",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+			{
+			    "pagePath": "pages/index/qiming",
+			    "iconPath": "static/image/icon_tab01.png",
+			    "selectedIconPath": "static/image/icon_tab01_on.png",
+			    "text": "起名"
+			},
+			{
+            "pagePath": "pages/index/ceming",
+            "iconPath": "static/image/icon_tab02.png",
+            "selectedIconPath": "static/image/icon_tab02_on.png",
+            "text": "测名"
+        }, {
+            "pagePath": "pages/user/index",
+            "iconPath": "static/image/icon_tab04.png",
+            "selectedIconPath": "static/image/icon_tab04_on.png",
+            "text": "个人中心"
+        }]
+    }
+}

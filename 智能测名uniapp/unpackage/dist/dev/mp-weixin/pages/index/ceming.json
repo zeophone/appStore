@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "智能测名",
+  "usingComponents": {
+    "w-picker": "/components/w-picker/main",
+    "youshi": "/components/Youshi"
+  }
+}

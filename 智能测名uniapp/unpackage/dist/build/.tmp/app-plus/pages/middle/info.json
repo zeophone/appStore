@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "canvas-line": "/pages/middle/CanvasLine",
+    "info2": "/pages/middle/info2"
+  },
+  "component": true
+}

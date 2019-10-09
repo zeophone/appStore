@@ -1,0 +1,297 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.info.data-v-58a58d1e {
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+.male-female.data-v-58a58d1e {
+  padding: 20rpx;
+}
+.male-female > view.data-v-58a58d1e:nth-of-type(1) {
+    border-right: 1px dotted #ccc;
+}
+.man-logo.data-v-58a58d1e, .women-logo.data-v-58a58d1e {
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+}
+.man-logo text.data-v-58a58d1e, .women-logo text.data-v-58a58d1e {
+    display: inline-block;
+    width: 52rpx;
+    height: 100rpx;
+    background: url(https://static.quwangming.com/newqiming/images/m/ceming_201902/icon_sex.png) no-repeat;
+    background-size: cover;
+    background-position: 0 10rpx;
+}
+.women-logo text.data-v-58a58d1e {
+  background-position: -52rpx 10rpx;
+}
+.man-par.data-v-58a58d1e, .women-par.data-v-58a58d1e {
+  display: inline-block;
+  width: 180rpx;
+  height: 120rpx;
+  text-align: center;
+  line-height: 120rpx;
+  font-size: 48rpx;
+}
+.man-par.data-v-58a58d1e {
+  color: #00ade7;
+}
+.women-par.data-v-58a58d1e {
+  color: #e50053;
+}
+.c-container.data-v-58a58d1e {
+  padding: 20rpx 0;
+  overflow: scroll;
+}
+.c-container.data-v-58a58d1e::-webkit-scrollbar {
+  display: none;
+}
+.c-warp.data-v-58a58d1e {
+  height: 180rpx;
+}
+.character.data-v-58a58d1e {
+  display: inline-block;
+  vertical-align: top;
+  width: 180rpx;
+  height: 180rpx;
+  border: 2rpx solid #999;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  margin-right: 20rpx;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.character .info.data-v-58a58d1e {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 180rpx;
+    width: 180rpx;
+    padding-top: 40rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    z-index: 100;
+    color: #fff;
+}
+.character .circle-bor.data-v-58a58d1e {
+    position: absolute;
+    top: 10rpx;
+    bottom: 10rpx;
+    left: 10rpx;
+    right: 10rpx;
+    z-index: 1;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    overflow: hidden;
+    background: #e0e0e0;
+}
+.character .circle-bor .circle-bg.data-v-58a58d1e {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80%;
+      background: #00003e;
+}
+.character .circle-bor .circle-bg .circle-aim.data-v-58a58d1e {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        -webkit-transform: translateY(-100%);
+            -ms-transform: translateY(-100%);
+                transform: translateY(-100%);
+        height: 10px;
+        background: url(https://static.quwangming.com/newqiming/images/bl_bj.png) repeat-x;
+        -webkit-animation: sploosh-data-v-58a58d1e 3s linear infinite;
+                animation: sploosh-data-v-58a58d1e 3s linear infinite;
+}
+.complex-item .complex-title.data-v-58a58d1e {
+  margin-top: 20rpx;
+  padding-left: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: url(https://static.quwangming.com/newqiming/images/m/ceming_201902/icon_bagua.png) no-repeat;
+  background-size: 34rpx 34rpx;
+  background-position: 0 4rpx;
+}
+.complex-item .complex-centent.data-v-58a58d1e {
+  padding: 20rpx 0;
+}
+.complex-item.data-v-58a58d1e:after {
+  display: block;
+  content: '';
+  border-bottom: 1px solid #e1e1e1;
+  -webkit-transform: scaleY(0.5);
+      -ms-transform: scaleY(0.5);
+          transform: scaleY(0.5);
+}
+.export-tag.data-v-58a58d1e {
+  padding: 20rpx 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.export-tag .tag-name.data-v-58a58d1e {
+    color: #ab544e;
+    margin-right: 8rpx;
+}
+.score-text.data-v-58a58d1e {
+  color: #2f2727;
+  font-size: 28rpx;
+  padding-right: 18rpx;
+  position: absolute;
+  right: 50%;
+  margin-right: 80rpx;
+  line-height: 160rpx;
+  font-family: yjianti, "\5FAE\8F6F\96C5\9ED1", Microsoft Yhei, arial, sans-serif !important;
+}
+.score-num.data-v-58a58d1e {
+  width: 160rpx;
+  height: 160rpx;
+  line-height: 140rpx;
+  font-size: 10rpx;
+  font-weight: 700;
+  color: #171717;
+  vertical-align: top;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  background: url(https://static.quwangming.com/newqiming/images/m/tradition/fen_bj.png) no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.score-num text.data-v-58a58d1e {
+    font-size: 100rpx;
+    font-family: yjianti, "\5FAE\8F6F\96C5\9ED1", Microsoft Yhei, arial, sans-serif !important;
+}
+.child-score > text.data-v-58a58d1e {
+  height: 80rpx;
+  line-height: 80rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  font-family: yjianti, "\5FAE\8F6F\96C5\9ED1", Microsoft Yhei, arial, sans-serif !important;
+}
+.child-score > text.data-v-58a58d1e:nth-of-type(3) {
+  border-right: 1px solid #171717;
+}
+.grid.data-v-58a58d1e {
+  padding: 0 50rpx;
+}
+.grid > text.data-v-58a58d1e {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    border-top: 1px solid #171717;
+    border-left: 1px solid #171717;
+    height: 32rpx;
+}
+.grid > text.data-v-58a58d1e:nth-of-type(5) {
+    border-right: 1px solid #171717;
+}
+.sign.data-v-58a58d1e {
+  padding: 0 20rpx;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.sign > text.data-v-58a58d1e {
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    text-align: center;
+    width: 64rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    font-size: 36rpx;
+    color: #b2554c;
+    display: inline-block;
+    vertical-align: top;
+    background: url(https://static.quwangming.com/newqiming/images/m/tradition/zi_bj.png) no-repeat;
+    background-size: contain;
+    font-family: yjianti, "\5FAE\8F6F\96C5\9ED1", Microsoft Yhei, arial, sans-serif !important;
+}
+.sign-name.data-v-58a58d1e {
+  padding: 10rpx 20rpx;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.sign-name > text.data-v-58a58d1e {
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+    padding-left: 12rpx;
+    width: 64rpx;
+    height: 226rpx;
+    font-size: 30rpx;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
+    text-align: center;
+    letter-spacing: 8rpx;
+    color: #fff;
+    display: inline-block;
+    background: url(https://static.quwangming.com/newqiming/images/m/tradition/text_bj.jpg) no-repeat;
+    background-size: contain;
+}
+@-webkit-keyframes sploosh-data-v-58a58d1e {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 390px 0;
+}
+}
+@keyframes sploosh-data-v-58a58d1e {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 390px 0;
+}
+}
+

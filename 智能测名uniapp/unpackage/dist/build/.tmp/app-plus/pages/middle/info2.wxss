@@ -1,0 +1,309 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.info2 .info2-title.data-v-5c551258 {
+  background: url(https://static.quwangming.com/newqiming/images/m/chuantong/name_xinxi_bj.png) no-repeat;
+  background-size: cover;
+  height: 88rpx;
+  margin-top: 20rpx;
+  padding: 0 52rpx 0 72rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 34rpx;
+}
+.info2 .info2-title > text.data-v-5c551258:nth-of-type(2) {
+    margin-left: 20rpx;
+    color: #caa456;
+}
+.info2 .info2-title > text:nth-of-type(2) text.data-v-5c551258 {
+      font-size: 24rpx;
+}
+.info2 .info2-centent.data-v-5c551258 {
+  background: #fff;
+}
+.info2 .info2-centent .five_ge.data-v-5c551258 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 10rpx;
+}
+.info2 .info2-centent .five_ge .left.data-v-5c551258 {
+      -webkit-box-flex: 2;
+      -webkit-flex: 2;
+          -ms-flex: 2;
+              flex: 2;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      color: #999;
+}
+.info2 .info2-centent .five_ge .left .num.data-v-5c551258 {
+        padding-left: 20rpx;
+        color: red;
+        font-weight: bold;
+}
+.info2 .info2-centent .five_ge .right.data-v-5c551258 {
+      -webkit-box-flex: 7;
+      -webkit-flex: 7;
+          -ms-flex: 7;
+              flex: 7;
+}
+.info2 .info2-centent .five_ge .right .jixiong.data-v-5c551258 {
+        background: #6fc898;
+        padding: 0 6rpx;
+        color: #fff;
+        font-size: 28rpx;
+}
+.info2 .info2-centent .five_ge .right .jiexi.data-v-5c551258 {
+        padding: 20rpx 0;
+        color: #999;
+        font-size: 28rpx;
+        border-bottom: 1px solid #f1f1f1;
+}
+.info2 .info2-centent .xian2.data-v-5c551258 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+.info2 .info2-centent .xian2 text.data-v-5c551258 {
+      height: 60rpx;
+      width: 100%;
+      border: 1px solid #ccc;
+      margin-bottom: 10rpx;
+      border-left: 0;
+}
+.info2 .info2-centent .name-three_five.data-v-5c551258 {
+    height: 240rpx;
+    text-align: center;
+}
+.info2 .info2-centent .xian.data-v-5c551258 {
+    border: 1px solid #ccc;
+    height: 200rpx;
+    border-right: 0;
+}
+.info2 .info2-centent .character.data-v-5c551258 {
+    display: inline-block;
+    vertical-align: top;
+    width: 260rpx;
+    height: 260rpx;
+    border: 2rpx solid #999;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    margin-right: 20rpx;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.info2 .info2-centent .character .info.data-v-5c551258 {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 260rpx;
+      width: 260rpx;
+      padding-top: 90rpx;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      font-size: 58rpx;
+      z-index: 100;
+      color: #fff;
+}
+.info2 .info2-centent .character .circle-bor.data-v-5c551258 {
+      position: absolute;
+      top: 10rpx;
+      bottom: 10rpx;
+      left: 10rpx;
+      right: 10rpx;
+      z-index: 1;
+      -webkit-border-radius: 50%;
+              border-radius: 50%;
+      overflow: hidden;
+      background: #e0e0e0;
+}
+.info2 .info2-centent .character .circle-bor .circle-bg.data-v-5c551258 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80%;
+        background: #2383a7;
+}
+.info2 .info2-centent .character .circle-bor .circle-bg .circle-aim.data-v-5c551258 {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          -webkit-transform: translateY(-100%);
+              -ms-transform: translateY(-100%);
+                  transform: translateY(-100%);
+          height: 10px;
+          background: url(https://static.quwangming.com/newqiming/images/bl_bj2.png) repeat-x;
+          -webkit-animation: sploosh-data-v-5c551258 3s linear infinite;
+                  animation: sploosh-data-v-5c551258 3s linear infinite;
+}
+.info2 .info2-centent .advantage.data-v-5c551258,
+  .info2 .info2-centent .shortcoming.data-v-5c551258 {
+    padding-bottom: 20rpx;
+}
+.info2 .info2-centent .advantage text.data-v-5c551258,
+    .info2 .info2-centent .shortcoming text.data-v-5c551258 {
+      display: inline-block;
+      width: 140rpx;
+      height: 140rpx;
+      text-align: center;
+      line-height: 140rpx;
+      margin-right: 20rpx;
+      -webkit-border-radius: 50%;
+              border-radius: 50%;
+      border: 1px solid #9acaaf;
+      background: #e2f7ea;
+}
+.info2 .info2-centent .shortcoming text.data-v-5c551258 {
+    border-color: #e4e4e4;
+    background: #fbfbfb;
+}
+.info2 .info2-centent .wuxing-status.data-v-5c551258 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 60rpx;
+}
+.info2 .info2-centent .wuxing-status .name.data-v-5c551258 {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      text-align: center;
+}
+.info2 .info2-centent .wuxing-status .bg.data-v-5c551258 {
+      -webkit-box-flex: 8;
+      -webkit-flex: 8;
+          -ms-flex: 8;
+              flex: 8;
+      background: #f8f8f8;
+      height: 20rpx;
+      margin-right: 20rpx;
+}
+.info2 .info2-centent .wuxing-status .bg .st.data-v-5c551258 {
+        display: block;
+        height: 20rpx;
+}
+.info2 .info2-centent .wuxing-status .score.data-v-5c551258 {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      font-size: 28rpx;
+}
+.info2 .info2-centent .name-item.data-v-5c551258 {
+    -webkit-box-orient: initial;
+    -webkit-box-direction: initial;
+    -webkit-flex-direction: initial;
+        -ms-flex-direction: initial;
+            flex-direction: initial;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-right: 40rpx;
+}
+.info2 .info2-centent .name-item .pinyin.data-v-5c551258 {
+      margin-left: 20rpx;
+}
+.info2 .info2-centent .s_warp.data-v-5c551258 {
+    padding: 20rpx 40rpx 0;
+}
+.info2 .info2-centent .desc.data-v-5c551258 {
+    padding: 20rpx 0;
+}
+.info2 .info2-centent .sounds_tit.data-v-5c551258 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.info2 .info2-centent .sounds_tit .tit.data-v-5c551258 {
+      color: #999;
+      margin-right: 20rpx;
+}
+.info2 .info2-centent .sounds_tit .star.data-v-5c551258 {
+      -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+              flex-shrink: 0;
+      background: url(https://static.quwangming.com/newqiming/images/m/tradition/star.png) no-repeat;
+      background-size: 200rpx 200rpx;
+      width: 200rpx;
+      height: 40rpx;
+      margin-right: 20rpx;
+}
+@-webkit-keyframes sploosh-data-v-5c551258 {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 390px 0;
+}
+}
+@keyframes sploosh-data-v-5c551258 {
+0% {
+    background-position: 0 0;
+}
+100% {
+    background-position: 390px 0;
+}
+}
+
