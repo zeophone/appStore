@@ -21,6 +21,7 @@
 		},
 		methods: {
 			submit(){
+				
 				if(this.name==''){
 					uni.showToast({
 						title:'请输入名字',
@@ -29,7 +30,7 @@
 					return;
 				}
 				uni.navigateTo({
-					url:'../detail/detail?name='+this.name
+					url:'../detail/ceming?name='+this.name
 				})
 			}
 		}
