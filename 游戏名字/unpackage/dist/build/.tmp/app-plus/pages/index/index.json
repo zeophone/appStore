@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "智能起游戏名",
+  "usingComponents": {
+    "pop": "/components/pop",
+    "w-picker": "/components/w-picker/w-picker"
+  }
+}

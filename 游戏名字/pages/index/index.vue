@@ -1,5 +1,6 @@
 <template>
 	<view class="index">
+		<view class="header_bg"></view>
 		<view class="form">
 			<view class="input-area">
 				<text class="input_lable">姓&emsp;&emsp;名:</text>
@@ -260,7 +261,15 @@
 		min-height: 100%;
 		padding-bottom: 100upx;
 		box-sizing: border-box;
-
+		padding-top: 0;
+		
+		.header_bg{
+			width: 100%;
+			height: 300upx;
+			background: url(http://test.yw11.com/assets/newqiming/images/m/chuantong/banner_bj.png) no-repeat left bottom,
+			url(https://static.quwangming.com/newqiming/images/m/chuantong/banner.jpg) no-repeat;
+			background-size: 100%;
+		}
 		.footer {
 			width: 100%;
 			height: 100upx;
@@ -292,7 +301,7 @@
 				width: 650upx;
 				line-height: 100upx;
 				height: 100upx;
-				margin: 20upx auto;
+				margin: 20upx auto ;
 				padding: 0 32upx;
 				box-sizing: border-box;
 				background: url(https://static.quwangming.com/english/images/chinese/input_text_bj.jpg) no-repeat 0 0/650upx 100upx;

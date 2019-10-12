@@ -325,7 +325,7 @@
 			line-height: 80upx;
 			color: #666;
 			text{
-				margin-left: 50upx;
+				margin-left: 40upx;
 				border: 1px solid #e1e1e1;
 				padding: 0 10upx;
 			}

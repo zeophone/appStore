@@ -1,0 +1,85 @@
+.type {
+  margin: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.type .type_head {
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  background: url(https://static.quwangming.com/uploads/wangming18.png) no-repeat;
+  height: 434rpx;
+  background-size: 750rpx 384rpx;
+}
+.type .type_item {
+  display: inline-block;
+  width: 340rpx;
+  border: 4rpx solid #333;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  padding: 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.type .type_num {
+  display: inline-block;
+  width: 220rpx;
+  border: 4rpx solid #333;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+  padding: 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 28rpx;
+}
+.type .type_num:nth-of-type(4) {
+  margin-right: 0;
+}
+.type .type_item:nth-of-type(3),
+.type .type_item:nth-of-type(5) {
+  margin-right: 0;
+}
+.type .type_item_con {
+  font-size: 24rpx;
+  color: #999;
+}
+.type .select {
+  color: #e3434f;
+  border: 4rpx solid #e3434f;
+  font-weight: 700;
+}
+.type .select .bg {
+  border: 1rpx solid #e3434f;
+}
+.type .select .bg_angle {
+  border: 1px solid #e3434f;
+}
+.type .select .bg:after {
+  content: '';
+  position: absolute;
+  height: 40rpx;
+  width: 40rpx;
+  background: url('https://static.quwangming.com/v3/newqiming/images/m/chuantong/tc_gou.png') no-repeat;
+  background-size: 40rpx 80rpx;
+  background-position: 0 -40rpx;
+  right: 0;
+  bottom: 0;
+}
+.price {
+  margin: 20rpx;
+}
+.price .price_val {
+  font-size: 30rpx;
+}
+.price .price_val text {
+  color: #d62a36;
+  font-size: 40rpx;
+  padding-left: 20rpx;
+}
+.price .price_con {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+.price .price_con ._b {
+  display: inline-block;
+  color: #0073cf;
+}
+

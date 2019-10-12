@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "p-h5": "/components/w-pay/p-h5",
+    "p-baidu": "/components/w-pay/p-baidu"
+  }
+}

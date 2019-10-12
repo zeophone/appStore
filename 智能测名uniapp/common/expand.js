@@ -1,6 +1,7 @@
 /* MExpand uniapp Library 0.01
  适配微信和H5授权登陆,只适合uniapp环境
  $url获取链接参数，$client获取客户端信息:微信'wecheat'其他'wap'
+ 浏览器端创建token依赖外部js文件:'//static.quwangming.com/fingerprint.js',需要首页头部引入。
  Author: zoubin
  Date:2019-08-15 */
 import http from '../service';
@@ -42,7 +43,7 @@ import http from '../service';
 			return "";
 		},
 		rand:function() {
-			let ran = (new Date()).valueOf() + Math.floor(Math.random() * 100000);
+			let ran = (new Date()).valueOf() +''+ Math.floor(Math.random() * 1000);
 			return 'token_'+ran;
 		},
 		init: function() {
@@ -72,16 +73,20 @@ import http from '../service';
 					}
 				}
 			} else {
-				let cookie = this.getCookie('token'),
-				token = uni.getStorageSync('token');
-				if(token){
-					this.setCookie('token',token,365);
-				}else if(cookie&&!token){
-					uni.setStorageSync('token',cookie);
+				let localToken = localStorage.getItem('token')
+				if(localToken){
+					if(localToken.indexOf('type')==-1){
+						uni.setStorageSync('token',localToken);
+					}
 				}else{
-					let str= this.rand();
-					this.setCookie('token',str,365);
-					uni.setStorageSync('token', str);
+					if (Fingerprint) {
+					        //获取浏览器唯一指纹
+					        let  fingerPrint = new Fingerprint().get();
+							let  str = 'token_' + fingerPrint;
+							uni.setStorageSync('token',str)
+					}else{
+						uni.setStorageSync('token',this.rand()) 
+					}
 				}
 			}
 		}

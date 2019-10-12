@@ -23,7 +23,12 @@ var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "./node_modules/q
 //
 var _default = { data: function data() {return { url: '' };},
   onLoad: function onLoad(options) {
-    this.url = 'https://qiming.yw11.com/wangming/index/detail?' + _qs.default.stringify(options);
+    if (options.order_sn) {
+      this.url = 'https://qiming.yw11.com/wangming/order/detail?' + _qs.default.stringify(options);
+    } else {
+      this.url = 'https://qiming.yw11.com/wangming/index/detail?' + _qs.default.stringify(options);
+    }
+
   } };exports.default = _default;
 
 /***/ }),

@@ -214,8 +214,6 @@ var _default =
 
 
 
-
-
 var _qs = _interopRequireDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 var _login = _interopRequireDefault(__webpack_require__(/*! ../../common/login.js */ "C:\\Users\\Dell\\Documents\\HBuilderProjects\\游戏名字\\common\\login.js"));
 var _opBaidu = _interopRequireDefault(__webpack_require__(/*! ../../components/w-pay/op-baidu.vue */ "C:\\Users\\Dell\\Documents\\HBuilderProjects\\游戏名字\\components\\w-pay\\op-baidu.vue"));
@@ -283,10 +281,10 @@ var _opH = _interopRequireDefault(__webpack_require__(/*! ../../components/w-pay
 //
 //
 //
-//
-//
-var _default = { data: function data() {return { mobile: '', orderList: [], userInfo: null, isEmpty: false };}, components: { opBaidu: _opBaidu.default, opH5: _opH.default }, onShow: function onShow() {swan.setPageInfo({ title: '起网名_起游戏名_八字起名_周易取名_取名字_起名字大全', keywords: '起名,取名,起名字,取名字,宝宝起名,八字起名,周易起名,诗经起名,男孩起名,女孩起名', description: '起名网官方取名小程序，提供宝宝起名、男孩取名、女孩起名、周易起名、八字起名、诗经起名等智能起名字取名字服务。', articleTitle: '起名,取名,起名字,取名字,宝宝起名,八字起名,周易起名,诗经起名,男孩起名,女孩起名', releaseDate: '2019-05-15 12:01:30', image: '', video: '', visit: '', likes: '', comments: '', collects: '', shares: '', followers: '', success: function success() {console.log('页面基础信息设置完成');} });}, onLoad: function onLoad() {this.getUserInfo();}, methods: { call: function call() {console.log('call 18163728777');uni.makePhoneCall({ phoneNumber: '18163728777' });}, getUserInfo: function getUserInfo() {var _this = this;if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');uni.showLoading({ title: '查询中' });uni.request({ url: this.$store.state.baseUrl + '/api/netname/query', method: 'POST', data: { app_mchid: uni.getStorageSync('token'), app: 1 }, header: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }, success: function success(res) {console.log(res);uni.hideLoading();if (res.data.code == 1) {
-              _this.orderList = res.data.data;
+var _default = { data: function data() {return { mobile: '', orderList: [], userInfo: null, isEmpty: false };}, components: { opBaidu: _opBaidu.default, opH5: _opH.default }, onShow: function onShow() {swan.setPageInfo({ title: '起网名_起游戏名_八字起名_周易取名_取名字_起名字大全', keywords: '起名,取名,起名字,取名字,宝宝起名,八字起名,周易起名,诗经起名,男孩起名,女孩起名', description: '起名网官方取名小程序，提供宝宝起名、男孩取名、女孩起名、周易起名、八字起名、诗经起名等智能起名字取名字服务。', articleTitle: '起名,取名,起名字,取名字,宝宝起名,八字起名,周易起名,诗经起名,男孩起名,女孩起名', releaseDate: '2019-05-15 12:01:30', image: '', video: '', visit: '', likes: '', comments: '', collects: '', shares: '', followers: '', success: function success() {console.log('页面基础信息设置完成');} });}, onLoad: function onLoad() {this.getUserInfo();}, methods: { call: function call() {console.log('call 18163728777');uni.makePhoneCall({ phoneNumber: '18163728777' });}, getUserInfo: function getUserInfo() {var _this = this;if (uni.getStorageSync('userInfo')) {this.userInfo = uni.getStorageSync('userInfo');uni.showLoading({ title: '查询中' });uni.request({ url: this.$store.state.baseUrl + '/api/netname/query', method: 'POST', data: { app_mchid: uni.getStorageSync('token'), app: 1 }, header: { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }, success: function success(res) {console.log(res);
+            uni.hideLoading();
+            if (res.data.code == 1) {
+              _this.orderList = res.data.data.order_list;
               if (_this.orderList.length == 0) {
                 _this.isEmpty = true;
               }
@@ -347,11 +345,10 @@ var _default = { data: function data() {return { mobile: '', orderList: [], user
     },
     orderNext: function orderNext(i) {
       var params = {
-        name_total: this.orderList[i].level_num,
         order_sn: this.orderList[i].order_sn };
 
       uni.navigateTo({
-        url: './list?' + _qs.default.stringify(params) });
+        url: '../webview/webview?' + _qs.default.stringify(params) });
 
 
     } } };exports.default = _default;
@@ -586,26 +583,10 @@ var render = function() {
                           staticClass: "child_item",
                           attrs: { _hid: 28, _fid: _fid }
                         },
-                        [_vm._v("姓氏：" + _vm._s(item.surname), 29, _fid)]
-                      ),
-                      _c(
-                        "view",
-                        {
-                          staticClass: "child_item",
-                          attrs: { _hid: 30, _fid: _fid }
-                        },
-                        [_vm._v("类型：" + _vm._s(item.order_type), 31, _fid)]
-                      ),
-                      _c(
-                        "view",
-                        {
-                          staticClass: "child_item",
-                          attrs: { _hid: 32, _fid: _fid }
-                        },
                         [
                           _vm._v(
-                            "数量：" + _vm._s(item.level_num) + "个名字",
-                            33,
+                            "姓名：" + _vm._s(item.params.real_name),
+                            29,
                             _fid
                           )
                         ]
@@ -614,20 +595,20 @@ var render = function() {
                   ),
                   _vm._ri(
                     !!(item.order_status == 1),
-                    34,
+                    30,
                     item_i2 !== undefined ? item_i2 : i
                   )
                     ? _c(
                         "view",
                         {
                           staticClass: "foot",
-                          attrs: { _hid: 34, _fid: _fid }
+                          attrs: { _hid: 30, _fid: _fid }
                         },
                         [
                           _c(
                             "text",
                             {
-                              attrs: { _hid: 35, _fid: _fid },
+                              attrs: { _hid: 31, _fid: _fid },
                               on: {
                                 click: function($event) {
                                   _vm.orderNext(i)
@@ -641,17 +622,17 @@ var render = function() {
                     : _vm._e(),
                   _vm._ri(
                     !!(item.order_status != 1),
-                    37,
+                    33,
                     item_i2 !== undefined ? item_i2 : i
                   )
                     ? _c(
                         "view",
-                        { attrs: { _hid: 37, _fid: _fid } },
+                        { attrs: { _hid: 33, _fid: _fid } },
                         [
                           _c("op-baidu", {
                             attrs: {
                               orderSn: item.order_sn,
-                              _hid: 38,
+                              _hid: 34,
                               _fid: _fid,
                               _batrs: "orderSn",
                               _cid: 0
@@ -669,8 +650,8 @@ var render = function() {
           )
         )
       : _vm._e(),
-    _vm._ri(!!_vm.isEmpty, 1040)
-      ? _c("view", { staticClass: "center", attrs: { _hid: 1040 } }, [])
+    _vm._ri(!!_vm.isEmpty, 1036)
+      ? _c("view", { staticClass: "center", attrs: { _hid: 1036 } }, [])
       : _vm._e()
   ])
 }

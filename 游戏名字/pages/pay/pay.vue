@@ -84,8 +84,8 @@
 			.type_head {
 				font-size: 30upx;
 				margin-bottom: 20upx;
-				background: url(https://static.quwangming.com/p_child_name/images/28_ad.png) no-repeat;
-				height: 384upx;
+				background: url(https://static.quwangming.com/uploads/wangming18.png) no-repeat;
+				height: 434upx;
 				background-size: 750upx 384upx;
 			}
 

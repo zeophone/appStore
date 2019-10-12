@@ -52,9 +52,9 @@ export default {
 					icon:'none'
 				})
 				setTimeout(()=>{
-					uni.navigateBack({
-						delta: 1
-					});	
+					uni.switchTab({
+						url:'/pages/index/ceming'
+					})
 				},1000)
 				
 			}

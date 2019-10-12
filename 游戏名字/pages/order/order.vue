@@ -43,9 +43,7 @@
 					<view class="">
 						<text class="content_title">{{item.title}}</text><text class="money">￥{{item.money}}</text>
 					</view>
-					<view class="child_item">姓氏：{{item.surname}}</view>
-					<view class="child_item">类型：{{item.order_type}}</view>
-					<view class="child_item">数量：{{item.level_num}}个名字</view>
+					<view class="child_item">姓名：{{item.params.real_name}}</view>
 				</view>
 				<view class="foot" v-if="item.order_status==1">
 					<text @click="orderNext(i)">查看名字</text>
@@ -135,7 +133,7 @@
 							console.log(res)
 							uni.hideLoading()
 							if (res.data.code == 1) {
-								this.orderList = res.data.data
+								this.orderList = res.data.data.order_list
 								if (this.orderList.length == 0) {
 									this.isEmpty = true
 								}
@@ -196,11 +194,10 @@
 			},
 			orderNext(i) {
 				let params = {
-					name_total: this.orderList[i].level_num,
 					order_sn: this.orderList[i].order_sn
 				}
 				uni.navigateTo({
-					url: './list?' + qs.stringify(params)
+					url: '../webview/webview?' + qs.stringify(params)
 				});
 
 			}

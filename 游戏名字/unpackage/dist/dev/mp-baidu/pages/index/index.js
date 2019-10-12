@@ -583,8 +583,10 @@ var _default2 = { data: function data() {return { result: [], data: {}, checkArr
 
 
 
+
 var _pop = _interopRequireDefault(__webpack_require__(/*! @/components/pop.vue */ "C:\\Users\\Dell\\Documents\\HBuilderProjects\\游戏名字\\components\\pop.vue"));
 var _wPicker = _interopRequireDefault(__webpack_require__(/*! @/components/w-picker/w-picker.vue */ "C:\\Users\\Dell\\Documents\\HBuilderProjects\\游戏名字\\components\\w-picker\\w-picker.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
 //
 //
 //
@@ -650,8 +652,7 @@ var _default = { data: function data() {return { rn: '', //	true	string	姓名
       tid: [], //	true	array	网名风格标签
       app: 1, //	true	int	接口来源标识(固定填1)
       sex_arr: { 0: '不限', 7: '男', 6: '女' }, sex_show: false, zi_arr: { 0: '不限', 2: '2字', 3: '3字', 4: '4字', 5: '5字', 6: '6字', 7: '7字及以上' }, zi_show: false, birthdayStr: '', popType: '2', characterStr: '', tabIndex: 0, //wPicker组件控制
-      tabList: [{ mode: "dateTime", name: "日期时间选择", value: [30, 2, 0, 1, 3] }, { mode: "region", name: "省市区", value: [10, 0, 5] }] };}, components: { Pop: _pop.default, wPicker: _wPicker.default }, onLoad: function onLoad() {if (uni.getStorageSync('wangming_form')) {var form = uni.getStorageSync('wangming_form');this.rn = form.rn;this.birthdayStr = form.birthdayStr;}}, computed: { mode: function mode() {return this.tabList[this.tabIndex].mode;
-    },
+      tabList: [{ mode: "dateTime", name: "日期时间选择", value: [30, 2, 0, 1, 3] }, { mode: "region", name: "省市区", value: [10, 0, 5] }] };}, components: { Pop: _pop.default, wPicker: _wPicker.default }, onLoad: function onLoad() {if (uni.getStorageSync('wangming_form')) {var form = uni.getStorageSync('wangming_form');this.rn = form.rn;this.birthdayStr = form.birthdayStr;}}, computed: { mode: function mode() {return this.tabList[this.tabIndex].mode;},
     defaultVal: function defaultVal() {
       return this.tabList[this.tabIndex].value;
     } },
@@ -1414,9 +1415,10 @@ var render = function() {
     "view",
     { staticClass: "index", attrs: { _hid: 0 } },
     [
-      _c("view", { staticClass: "form", attrs: { _hid: 1 } }, [
-        _c("view", { staticClass: "input-area", attrs: { _hid: 2 } }, [
-          _c("text", { staticClass: "input_lable", attrs: { _hid: 3 } }, []),
+      _c("view", { staticClass: "header_bg", attrs: { _hid: 1 } }),
+      _c("view", { staticClass: "form", attrs: { _hid: 2 } }, [
+        _c("view", { staticClass: "input-area", attrs: { _hid: 3 } }, [
+          _c("text", { staticClass: "input_lable", attrs: { _hid: 4 } }, []),
           _c("input", {
             directives: [
               {
@@ -1430,7 +1432,7 @@ var render = function() {
               type: "text",
               placeholder: "输入你的名字(必填)",
               "placeholder-class": "plac",
-              _hid: 5
+              _hid: 6
             },
             domProps: { value: _vm.rn },
             on: {
@@ -1443,12 +1445,12 @@ var render = function() {
             }
           })
         ]),
-        _c("view", { staticClass: "select-area", attrs: { _hid: 6 } }, [
+        _c("view", { staticClass: "select-area", attrs: { _hid: 7 } }, [
           _c(
             "view",
             {
               staticClass: "select_item",
-              attrs: { _hid: 7 },
+              attrs: { _hid: 8 },
               on: {
                 click: function($event) {
                   _vm.selectControl("sex")
@@ -1456,9 +1458,9 @@ var render = function() {
               }
             },
             [
-              _c("text", { attrs: { _hid: 8 } }, []),
-              _c("text", { staticClass: "updown", attrs: { _hid: 10 } }, [
-                _vm._v(_vm._s(_vm.sex_arr[_vm.class_id]), 11)
+              _c("text", { attrs: { _hid: 9 } }, []),
+              _c("text", { staticClass: "updown", attrs: { _hid: 11 } }, [
+                _vm._v(_vm._s(_vm.sex_arr[_vm.class_id]), 12)
               ]),
               _c(
                 "view",
@@ -1467,7 +1469,7 @@ var render = function() {
                   style: {
                     transform: "scaleY(" + (_vm.sex_show ? 1 : 0) + ")"
                   },
-                  attrs: { _hid: 12 }
+                  attrs: { _hid: 13 }
                 },
                 _vm._l(
                   _vm.sex_arr,
@@ -1478,17 +1480,17 @@ var render = function() {
                       {
                         key: key,
                         class: { on: key == _vm.class_id },
-                        attrs: { _hid: 13, _fid: _fid, _fk: "key" },
+                        attrs: { _hid: 14, _fid: _fid, _fk: "key" },
                         on: {
                           click: function($event) {
                             _vm.sexSelect(key)
                           }
                         }
                       },
-                      [_vm._v(_vm._s(item), 14, _fid)]
+                      [_vm._v(_vm._s(item), 15, _fid)]
                     )
                   },
-                  13,
+                  14,
                   _vm._self
                 )
               )
@@ -1498,7 +1500,7 @@ var render = function() {
             "view",
             {
               staticClass: "select_item",
-              attrs: { _hid: 15 },
+              attrs: { _hid: 16 },
               on: {
                 click: function($event) {
                   _vm.selectControl("zi")
@@ -1506,16 +1508,16 @@ var render = function() {
               }
             },
             [
-              _c("text", { attrs: { _hid: 16 } }, []),
-              _c("text", { staticClass: "updown", attrs: { _hid: 18 } }, [
-                _vm._v(_vm._s(_vm.zi_arr[_vm.wl]), 19)
+              _c("text", { attrs: { _hid: 17 } }, []),
+              _c("text", { staticClass: "updown", attrs: { _hid: 19 } }, [
+                _vm._v(_vm._s(_vm.zi_arr[_vm.wl]), 20)
               ]),
               _c(
                 "view",
                 {
                   staticClass: "down_area",
                   style: { transform: "scaleY(" + (_vm.zi_show ? 1 : 0) + ")" },
-                  attrs: { _hid: 20 }
+                  attrs: { _hid: 21 }
                 },
                 _vm._l(
                   _vm.zi_arr,
@@ -1526,25 +1528,25 @@ var render = function() {
                       {
                         key: key,
                         class: { on: key == _vm.wl },
-                        attrs: { _hid: 21, _fid: _fid, _fk: "key" },
+                        attrs: { _hid: 22, _fid: _fid, _fk: "key" },
                         on: {
                           click: function($event) {
                             _vm.ziSelect(key)
                           }
                         }
                       },
-                      [_vm._v(_vm._s(item), 22, _fid)]
+                      [_vm._v(_vm._s(item), 23, _fid)]
                     )
                   },
-                  21,
+                  22,
                   _vm._self
                 )
               )
             ]
           )
         ]),
-        _c("view", { staticClass: "input-area", attrs: { _hid: 23 } }, [
-          _c("text", { staticClass: "input_lable", attrs: { _hid: 24 } }, []),
+        _c("view", { staticClass: "input-area", attrs: { _hid: 24 } }, [
+          _c("text", { staticClass: "input_lable", attrs: { _hid: 25 } }, []),
           _c("input", {
             directives: [
               {
@@ -1558,7 +1560,7 @@ var render = function() {
               type: "text",
               placeholder: "输入你喜欢的字",
               "placeholder-class": "plac",
-              _hid: 26
+              _hid: 27
             },
             domProps: { value: _vm.like_str },
             on: {
@@ -1575,7 +1577,7 @@ var render = function() {
           "view",
           {
             staticClass: "input-area",
-            attrs: { _hid: 27 },
+            attrs: { _hid: 28 },
             on: {
               click: function($event) {
                 _vm.pickerFn(0)
@@ -1583,7 +1585,7 @@ var render = function() {
             }
           },
           [
-            _c("text", { staticClass: "input_lable", attrs: { _hid: 28 } }, []),
+            _c("text", { staticClass: "input_lable", attrs: { _hid: 29 } }, []),
             _c("input", {
               directives: [
                 {
@@ -1598,7 +1600,7 @@ var render = function() {
                 type: "text",
                 placeholder: "选择你的出生日期(必填)",
                 "placeholder-class": "plac",
-                _hid: 30
+                _hid: 31
               },
               domProps: { value: _vm.birthdayStr },
               on: {
@@ -1616,7 +1618,7 @@ var render = function() {
           "view",
           {
             staticClass: "input-area",
-            attrs: { _hid: 31 },
+            attrs: { _hid: 32 },
             on: {
               click: function($event) {
                 _vm.pickerFn(1)
@@ -1624,7 +1626,7 @@ var render = function() {
             }
           },
           [
-            _c("text", { staticClass: "input_lable", attrs: { _hid: 32 } }, []),
+            _c("text", { staticClass: "input_lable", attrs: { _hid: 33 } }, []),
             _c("input", {
               directives: [
                 {
@@ -1639,7 +1641,7 @@ var render = function() {
                 type: "text",
                 placeholder: "选择你的出生地点",
                 "placeholder-class": "plac",
-                _hid: 34
+                _hid: 35
               },
               domProps: { value: _vm.area_name },
               on: {
@@ -1657,11 +1659,11 @@ var render = function() {
           "view",
           {
             staticClass: "input-area",
-            attrs: { _hid: 35 },
+            attrs: { _hid: 36 },
             on: { click: _vm.characterPop }
           },
           [
-            _c("text", { staticClass: "input_lable", attrs: { _hid: 36 } }, []),
+            _c("text", { staticClass: "input_lable", attrs: { _hid: 37 } }, []),
             _c("input", {
               directives: [
                 {
@@ -1676,7 +1678,7 @@ var render = function() {
                 type: "text",
                 placeholder: "选择名字风格",
                 "placeholder-class": "plac",
-                _hid: 38
+                _hid: 39
               },
               domProps: { value: _vm.characterStr },
               on: {
@@ -1694,16 +1696,16 @@ var render = function() {
           "view",
           {
             staticClass: "submit-area",
-            attrs: { _hid: 39 },
+            attrs: { _hid: 40 },
             on: { click: _vm.submit }
           },
           []
         )
       ]),
-      _c("view", { staticClass: "footer", attrs: { _hid: 41 } }, []),
+      _c("view", { staticClass: "footer", attrs: { _hid: 42 } }, []),
       _c("Pop", {
         ref: "pop",
-        attrs: { type: _vm.popType, _hid: 43, _batrs: "type", _cid: 0 },
+        attrs: { type: _vm.popType, _hid: 44, _batrs: "type", _cid: 0 },
         on: { popVal: _vm.popVal }
       }),
       _c("wPicker", {
@@ -1714,7 +1716,7 @@ var render = function() {
           endYear: "2019",
           defaultVal: _vm.defaultVal,
           themeColor: "#f00",
-          _hid: 1045,
+          _hid: 1046,
           _batrs: "mode,defaultVal",
           _cid: 1
         },

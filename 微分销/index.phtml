@@ -1,0 +1,683 @@
+<?php $this->partial("layouts/tradition/head"); ?>
+
+<body>
+    <style type="text/css">
+        .pinlun {
+            margin: 110px 63px 0 72px;
+        }
+
+        .header {
+            top: 0;
+        }
+
+        .login {
+            padding-top: 34px;
+        }
+
+        .header .logo {
+            top: 10px;
+        }
+
+        .header .nav ul {
+            vertical-align: top;
+        }
+
+        .header .nav li span {
+            color: #fff;
+            display: block;
+            line-height: 48px;
+            width: 120px;
+            font-size: 18px;
+            padding: 25px 15px;
+            position: relative;
+        }
+
+        .header .nav li i {
+            position: absolute;
+            left: 50%;
+            margin-left: -8px;
+            bottom: 0;
+            width: 16px;
+            height: 7px;
+            background: url(<?php echo __IMG__; ?>/tradition/icon_jt.png) no-repeat;
+            opacity: 0;
+        }
+
+        .header .nav li.cur i {
+            opacity: 1;
+            -webkit-transition: .3s all;
+            -moz-transition: .3s all;
+            transition: .3s all;
+        }
+
+        .z_head_box {
+            background: rgba(255, 255, 255, .9);
+        }
+
+        .z_head_box .item {
+            float: none;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        .z_head_box .item.m_r160 {
+            margin-right: 160px;
+        }
+
+        .z_head_box .item.first {
+            margin-left: 0;
+        }
+
+        .z_head_box .item.cur {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .free_zj {
+            position: absolute;
+            left: -144px;
+            top: 18px;
+            color: #c83632;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .free_zj:after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-width: 6px 6px 6px 0;
+            border-style: solid;
+            border-color: transparent #c83632 transparent transparent;
+            position: absolute;
+            left: -14px;
+            top: 4px;
+        }
+
+        .ma {
+            position: absolute;
+            left: -140px;
+            top: -30px;
+            z-index: 999;
+            opacity: 1;
+            transition: all .36s ease-out;
+        }
+    </style>
+    <script src="<?php echo __STATIC__; ?>/gsqm/js/jquery.popcity.js" type="text/javascript"></script>
+    <link href="<?php echo __STATIC__; ?>/common/css/dialog.css" rel="stylesheet" type="text/css">
+    <script src="<?php echo __JS__; ?>/tradition/time.js" type="text/javascript"></script>
+    <link href="<?php echo __CSS__; ?>/tradition/time.css" rel="stylesheet" type="text/css">
+    <div class="header">
+        <div class="w1140 text_a_c clearfix po_rel" style="z-index:10;">
+            <div class="dis_inblock nav">
+                <ul class="dis_inblock">
+                    <li><span>个人起名<i></i></span></li>
+                    <li class="p_r160"><span>公司起名<i></i></span></li>
+                    <li><span>名字测试<i></i></span></li>
+                    <li><span>订单查询<i></i></span></li>
+                </ul>
+            </div>
+            <h1 class="logo"><a href="/newqiming"><img src="<?php echo __IMG__; ?>/tradition/logo.png"></a></h1>
+            <?php $this->partial("layouts/tradition/login"); ?>
+        </div>
+        <?php $this->partial("layouts/tradition/nav_more"); ?>
+    </div>
+    <div class="po_rel in-area in-area01">
+        <div class="po_abs w1140 main">
+            <div style="height:670px;"></div>
+            <div class="form-box">
+                <div class="hd">
+                    <ul class="clearfix">
+                        <li class="on"><a href="javascript:;">智能起名</a><i></i></li>
+                        <li><a href="/expert/" target="_blank">大师起名</a></li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <form method="post" action="/<?php echo MODULE_NAME; ?>/index/index" name="sm">
+                        <div class="item clearfix">
+                            <div class="f_l bor_radius5 item-box" style="width: 516px;">
+                                <div class="over_hidden f_r po_rel radio">
+                                    <label<?php if ($params['sex'] == 1 || empty($params['sex'])) echo ' class="on"'; ?>><input name="sex" type="radio" value="1" <?php if ($params['sex'] == 1 || empty($params['sex'])) echo 'checked'; ?>><i></i>男</label>
+                                        <label<?php if ($params['sex'] == 2) echo ' class="on"'; ?>><input name="sex" type="radio" value="2" <?php if ($params['sex'] == 2) echo 'checked'; ?>><i></i>女</label>
+                                </div>
+                                <div class="po_rel input">
+                                    <label>
+                                        <span class="tit">请输入姓氏：</span>
+                                        <div class="over_hidden">
+                                            <input type="hidden" value="zhqm" id="qim" name="qim">
+                                            <input type="hidden" id="s_bday" name="s_bday">
+                                            <input type="text" id='surname' name="surname" size="6" value="<?php echo $params['surname']; ?>">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="f_r bor_radius5 item-box" style="width: 516px;">
+                                <i class="bj-l"></i>
+                                <i class="bj-r"></i>
+                                <div class="po_rel input">
+                                    <label>
+                                        <span class="tit">选择出生时间：</span>
+                                        <div class="over_hidden"><input type="" class="datetime" readonly></div>
+                                    </label>
+                                    <input type="" name="birth_date" value="" hidden="">
+                                    <input type="" name="date_type" value="" hidden="">
+                                    <input type="" name="is_leap" value="" hidden="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="bor_radius5 item-box">
+                                <div class="f_r po_rel checkbox">
+                                    <label class="on"><i><em></em></i><input type="checkbox" name="zty" value="1" checked="">较对真太阳<b class="dis_inblock help_icon"></b></label>
+                                    <div class="help_text none">
+                                        <em class="icon"></em>
+                                        <h4>什么是真太阳时？</h4>
+                                        <div class="text">真太阳时即为当地出生时间，北京时间为东经120度为准的时间，传统生辰八字是以当地时间为准，中国地大，很多地方时间偏差很大，真太阳时是以出生地经纬度等核算与北京时间偏差，精准的计算出当地出生时间，并以当地出生时间来计算生辰八字，很多非专业人士直接用北京时间算生辰八字，这样一些与北京相距较远的地区和二个时辰交替点出生的最容易八字时辰错误。八字错了一切都错了。</div>
+                                    </div>
+                                </div>
+                                <div class="po_rel input">
+                                    <label>
+                                        <span class="tit">选择出生地：</span>
+                                        <div class="over_hidden">
+                                            <input type="text" name="birth_address" id="cs" class="cs" value="<?php echo $params['birth_address']; ?>" placeholder="" readonly="">
+                                            <input type="hidden" name="harea" id="harea" value="<?php echo $params['city_code']; ?>">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="f_l bor_radius5 item-box" style="width: 516px;">
+                                <div class="po_rel input">
+                                    <label>
+                                        <span class="tit">期望标签：</span>
+                                        <div class="over_hidden p_r20"><input type="" onclick="aaa({type:1,title:'印象标签'})" readonly=""><input type="hidden" name="name_character" value=""></div>
+                                        <span class="jt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="f_r bor_radius5 item-box" style="width: 516px;">
+                                <div class="po_rel input">
+                                    <label>
+                                        <span class="tit">父母期望：</span>
+                                        <div class="over_hidden p_r20"><input type="" onclick="aaa({type:2,title:'父母期望'})" readonly=""><input type="hidden" name="name_expect" value=""></div>
+                                        <span class="jt"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <input id="ad_code_id" name="ad_code_id" value="" type="hidden">
+                        <input id="order_forms" name="order_forms" value="" type="hidden">
+                        <input id="ad_source" name="ad_source" value="" type="hidden">
+                        <div class="clearfix text_a_c po_rel">
+                            <div class="dis_inblock po_rel" style="width:500px;vertical-align: top;">
+                                <div class="free_zj">
+                                    专家免费测名选名
+                                    <p class="ma"><img src="//static.quwangming.com/common/images/ewm04.png" width="120" height="120"></p>
+                                </div>
+                                <div class="sub">
+                                    <div class="bj"><span></span><i class="j1"></i><i class="j2"></i><i class="j3"></i><i class="j4"></i></div>
+                                    <input type="submit" name="" value="立即起名">
+                                </div>
+                                <div style="position: absolute;top: 18px;right: -110px;"><a href="/newqiming/order/zn_order_query/" style="text-decoration:underline;color:#666;">查询订单 &gt;&gt;</a></div>
+                            </div>
+                        </div>
+                        <div class="clearfix text_a_c f_s15 p_t20">
+                            <div class="dis_inblock">
+                                <div class="f_l" style="line-height: 20px;"><b class="co_caa456 p_r5 f_s16">15万+</b><span class="co_999">客户信赖之选</span></div>
+                                <div class="f_l text_a_l co_999 news_tishi txt_scroll_top">
+                                    <div class="bd">
+                                        <ul id="order-infos"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="slideBox-in">
+            <div class="bd">
+                <ul>
+                    <li>
+                        <div class="bg-box">
+                            <div class="bg bg1"></div>
+                            <div class="bg bg2"></div>
+                            <div class="bg bg3"></div>
+                            <div class="bg bg4"></div>
+                            <div class="bg bg5"></div>
+                            <div class="bg bg6"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="bg-box">
+                            <div class="bg bg01"></div>
+                            <div class="bg bg02"></div>
+                            <div class="bg bg03"></div>
+                            <div class="bg bg04"></div>
+                            <div class="bg bg05"></div>
+                            <div class="bg bg06"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="po_rel in-area in-area02">
+        <div class="po_abs w1140 main">
+            <div class="qmfs">
+                <span class="icon"></span>
+                <div class="hd">
+                    <ul>
+                        <li class="item01 on"><a href="javascript:;"><i></i>
+                                <p>周易起名</p>
+                            </a></li>
+                        <li class="item02"><a href="javascript:;"><i></i>
+                                <p>五格起名</p>
+                            </a></li>
+                        <li class="item03"><a href="javascript:;"><i></i>
+                                <p>生肖起名</p>
+                            </a></li>
+                        <li class="item04"><a href="javascript:;"><i></i>
+                                <p>诗词起名</p>
+                            </a></li>
+                        <li class="item05"><a href="javascript:;"><i></i>
+                                <p>音形义起名</p>
+                            </a></li>
+                        <li class="item06"><a href="javascript:;"><i></i>
+                                <p>星座起名</p>
+                            </a></li>
+                        <li class="item07"><a href="javascript:;"><i></i>
+                                <p>期望起名</p>
+                            </a></li>
+                    </ul>
+                </div>
+                <div class="bd">
+                    <div class="text">
+                        <p class=""><span>周易起名</span><br>以传统易经卦象与八十一数理为基础，根据卦象解析，为宝宝起一个能改善宝宝五行的吉祥好名。</p>
+                        <p class="none"><span>五格起名</span>根据《易经》的“象”、“数”理论，将人的姓名按五格(天格、人格、地格、外格、总格)剖象法来解释。推算出利于人生各方面运势的吉祥好名。</p>
+                        <p class="none"><span>生肖起名</span>以传统生肖姓名学理论为依据，根据生肖性格、爱好、喜忌为宝宝起名，改善宝宝生肖性格缺陷，名字符合生肖属相特征。</p>
+                        <p class="none"><span>诗词起名</span>基于二万多首古诗词，二十多万句诗词名句中，智能筛选匹配合生辰八字的吉祥好名，让名字既补合宝宝生辰八字，又充满诗情画意、意蕴丰富。</p>
+                        <p class="none"><span>音形义起名</span>着重考虑音顺，形美、义内涵的字。延伸出美好期望、良好祝愿，做到真正的音美、字美、意境美。提升个人印象，让人一下记住你。</p>
+                        <p class="none"><span>星座起名</span>基于星座性格缺点改善来起名，通过名字印象标签和名字心理学暗示，智能优先匹配能改善星座性格缺点的字或名字来起名，好性格成就好人生！</p>
+                        <p class="none"><span>期望起名</span>基于24种幸福性格特质，通过父母对孩子的性格期望，智能筛选出具有相应性格特质暗示的字来起名，好名字成就好性格，好性格成就幸福人生。</p>
+                    </div>
+                    <a href="javascript:;" class="next"></a>
+                    <a href="javascript:;" class="close"></a>
+                </div>
+            </div>
+        </div>
+        <div class="bg-box">
+            <div class="bg bg1"></div>
+            <div class="bg bg2"></div>
+            <div class="bg bg3"></div>
+            <div class="bg bg4"></div>
+            <div class="bg bg5"></div>
+            <div class="bg bg6"></div>
+            <div class="bg bg7"></div>
+        </div>
+    </div>
+    <div class="po_rel in-area in-area03">
+        <div class="po_abs w1140 main">
+            <div class="mzte">
+                <ul>
+                    <li class="dis_inblock">
+                        <h2>好听时尚</h2>
+                        <p>名字既考虑传统生辰八字，又结合起名网1000万起名大数据流行度分析，让名字吉祥开运又紧跟时代潮流，摒弃俗气字眼，同时综合诗词典故，让名字个性鲜明、好听内涵又时尚。</p>
+                    </li>
+                    <li class="dis_inblock" style="margin: 0 105px;">
+                        <h2>吉祥美名</h2>
+                        <p>尊重传统文化，名字以生辰八字为基准，结合周易卦象、三才五格、生肖喜忌、星座性格、诗词歌赋、心理学暗示等，让名字助益宝宝吉祥平安，健康成长!</p>
+                    </li>
+                    <li class="dis_inblock">
+                        <h2>专业快捷</h2>
+                        <p>起名网官网大平台保证，十八年起名改名经验研发，您只需输入姓氏、出生地、出生信息、个性期望，5分钟内即可生成好名字，简单方便又高效。名字好听又时尚。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-box">
+            <div class="bg bg1"></div>
+            <div class="bg bg2"></div>
+            <div class="bg bg3"></div>
+        </div>
+    </div>
+    <div class="po_rel in-area in-area04">
+        <div class="po_abs w1140 main">
+            <div class="qmwys">
+                <div class="about slideBox">
+                    <div class="bd">
+                        <i></i>
+                        <ul>
+                            <li><img src="<?php echo __IMG__; ?>/m/about_0.jpg"></li>
+                            <li><img src="<?php echo __IMG__; ?>/m/about_1.jpg"></li>
+                            <li><img src="<?php echo __IMG__; ?>/m/about_2.jpg"></li>
+                            <li><img src="<?php echo __IMG__; ?>/m/about_3.jpg"></li>
+                        </ul>
+                    </div>
+                    <div class="hd">
+                        <ul class="text_a_c">
+                            <li class="dis_inblock"><a href="javascript:;"><img src="<?php echo __IMG__; ?>/tradition/img01.jpg"><i></i></a></li>
+                            <li class="dis_inblock"><a href="javascript:;"><img src="<?php echo __IMG__; ?>/tradition/img02.jpg"><i></i></a></li>
+                            <li class="dis_inblock"><a href="javascript:;"><img src="<?php echo __IMG__; ?>/tradition/img03.jpg"><i></i></a></li>
+                            <li class="dis_inblock"><a href="javascript:;"><img src="<?php echo __IMG__; ?>/tradition/img04.jpg"><i></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <?php $this->partial("layouts/tradition/comment"); ?>
+                <div class="copy">
+                    <?php $this->partial("layouts/tradition/copy"); ?>
+                </div>
+            </div>
+        </div>
+        <div class="bg-box">
+            <div class="bg bg1"></div>
+            <div class="bg bg2"></div>
+            <div class="bg bg3"></div>
+            <div class="bg bg4"></div>
+            <div class="bg bg5"></div>
+            <div class="bg bg6"></div>
+            <div class="bg bg7"></div>
+            <div class="bg bg8"></div>
+        </div>
+    </div>
+
+    <div class="my_modal_bg"></div>
+
+    <div class="bqSelectBox">
+        <div class="hd"><i>印象标签</i><span>(最多可选6个)</span><a href="javascript:;" class="close">确定</a></div>
+        <div class="clearfix bd">
+            <div class="character">
+                <a href="javascript:;">爱学习<input value="a" hidden></a>
+                <a href="javascript:;">好奇心<input value="b" hidden></a>
+                <a href="javascript:;">判断力<input value="c" hidden></a>
+                <a href="javascript:;">创造力<input value="d" hidden></a>
+                <a href="javascript:;">洞察力<input value="e" hidden></a>
+                <a href="javascript:;">勇敢<input value="f" hidden></a>
+                <a href="javascript:;">毅力<input value="g" hidden></a>
+                <a href="javascript:;">诚实<input value="h" hidden></a>
+                <a href="javascript:;">爱<input value="i" hidden></a>
+                <a href="javascript:;">善良<input value="j" hidden></a>
+                <a href="javascript:;">情商高<input value="k" hidden></a>
+                <a href="javascript:;">忠诚<input value="l" hidden></a>
+                <a href="javascript:;">正直<input value="m" hidden></a>
+                <a href="javascript:;">领导力<input value="n" hidden></a>
+                <a href="javascript:;">宽容<input value="o" hidden></a>
+                <a href="javascript:;">谦虚<input value="p" hidden></a>
+                <a href="javascript:;">谨慎<input value="q" hidden></a>
+                <a href="javascript:;">自律<input value="r" hidden></a>
+                <a href="javascript:;">欣赏力<input value="s" hidden></a>
+                <a href="javascript:;">感恩<input value="t" hidden></a>
+                <a href="javascript:;">乐观<input value="u" hidden></a>
+                <a href="javascript:;">幽默<input value="v" hidden></a>
+                <a href="javascript:;">信仰<input value="w" hidden></a>
+                <a href="javascript:;">激情<input value="x" hidden></a>
+            </div>
+            <div class="none boy">
+                <a href="javascript:;">稳重<input value="r" hidden></a>
+                <a href="javascript:;">睿智<input value="s" hidden></a>
+                <a href="javascript:;">自信<input value="t" hidden></a>
+                <a href="javascript:;">阳光<input value="u" hidden></a>
+                <a href="javascript:;">阳刚<input value="v" hidden></a>
+                <a href="javascript:;">安康<input value="w" hidden></a>
+                <a href="javascript:;">财富<input value="x" hidden></a>
+                <a href="javascript:;">成功<input value="y" hidden></a>
+                <a href="javascript:;">儒雅<input value="z" hidden></a>
+                <a href="javascript:;">内敛<input value="1" hidden></a>
+                <a href="javascript:;">大气<input value="2" hidden></a>
+                <a href="javascript:;">博学多才<input value="3" hidden></a>
+                <a href="javascript:;">魅力<input value="4" hidden></a>
+                <a href="javascript:;">个性<input value="5" hidden></a>
+                <a href="javascript:;">独立<input value="6" hidden></a>
+                <a href="javascript:;">敏锐<input value="7" hidden></a>
+            </div>
+            <div class="none girl">
+                <a href="javascript:;">活泼<input value="a" hidden></a>
+                <a href="javascript:;">可爱<input value="b" hidden></a>
+                <a href="javascript:;">文静<input value="c" hidden></a>
+                <a href="javascript:;">聪颖<input value="d" hidden></a>
+                <a href="javascript:;">自信<input value="e" hidden></a>
+                <a href="javascript:;">安康<input value="f" hidden></a>
+                <a href="javascript:;">财富<input value="g" hidden></a>
+                <a href="javascript:;">成功<input value="h" hidden></a>
+                <a href="javascript:;">高贵<input value="i" hidden></a>
+                <a href="javascript:;">优雅<input value="j" hidden></a>
+                <a href="javascript:;">温柔<input value="k" hidden></a>
+                <a href="javascript:;">清纯<input value="l" hidden></a>
+                <a href="javascript:;">时尚<input value="m" hidden></a>
+                <a href="javascript:;">贤淑<input value="n" hidden></a>
+                <a href="javascript:;">魅力<input value="o" hidden></a>
+                <a href="javascript:;">独立<input value="p" hidden></a>
+                <a href="javascript:;">多才<input value="q" hidden></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="datetime_selector">
+        <div class="clearfix hd">
+            <div class="f_l datetime_yl"><em>已选时间：</em><span>2018年闰七月廿四</span></div>
+            <div class="f_l datetime_radio">
+                <label class="on"><input type="radio" value="1" checked=""><i><em></em></i><span>公历</span></label><label><input type="radio" value="2"><i><em></em></i><span>农历</span></label>
+            </div>
+            <div class="f_l datetime_check">
+                <label><input type="checkbox" value="1" hidden=""><i><em></em></i><span>闰月</span></label>
+            </div>
+            <span class="f_r btn-ok">确定</span>
+        </div>
+        <div class="bd">
+            <dl class="item01">
+                <dt>年</dt>
+                <dd></dd>
+            </dl>
+            <dl class="item02">
+                <dt>月</dt>
+                <dd></dd>
+            </dl>
+            <dl class="item03">
+                <dt>日</dt>
+                <dd></dd>
+            </dl>
+            <dl class="item04">
+                <dt>时</dt>
+                <dd></dd>
+            </dl>
+            <dl class="item05">
+                <dt>分</dt>
+                <dd></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="datetime_bj"></div>
+    <script src="<?php echo __JS__; ?>/tradition/form.js" type="text/javascript"></script>
+    <script src="<?php echo __JS__; ?>/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="<?php echo __JS__; ?>/tradition/suspension.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //二维码接口轮换
+        $.get(
+            'https://qiming.yw11.com/api/public/ad', {
+                cid: 1
+            },
+            function(data) {
+                let msg = JSON.parse(data)
+                if (msg.status == 1) {
+                    $('.ma img').attr('src', msg.data.path)
+                }
+            }
+        )
+        //导航特效
+        var head = $('.header'),
+            headBox = $('.z_head_box');
+        head.hover(function() {
+            headBox.fadeIn(200).removeClass('none');
+        }, function() {
+            headBox.fadeOut(200);
+        })
+        head.find('.nav li').hover(function() {
+            var num = $(this).index();
+            $(this).addClass('cur').siblings().removeClass('cur');
+            headBox.find('.item').eq(num).addClass('cur').siblings().removeClass('cur');
+        }, function() {
+            $(this).removeClass('cur');
+            headBox.find('.item').removeClass('cur');
+        })
+        headBox.find('.item').hover(function() {
+            var num = $(this).index();
+            $(this).addClass('cur').siblings().removeClass('cur');
+            head.find('.nav li').eq(num).addClass('cur').siblings().removeClass('cur');
+        }, function() {
+            $(this).removeClass('cur');
+            head.find('.nav li').removeClass('cur');
+        })
+
+        $(function() {
+            $('.qmfs .hd li').click(function() {
+                var num = $(this).index()
+                $(this).addClass('on').siblings().removeClass('on').parents('.hd').next().fadeIn(300).find('p').eq(num).removeClass('none').siblings().addClass('none')
+            })
+            $('.qmfs .bd .next').click(function() {
+                var num = $(this).parents('.bd').prev().find('li.on').index() + 1
+                if (num == 7) {
+                    num = 0
+                }
+                $(this).prev().find('p').eq(num).removeClass('none').siblings().addClass('none').parents('.bd').prev().find('li').eq(num).addClass('on').siblings().removeClass('on')
+            })
+            $('.qmfs .bd .close').click(function() {
+                $(this).parents('.bd').addClass('on').fadeOut(300)
+            })
+            jQuery(".slideBox-in").slide({
+                mainCell: ".bd ul",
+                effect: "fold",
+                autoPlay: true,
+                delayTime: 1000,
+                interTime: 6000,
+                mouseOverStop: false
+            });
+            jQuery(".slideBox").slide({
+                mainCell: ".bd ul",
+                autoPlay: true,
+                delayTime: 0
+            });
+        })
+        $(window).scroll(function() {
+            var top = $(this).scrollTop() + $(this).height(),
+                divTop = $('.in-area03').offset().top - 50;
+            if (top >= divTop && !$('.qmfs .bd').hasClass('on')) {
+                $('.qmfs .bd').fadeIn(300)
+            }
+        })
+        $(".news_tishi").slide({
+            mainCell: ".bd ul",
+            autoPage: true,
+            effect: "topLoop",
+            pnLoop: false,
+            autoPlay: true,
+            mouseOverStop: false,
+            delayTime: 500,
+            interTime: 2500
+        });
+
+        function generateHtml() {
+            $.ajax({
+                url: "/newqiming/index/tips",
+                data: {
+                    limit: 10
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function(msg) {
+                    if (msg.length) {
+                        var html = "";
+                        for (var i = 0; i < msg.length; i++) {
+                            html += '<li><span>' + msg[i].second + '秒前</span>' + msg[i].content + '</li>';
+                        }
+                        $("#order-infos").html(html);
+                        $(".txt_scroll_top").slide({
+                            mainCell: ".bd ul",
+                            autoPage: true,
+                            effect: "topLoop",
+                            pnLoop: false,
+                            autoPlay: true,
+                            mouseOverStop: false,
+                            delayTime: 500,
+                            interTime: 2500
+                        });
+                    }
+                },
+                error: function() {
+
+                }
+            });
+        }
+        /* 先生成10条数据滚屏 */
+        generateHtml();
+
+        /* 每个30秒重新拉取一次数据 */
+        function runTips() {
+            $.ajax({
+                url: "/newqiming/index/tips",
+                data: {
+                    limit: 10
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function(msg) {
+                    if (msg.length) {
+                        var html = "";
+                        for (var i = 0; i < msg.length; i++) {
+                            html += '<li><span>' + msg[i].second + '秒前</span>' + msg[i].content + '</li>';
+                        }
+                        $("#order-infos").html(html);
+                        if (typeof window.gi != "undefined") {
+                            window.clearTimeout(window.gi);
+                        }
+                    }
+                    window.gi = setTimeout(function() {
+                        console.log("Again");
+                        runTips();
+                    }, 32 * 1000);
+                },
+                error: function() {
+
+                }
+            });
+        }
+        runTips();
+        //分销跟踪
+        function getParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+
+
+        if (getParam('ewm')) {
+            sessionStorage.setItem('ewm', getParam('ewm'))
+        }
+        if (getParam('ad_code_id')) {
+            sessionStorage.setItem('ad_code_id', getParam('ad_code_id'))
+        }
+        if (sessionStorage.getItem('ad_code_id')) {
+            let ad_params = {
+                ad_code_id: sessionStorage.getItem('ad_code_id'), //true	int	广告ID
+                order_forms: 1, //	true	int	来源 1= pc, 2= 手机
+                ad_source: sessionStorage.getItem('ewm') ? 3 : 2, //true	int	广告来源：1.在线起名2.广告链接3.二维码
+                action: location.pathname
+            }
+            $("#ad_code_id").attr("value", ad_params.ad_code_id)
+            $("#order_forms").attr("value", ad_params.order_forms)
+            $("#ad_source").attr("value", ad_params.ad_source)
+            $.ajax({
+                url: location.origin + '/public/distributorlog',
+                type: 'post',
+                data: ad_params,
+                success: function(req) {}
+            })
+        }
+    </script>
+</body>
+
+</html>
